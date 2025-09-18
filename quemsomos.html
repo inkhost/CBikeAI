@@ -3,40 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="CBikeAI - Quem Somos">
+    <meta name="description" content="Conheça a CBikeAI, criadora do farol inteligente para ciclistas com IA, GPS e sensores.">
+    <!-- Metadados para SEO -->
+    <meta property="og:title" content="CBikeAI - Quem Somos">
+    <meta property="og:description" content="Saiba mais sobre a CBikeAI, nossa missão e o farol inteligente que revoluciona a segurança no ciclismo.">
+    <meta property="og:image" content="https://www.cbikeai.com/img/CBikeAILOGO.png">
+    <meta property="og:url" content="https://www.cbikeai.com/quemsomos.html">
+    <meta name="twitter:card" content="summary_large_image">
     <title>CBikeAI - Quem Somos</title>
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="preload" href="styles.css" as="style">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7C6KGFMFV6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-7C6KGFMFV6');
+    </script>
 </head>
 <body>
-    <header>
+    <header role="banner">
         <div class="logo">
             <img src="img/CBikeAILOGO.png" alt="Logo CBikeAI">
         </div>
         <nav aria-label="Navegação principal">
             <a href="index.html">Início</a>
-            <a href="quemsomos.html">Quem Somos</a>
+            <a href="quemsomos.html" aria-current="page">Quem Somos</a>
             <a href="contato.html">Contato</a>
         </nav>
     </header>
     <main class="main-content">
-        <section id="sobre">
+        <section id="quemsomos">
             <h1>Quem Somos</h1>
-            <p>Nós somos a CBikeAI, uma empresa inovadora dedicada a transformar a experiência de ciclistas por meio de tecnologia de ponta. Nosso principal produto, o farol inteligente CBikeAI, combina inteligência artificial, GPS integrado e sensores avançados para oferecer segurança, praticidade e conectividade em cada pedalada. Fundada com a missão de tornar o ciclismo mais seguro e acessível, nossa equipe é composta por entusiastas da bicicleta e especialistas em tecnologia que trabalham juntos para desenvolver soluções que atendem às necessidades de ciclistas urbanos, aventureiros e entusiastas do cicloturismo. Na CBikeAI, acreditamos que a mobilidade sustentável pode mudar o mundo, e estamos comprometidos em iluminar o caminho para um futuro mais seguro e conectado sobre duas rodas.</p>
+            <p>A CBikeAI é uma empresa inovadora dedicada a transformar a experiência de ciclismo com tecnologia de ponta. Nosso farol inteligente combina inteligência artificial, GPS e sensores avançados para oferecer segurança e praticidade aos ciclistas urbanos e aventureiros.</p>
+            <p>Fundada em [insira ano], nossa missão é tornar cada pedalada mais segura e conectada, utilizando IA para adaptar a iluminação às condições do ambiente e fornecer dados em tempo real para os ciclistas.</p>
+            <div class="team-gallery" role="region" aria-label="Galeria da equipe CBikeAI">
+                <img src="img/team01.jpg" alt="Equipe CBikeAI em ação" loading="lazy">
+                <img src="img/team02.jpg" alt="Desenvolvimento do farol CBikeAI" loading="lazy">
+            </div>
         </section>
     </main>
-    <footer>
-        <p>© 2025 CBikeAI. Todos os direitos reservados.</p>
-        <div class="social-media" aria-label="Links de redes sociais">
-            <a href="https://www.instagram.com/cbikeai" target="_blank" aria-label="Siga-nos no Instagram">
-                <i class="fab fa-instagram"></i>
+    <footer role="contentinfo">
+        <p class="copyright">© 2025 CBikeAI. Todos os direitos reservados.</p>
+        <div class="social-media">
+            <a href="https://www.instagram.com/cbikeai" onclick="gtag('event', 'click_social', {'social_network': 'Instagram'});" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no Instagram">
+                <i class="fa-brands fa-instagram"></i>
             </a>
-            <a href="https://www.x.com/cbikeai" target="_blank" aria-label="Siga-nos no X">
-                <i class="fab fa-x-twitter"></i>
+            <a href="https://www.x.com/cbikeai" onclick="gtag('event', 'click_social', {'social_network': 'X'});" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no X">
+                <i class="fa-brands fa-x-twitter"></i>
             </a>
-            <a href="https://www.facebook.com/cbikeai" target="_blank" aria-label="Siga-nos no Facebook">
-                <i class="fab fa-facebook-f"></i>
+            <a href="https://www.facebook.com/cbikeai" onclick="gtag('event', 'click_social', {'social_network': 'Facebook'});" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no Facebook">
+                <i class="fa-brands fa-facebook-f"></i>
             </a>
         </div>
     </footer>
