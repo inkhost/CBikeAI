@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Entre em contato com a CBikeAI para saber mais sobre nosso farol inteligente.">
+    <title>CBikeAI - Contato</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="img/CBikeAILOGO.png" alt="Logo CBikeAI">
+        </div>
+        <nav aria-label="Navegação principal">
+            <a href="index.html">Início</a>
+            <a href="quemsomos.html">Quem Somos</a>
+            <a href="contato.html">Contato</a>
+        </nav>
+    </header>
+    <main class="main-content">
+        <section id="contato">
+            <h1>Entre em Contato</h1>
+            <p>Envie sua mensagem para saber mais sobre o CBikeAI!</p>
+            <form id="contact-form" action="#" method="post">
+                <div>
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" name="nome" required aria-required="true">
+                    <span class="error-message" id="nome-error" style="display: none;"></span>
+                </div>
+                <div>
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required aria-required="true">
+                    <span class="error-message" id="email-error" style="display: none;"></span>
+                </div>
+                <div>
+                    <label for="mensagem">Mensagem</label>
+                    <textarea id="mensagem" name="mensagem" required aria-required="true"></textarea>
+                    <span class="error-message" id="mensagem-error" style="display: none;"></span>
+                </div>
+                <button type="submit">Enviar</button>
+                <div class="form-message" id="form-message" style="display: none;"></div>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p class="copyright">© 2025 CBikeAI. Todos os direitos reservados.</p>
+        <div class="social-media">
+            <a href="https://www.instagram.com/cbikeai" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no Instagram">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://www.x.com/cbikeai" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no X">
+                <i class="fa-brands fa-x-twitter"></i>
+            </a>
+            <a href="https://www.facebook.com/cbikeai" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no Facebook">
+                <i class="fa-brands fa-facebook-f"></i>
+            </a>
+        </div>
+    </footer>
+    <script>
+        // Adiciona um ouvinte de evento para o envio do formulário
+        document.getElementById('contact-form').addEventListener('submit', function (event) {
+            event.preventDefault(); // Impede o envio padrão do formulário para validação no cliente
+
+            // Obtém os valores dos campos e remove espaços em branco
+            const nome = document.getElementById('nome').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const mensagem = document.getElementById('mensagem').value.trim();
+            let isValid = true;
+
+            // Seleciona elementos para mensagens de erro e sucesso
+            const nomeError = document.getElementById('nome-error');
+            const emailError = document.getElementById('email-error');
+            const mensagemError = document.getElementById('mensagem-error');
+            const formMessage = document.getElementById('form-message');
+            const submitButton = this.querySelector('button[type="submit"]');
+
+            // Reseta mensagens de erro e sucesso
+            nomeError.textContent = '';
+            emailError.textContent = '';
+            mensagemError.textContent = '';
+            formMessage.textContent = '';
+            formMessage.classList.remove('form-message-success', 'form-message-error');
+            nomeError.style.display = 'none';
+            emailError.style.display = 'none';
+            mensagemError.style.display = 'none';
+            formMessage.style.display = 'none';
+
+            // Valida o campo nome (obrigatório e apenas letras/espaços)
+            if (!nome) {
+                nomeError.textContent = 'Por favor, digite seu nome.';
+                nomeError.style.display = 'block';
+                document.getElementById('nome').setAttribute('aria-invalid', 'true');
+                isValid = false;
+            } else if (!/^[a-zA-Z\s]+$/.test(nome)) {
+                nomeError.textContent = 'O nome deve conter apenas letras e espaços.';
+                nomeError.style.display = 'block';
+                document.getElementById('nome').setAttribute('aria-invalid', 'true');
+                isValid = false;
+            } else {
+                document.getElementById('nome').setAttribute('aria-invalid', 'false');
+            }
+
+            // Valida o campo e-mail (obrigatório e formato válido)
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email) {
+                emailError.textContent = 'Por favor, digite seu e-mail.';
+                emailError.style.display = 'block';
+                document.getElementById('email').setAttribute('aria-invalid', 'true');
+                isValid = false;
+            } else if (!emailPattern.test(email)) {
+                emailError.textContent = 'Por favor, digite um e-mail válido.';
+                emailError.style.display = 'block';
+                document.getElementById('email').setAttribute('aria-invalid', 'true');
+                isValid = false;
+            } else {
+                document.getElementById('email').setAttribute('aria-invalid', 'false');
+            }
+
+            // Valida o campo mensagem (obrigatório e limite de 500 caracteres)
+            if (!mensagem) {
+                mensagemError.textContent = 'Por favor, escreva sua mensagem.';
+                mensagemError.style.display = 'block';
+                document.getElementById('mensagem').setAttribute('aria-invalid', 'true');
+                isValid = false;
+            } else if (mensagem.length > 500) {
+                mensagemError.textContent = 'A mensagem não pode exceder 500 caracteres.';
+                mensagemError.style.display = 'block';
+                document.getElementById('mensagem').setAttribute('aria-invalid', 'true');
+                isValid = false;
+            } else {
+                document.getElementById('mensagem').setAttribute('aria-invalid', 'false');
+            }
+
+            // Processa o envio se todos os campos forem válidos
+            if (isValid) {
+                submitButton.disabled = true; // Desabilita o botão para evitar múltiplos envios
+                formMessage.textContent = 'Enviado com sucesso!';
+                formMessage.classList.add('form-message-success');
+                formMessage.style.display = 'block';
+                formMessage.setAttribute('role', 'alert'); // Melhora acessibilidade para leitores de tela
+
+                // Reseta o formulário após 2 segundos
+                setTimeout(() => {
+                    document.getElementById('contact-form').reset();
+                    submitButton.disabled = false;
+                    formMessage.textContent = '';
+                    formMessage.style.display = 'none';
+                    formMessage.classList.remove('form-message-success');
+                    document.getElementById('nome').setAttribute('aria-invalid', 'false');
+                    document.getElementById('email').setAttribute('aria-invalid', 'false');
+                    document.getElementById('mensagem').setAttribute('aria-invalid', 'false');
+                }, 2000);
+
+                // Exemplo de envio para backend (descomente para usar)
+                /*
+                fetch('/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ nome, email, mensagem })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    formMessage.textContent = 'Enviado com sucesso!';
+                    formMessage.classList.add('form-message-success');
+                    formMessage.style.display = 'block';
+                    formMessage.setAttribute('role', 'alert');
+                    document.getElementById('contact-form').reset();
+                    submitButton.disabled = false;
+                })
+                .catch(error => {
+                    formMessage.textContent = 'Erro ao enviar o formulário. Tente novamente.';
+                    formMessage.classList.add('form-message-error');
+                    formMessage.style.display = 'block';
+                    formMessage.setAttribute('role', 'alert');
+                    submitButton.disabled = false;
+                });
+                */
+            } else {
+                formMessage.textContent = 'Por favor, corrija os erros no formulário.';
+                formMessage.classList.add('form-message-error');
+                formMessage.style.display = 'block';
+                formMessage.setAttribute('role', 'alert');
+            }
+        });
+    </script>
+</body>
+</html>

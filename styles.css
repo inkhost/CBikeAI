@@ -1,0 +1,518 @@
+/* Define variáveis CSS para facilitar a manutenção e troca de temas */
+:root {
+    --neon-green: #09e331; /* Cor primária padrão (verde neon) */
+    --neon-green-hover: #0aff3d; /* Variação da cor primária para hover */
+    --background: #000000; /* Cor de fundo padrão (preto) */
+    --text-color: #ffffff; /* Cor padrão para texto (branco) */
+    --shadow-color: rgba(0, 0, 0, 0.6); /* Sombra padrão para elementos */
+    --shadow-neon: rgba(9, 227, 49, 0.4); /* Sombra neon associada à cor primária */
+    --shadow-neon-hover: rgba(9, 227, 49, 0.6); /* Sombra neon mais intensa para hover */
+    --border-neon: #09e331; /* Borda neon associada à cor primária */
+    --scrollbar-track: #000000; /* Cor da trilha da barra de rolagem */
+    --scrollbar-thumb: #09e331; /* Cor do polegar da barra de rolagem */
+    --scrollbar-thumb-hover: #0aff3d; /* Cor do polegar da barra de rolagem em hover */
+    --input-bg: #1a1a1a; /* Cor de fundo dos campos de entrada */
+    --input-border: #333333; /* Cor da borda dos campos de entrada */
+    --input-focus: #0aff3d; /* Cor da borda dos campos em foco */
+    --error-color: #ff4d4d; /* Cor para mensagens de erro */
+    --success-color: #09e331; /* Cor para mensagens de sucesso */
+    /* Boa prática: Uso de variáveis CSS facilita manutenção e troca de temas */
+    /* Sugestão: Renomear variáveis como --neon-green para algo mais genérico (e.g., --primary-color) para evitar confusão em temas com cores diferentes */
+}
+
+/* Tema de cor azul */
+[data-color-theme="blue"] {
+    --neon-green: #1e90ff; /* Substitui a cor primária por azul */
+    --neon-green-hover: #40c4ff; /* Cor de hover para o tema azul */
+    --shadow-neon: rgba(30, 144, 255, 0.4); /* Sombra neon para o tema azul */
+    --shadow-neon-hover: rgba(30, 144, 255, 0.6); /* Sombra neon mais intensa para hover */
+    --border-neon: #1e90ff; /* Borda neon para o tema azul */
+    --scrollbar-thumb: #1e90ff; /* Polegar da barra de rolagem no tema azul */
+    --scrollbar-thumb-hover: #40c4ff; /* Polegar da barra de rolagem em hover */
+    --input-focus: #40c4ff; /* Cor de foco dos campos no tema azul */
+    --success-color: #1e90ff; /* Cor de sucesso no tema azul */
+    /* Boa prática: Estrutura clara para temas alternativos, facilitando escalabilidade */
+}
+
+/* Tema de cor roxo */
+[data-color-theme="purple"] {
+    --neon-green: #9b59b6; /* Substitui a cor primária por roxo */
+    --neon-green-hover: #c178d6; /* Cor de hover para o tema roxo */
+    --shadow-neon: rgba(155, 89, 182, 0.4); /* Sombra neon para o tema roxo */
+    --shadow-neon-hover: rgba(155, 89, 182, 0.6); /* Sombra neon mais intensa para hover */
+    --border-neon: #9b59b6; /* Borda neon para o tema roxo */
+    --scrollbar-thumb: #9b59b6; /* Polegar da barra de rolagem no tema roxo */
+    --scrollbar-thumb-hover: #c178d6; /* Polegar da barra de rolagem em hover */
+    --input-focus: #c178d6; /* Cor de foco dos campos no tema roxo */
+    --success-color: #9b59b6; /* Cor de sucesso no tema roxo */
+    /* Observação: Consistência na estrutura dos temas facilita a adição de novos temas */
+}
+
+/* Tema de cor vermelho */
+[data-color-theme="red"] {
+    --neon-green: #e74c3c; /* Substitui a cor primária por vermelho */
+    --neon-green-hover: #ff7066; /* Cor de hover para o tema vermelho */
+    --shadow-neon: rgba(231, 76, 60, 0.4); /* Sombra neon para o tema vermelho */
+    --shadow-neon-hover: rgba(231, 76, 60, 0.6); /* Sombra neon mais intensa para hover */
+    --border-neon: #e74c3c; /* Borda neon para o tema vermelho */
+    --scrollbar-thumb: #e74c3c; /* Polegar da barra de rolagem no tema vermelho */
+    --scrollbar-thumb-hover: #ff7066; /* Polegar da barra de rolagem em hover */
+    --input-focus: #ff7066; /* Cor de foco dos campos no tema vermelho */
+    --success-color: #e74c3c; /* Cor de sucesso no tema vermelho */
+    /* Sugestão: Para reduzir repetição, considere usar pré-processadores como SASS para gerenciar temas de forma modular */
+}
+
+/* Reset global para consistência entre navegadores */
+* {
+    box-sizing: border-box; /* Garante que padding e bordas sejam incluídos nas dimensões */
+    margin: 0; /* Remove margens padrão */
+    padding: 0; /* Remove paddings padrão */
+    /* Observação: Reset agressivo pode afetar elementos como forms; considere um reset mais específico ou Normalize.css */
+}
+
+/* Estilização do corpo da página */
+body {
+    background-color: var(--background); /* Aplica a cor de fundo definida */
+    font-family: 'Inter', 'Arial', sans-serif; /* Define fontes com fallback */
+    color: var(--text-color); /* Aplica a cor de texto padrão */
+    line-height: 1.6; /* Melhora a legibilidade do texto */
+    min-height: 100vh; /* Garante que o corpo ocupe toda a altura da janela */
+    display: flex; /* Usa flexbox para layout */
+    flex-direction: column; /* Organiza conteúdo em coluna */
+    overflow-x: hidden; /* Evita rolagem horizontal indesejada */
+    /* Boa prática: Uso de flexbox para layout responsivo e min-height para garantir altura mínima */
+}
+
+/* Estilização do cabeçalho */
+header {
+    background-color: var(--background); /* Aplica a cor de fundo padrão */
+    padding: 15px 0; /* Adiciona espaço interno */
+    position: sticky; /* Fixa o cabeçalho no topo durante a rolagem */
+    top: 0; /* Alinha ao topo da janela */
+    width: 100%; /* Ocupa toda a largura */
+    z-index: 1000; /* Garante que o cabeçalho fique acima de outros elementos */
+    box-shadow: 0 4px 12px var(--shadow-color); /* Adiciona sombra para destaque */
+    backdrop-filter: blur(8px); /* Aplica desfoque no fundo (suporte limitado em alguns navegadores) */
+    display: flex; /* Usa flexbox para alinhar conteúdo */
+    flex-direction: column; /* Organiza conteúdo em coluna */
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: center; /* Centraliza verticalmente */
+    /* Sugestão: Adicionar fallback para backdrop-filter, como background-color opaco, para navegadores sem suporte */
+}
+
+/* Estilização do logo */
+.logo {
+    display: flex; /* Usa flexbox para centralizar a imagem do logo */
+    justify-content: center; /* Centraliza horizontalmente */
+}
+
+/* Estilização da imagem do logo */
+.logo img {
+    width: 160px; /* Define largura fixa */
+    height: auto; /* Mantém proporção */
+    transition: transform 0.4s ease, filter 0.4s ease; /* Transições suaves para hover */
+    /* Boa prática: Transições adicionam interatividade visual */
+}
+
+.logo img:hover {
+    transform: scale(1.1); /* Aumenta ligeiramente o tamanho no hover */
+    filter: drop-shadow(0 0 10px var(--shadow-neon)); /* Adiciona sombra neon no hover */
+    /* Observação: Efeito visual atraente, mas filter pode ser custoso em performance em dispositivos mais lentos */
+}
+
+/* Estilização da navegação */
+nav {
+    margin-top: 10px; /* Espaço acima da navegação */
+    display: flex; /* Usa flexbox para organizar links */
+    justify-content: center; /* Centraliza links horizontalmente */
+    align-items: center; /* Centraliza links verticalmente */
+    gap: 30px; /* Espaço entre os links */
+}
+
+/* Estilização dos links de navegação */
+nav a {
+    color: var(--neon-green); /* Usa a cor primária */
+    text-decoration: none; /* Remove sublinhado padrão */
+    font-size: 18px; /* Tamanho da fonte */
+    font-weight: 600; /* Peso da fonte para destaque */
+    position: relative; /* Necessário para pseudo-elemento ::after */
+    padding: 8px 12px; /* Espaço interno para clique */
+    transition: color 0.3s ease, transform 0.3s ease; /* Transições suaves para cor e transformação */
+}
+
+/* Pseudo-elemento para efeito de sublinhado animado */
+nav a::after {
+    content: ''; /* Cria um elemento vazio */
+    position: absolute; /* Posiciona abaixo do link */
+    width: 0; /* Inicia com largura zero */
+    height: 2px; /* Altura da linha */
+    background-color: var(--neon-green-hover); /* Cor do sublinhado */
+    bottom: 0; /* Alinha na parte inferior */
+    left: 0; /* Alinha à esquerda */
+    transition: width 0.3s ease; /* Anima a largura */
+}
+
+/* Expande o sublinhado no hover e foco */
+nav a:hover::after, nav a:focus::after {
+    width: 100%; /* Expande o sublinhado para a largura total */
+}
+
+/* Estilização no hover e foco */
+nav a:hover, nav a:focus {
+    color: var(--neon-green-hover); /* Aplica a cor de hover */
+    transform: translateY(-2px); /* Efeito de elevação */
+    /* Boa prática: Efeito visual sutil melhora a interatividade */
+}
+
+/* Animação ao clicar no link */
+nav a:active {
+    animation: clickPulse 0.2s ease; /* Aplica animação de clique */
+}
+
+/* Estilização para foco nos links */
+nav a:focus {
+    outline: 2px solid var(--neon-green-hover); /* Contorno para acessibilidade */
+    outline-offset: 2px; /* Espaço do contorno */
+    /* Boa prática: Estilização de foco melhora acessibilidade para navegação por teclado */
+}
+
+/* Animação de clique para links */
+@keyframes clickPulse {
+    0% { transform: scale(1); } /* Tamanho normal */
+    50% { transform: scale(0.95); } /* Reduz ligeiramente */
+    100% { transform: scale(1); } /* Retorna ao normal */
+    /* Boa prática: Animação sutil para feedback de clique */
+}
+
+/* Estilização dos botões de alternância de tema */
+.theme-toggle,
+.color-toggle {
+    background: none; /* Remove fundo padrão */
+    border: none; /* Remove borda padrão */
+    color: var(--neon-green); /* Usa a cor primária */
+    font-size: 24px; /* Tamanho do ícone/fonte */
+    cursor: pointer; /* Indica que é clicável */
+    transition: transform 0.3s ease, color 0.3s ease; /* Transições suaves */
+    padding: 8px; /* Espaço interno para clique */
+    /* Sugestão: Adicionar aria-label para acessibilidade (e.g., "Alternar tema claro/escuro") */
+}
+
+/* Efeitos de hover nos botões de tema */
+.theme-toggle:hover,
+.color-toggle:hover {
+    color: var(--neon-green-hover); /* Aplica a cor de hover */
+    transform: scale(1.2); /* Aumenta o tamanho */
+}
+
+/* Estilização de foco nos botões de tema */
+.theme-toggle:focus,
+.color-toggle:focus {
+    outline: 2px solid var(--neon-green-hover); /* Contorno para acessibilidade */
+    outline-offset: 2px; /* Espaço do contorno */
+}
+
+/* Estilização do conteúdo principal */
+.main-content {
+    margin-top: 20px; /* Espaço acima do conteúdo */
+    padding: clamp(80px, 10vw, 100px) 15px; /* Padding responsivo com clamp */
+    text-align: center; /* Centraliza o texto */
+    flex: 1; /* Faz o conteúdo principal ocupar o espaço disponível */
+    /* Boa prática: Uso de clamp para padding responsivo */
+}
+
+/* Estilização de títulos */
+h1, h2 {
+    color: var(--neon-green); /* Usa a cor primária */
+    font-weight: 700; /* Peso da fonte para destaque */
+    text-transform: uppercase; /* Transforma em maiúsculas */
+    letter-spacing: 1.2px; /* Espaçamento entre letras para estilo */
+    margin-bottom: 20px; /* Espaço abaixo */
+    animation: fadeIn 1s ease; /* Aplica animação de entrada */
+    /* Sugestão: Limitar animação a elementos que aparecem dinamicamente para otimizar performance */
+}
+
+/* Animação de fade-in para títulos */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(20px); } /* Inicia invisível e deslocado */
+    100% { opacity: 1; transform: translateY(0); } /* Termina visível e no lugar */
+    /* Boa prática: Animação suave para introdução de elementos */
+}
+
+/* Estilização da galeria de imagens */
+.image-gallery {
+    display: flex; /* Usa flexbox para organizar imagens */
+    flex-wrap: nowrap; /* Impede quebra de linha */
+    justify-content: center; /* Centraliza imagens */
+    gap: 70px; /* Espaço entre imagens */
+    margin-top: 20px; /* Espaço acima */
+    padding: 100px 50px; /* Espaço interno generoso */
+    overflow-x: auto; /* Permite rolagem horizontal */
+    scrollbar-width: thin; /* Barra de rolagem fina (suporte limitado em alguns navegadores) */
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track); /* Cores da barra de rolagem */
+    will-change: scroll-position; /* Otimiza performance da rolagem */
+    /* Sugestão: Testar se will-change é necessário para evitar consumo excessivo de memória */
+}
+
+/* Estilização da barra de rolagem para navegadores WebKit */
+.image-gallery::-webkit-scrollbar {
+    height: 8px; /* Altura da barra de rolagem */
+}
+
+.image-gallery::-webkit-scrollbar-track {
+    background: var(--scrollbar-track); /* Cor da trilha */
+}
+
+.image-gallery::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb); /* Cor do polegar */
+    border-radius: 5px; /* Bordas arredondadas */
+    transition: background 0.3s ease; /* Transição suave para hover */
+}
+
+.image-gallery::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover); /* Cor do polegar em hover */
+    /* Sugestão: Adicionar -webkit-overflow-scrolling: touch para melhorar rolagem em iOS */
+}
+
+/* Estilização das imagens da galeria */
+.image-gallery img {
+    width: 220px; /* Largura fixa */
+    height: 220px; /* Altura fixa */
+    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorção */
+    border: 3px solid var(--border-neon); /* Borda neon */
+    border-radius: 12px; /* Bordas arredondadas */
+    box-shadow: 0 6px 20px var(--shadow-neon); /* Sombra neon */
+    transition: transform 0.4s ease, box-shadow 0.4s ease; /* Transições suaves */
+    flex: 0 0 auto; /* Impede que as imagens sejam redimensionadas */
+    will-change: transform, box-shadow; /* Otimiza animações */
+    /* Sugestão: Avaliar necessidade de will-change para evitar sobrecarga */
+}
+
+/* Efeito de hover nas imagens */
+.image-gallery img:hover {
+    transform: scale(1.08); /* Aumenta ligeiramente o tamanho */
+    box-shadow: 0 8px 25px var(--shadow-neon-hover); /* Sombra neon mais intensa */
+}
+
+/* Estilização da seção "Quem Somos" */
+#quemsomos {
+    margin: 10px 20px; /* Margens laterais e verticais */
+    text-align: center; /* Centraliza o texto */
+}
+
+/* Estilização do parágrafo da seção "Quem Somos" */
+#quemsomos p {
+    text-align: justify; /* Justifica o texto para melhor leitura */
+    max-width: 900px; /* Limita a largura para legibilidade */
+    margin: 0 auto; /* Centraliza o parágrafo */
+    font-size: 1.1rem; /* Tamanho da fonte */
+    line-height: 1.8; /* Espaçamento entre linhas para legibilidade */
+    /* Boa prática: max-width melhora a legibilidade em telas largas */
+}
+
+/* Estilização da seção "Contato" */
+#contato {
+    margin: 10px 20px; /* Margens laterais e verticais */
+    text-align: center; /* Centraliza o texto */
+}
+
+/* Estilização dos links na seção "Contato" */
+#contato a {
+    color: var(--neon-green); /* Usa a cor primária */
+    text-decoration: none; /* Remove sublinhado padrão */
+    font-weight: 600; /* Peso da fonte para destaque */
+    transition: color 0.3s ease, text-decoration 0.3s ease; /* Transições suaves */
+}
+
+/* Efeito de hover nos links de contato */
+#contato a:hover {
+    color: var(--neon-green-hover); /* Aplica a cor de hover */
+    text-decoration: underline; /* Adiciona sublinhado */
+}
+
+/* Estilização de foco nos links de contato */
+#contato a:focus {
+    outline: 2px solid var(--neon-green-hover); /* Contorno para acessibilidade */
+    outline-offset: 2px; /* Espaço do contorno */
+}
+
+/* Estilização do formulário de contato */
+#contato form {
+    max-width: 600px; /* Limita a largura do formulário */
+    margin: 30px auto; /* Centraliza com margem */
+    display: flex; /* Usa flexbox para organizar campos */
+    flex-direction: column; /* Organiza campos em coluna */
+    gap: 20px; /* Espaço entre campos */
+    padding: 25px; /* Espaço interno */
+    background-color: var(--input-bg); /* Fundo escuro */
+    border-radius: 12px; /* Bordas arredondadas */
+    box-shadow: 0 6px 20px var(--shadow-neon); /* Sombra neon */
+    transition: transform 0.3s ease; /* Transição suave para hover */
+}
+
+/* Efeito de hover no formulário */
+#contato form:hover {
+    transform: translateY(-3px); /* Efeito de elevação */
+    /* Boa prática: Efeito sutil melhora a interatividade */
+}
+
+/* Estilização dos rótulos do formulário */
+#contato label {
+    font-size: 1rem; /* Tamanho da fonte */
+    font-weight: 600; /* Peso da fonte para destaque */
+    color: var(--text-color); /* Cor do texto */
+    text-align: left; /* Alinhamento à esquerda */
+    margin-bottom: 5px; /* Espaço abaixo */
+}
+
+/* Estilização dos campos de entrada e textarea */
+#contato input,
+#contato textarea {
+    background-color: var(--input-bg); /* Fundo escuro */
+    border: 2px solid var(--input-border); /* Borda padrão */
+    border-radius: 8px; /* Bordas arredondadas */
+    padding: 12px; /* Espaço interno */
+    font-size: 1rem; /* Tamanho da fonte */
+    color: var(--text-color); /* Cor do texto */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transições suaves */
+}
+
+/* Estilização de foco nos campos */
+#contato input:focus,
+#contato textarea:focus {
+    border-color: var(--input-focus); /* Cor da borda em foco */
+    box-shadow: 0 0 8px var(--shadow-neon); /* Sombra neon em foco */
+    outline: none; /* Remove contorno padrão do navegador */
+    /* Boa prática: Feedback visual claro para foco */
+}
+
+/* Estilização de campos com erro */
+#contato input[aria-invalid="true"],
+#contato textarea[aria-invalid="true"] {
+    border-color: var(--error-color); /* Borda vermelha para erro */
+    box-shadow: 0 0 8px rgba(255, 77, 77, 0.4); /* Sombra vermelha para erro */
+    /* Boa prática: Uso de aria-invalid para acessibilidade */
+}
+
+/* Estilização do textarea */
+#contato textarea {
+    resize: vertical; /* Permite redimensionamento vertical */
+    min-height: 120px; /* Altura mínima */
+    max-height: 300px; /* Altura máxima */
+    /* Sugestão: Adicionar overflow-y: auto como fallback para navegadores que não suportam resize: vertical */
+}
+
+/* Estilização das mensagens de erro */
+#contato .error-message {
+    color: var(--error-color); /* Cor vermelha para erro */
+    font-size: 0.85rem; /* Tamanho menor para mensagens */
+    margin-top: 5px; /* Espaço acima */
+    display: block; /* Garante que ocupe a linha inteira */
+    text-align: left; /* Alinhamento à esquerda */
+    animation: shake 0.3s ease; /* Aplica animação de shake */
+}
+
+/* Estilização da mensagem geral do formulário */
+#contato .form-message {
+    font-size: 1rem; /* Tamanho da fonte */
+    font-weight: 600; /* Peso da fonte para destaque */
+    padding: 10px; /* Espaço interno */
+    border-radius: 8px; /* Bordas arredondadas */
+    text-align: center; /* Centraliza o texto */
+    animation: fadeIn 0.5s ease; /* Aplica animação de entrada */
+}
+
+/* Estilo para mensagem de sucesso */
+#contato .form-message-success {
+    background-color: var(--success-color); /* Fundo com a cor de sucesso */
+    color: var(--background); /* Texto contrastante */
+}
+
+/* Estilo para mensagem de erro */
+#contato .form-message-error {
+    background-color: var(--error-color); /* Fundo vermelho para erro */
+    color: var(--text-color); /* Texto contrastante */
+}
+
+/* Estilização do botão de envio */
+#contato button[type="submit"] {
+    background-color: var(--neon-green); /* Cor primária */
+    color: var(--background); /* Texto contrastante */
+    border: none; /* Remove borda padrão */
+    border-radius: 8px; /* Bordas arredondadas */
+    padding: 12px; /* Espaço interno */
+    font-size: 1rem; /* Tamanho da fonte */
+    font-weight: 600; /* Peso da fonte para destaque */
+    cursor: pointer; /* Indica que é clicável */
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Transições suaves */
+}
+
+/* Efeito de hover no botão de envio */
+#contato button[type="submit"]:hover {
+    background-color: var(--neon-green-hover); /* Cor de hover */
+    transform: scale(1.05); /* Aumenta ligeiramente o tamanho */
+    box-shadow: 0 0 8px var(--shadow-neon-hover); /* Sombra neon mais intensa */
+}
+
+/* Estilização de foco no botão de envio */
+#contato button[type="submit"]:focus {
+    outline: 2px solid var(--neon-green-hover); /* Contorno para acessibilidade */
+    outline-offset: 2px; /* Espaço do contorno */
+}
+
+/* Estilização do botão desabilitado */
+#contato button[type="submit"]:disabled {
+    background-color: #666; /* Cor cinza para estado desabilitado */
+    cursor: not-allowed; /* Indica que não é clicável */
+    transform: none; /* Remove transformações */
+    box-shadow: none; /* Remove sombra */
+    /* Boa prática: Feedback claro para estado desabilitado */
+}
+
+/* Animação de shake em erros */
+@keyframes shake {
+    0% { transform: translateX(0); } /* Posição inicial */
+    25% { transform: translateX(-5px); } /* Move para a esquerda */
+    50% { transform: translateX(5px); } /* Move para a direita */
+    75% { transform: translateX(-5px); } /* Move para a esquerda novamente */
+    100% { transform: translateX(0); } /* Retorna à posição inicial */
+    /* Boa prática: Animação visual para destacar erros */
+}
+
+/* Estilização do footer */
+footer {
+    background-color: var(--background); /* Cor de fundo padrão */
+    padding: 20px 0; /* Espaço interno */
+    text-align: center; /* Centraliza o texto */
+    box-shadow: 0 -4px 12px var(--shadow-color); /* Sombra na parte superior */
+}
+
+/* Estilização do texto de copyright */
+.copyright {
+    font-size: 0.9rem; /* Tamanho menor para texto secundário */
+    color: var(--text-color); /* Cor do texto */
+    margin: 10px auto; /* Centraliza com margens */
+    max-width: 600px; /* Limita a largura para legibilidade */
+}
+
+/* Estilização dos ícones de redes sociais */
+.social-media {
+    display: flex; /* Usa flexbox para organizar ícones */
+    gap: 20px; /* Espaço entre ícones */
+    justify-content: center; /* Centraliza horizontalmente */
+    margin-top: 10px; /* Espaço acima */
+}
+
+/* Estilização dos links de redes sociais */
+.social-media a {
+    font-size: 1.5rem; /* Tamanho do ícone */
+    color: var(--neon-green); /* Cor primária */
+    text-decoration: none; /* Remove sublinhado padrão */
+    transition: color 0.3s ease, transform 0.3s ease; /* Transições suaves */
+    /* Sugestão: Adicionar aria-label para acessibilidade (e.g., "Visitar perfil no Twitter") */
+}
+
+/* Efeito de hover nos links de redes sociais */
+.social-media a:hover {
+    color: var(--neon-green-hover); /* Cor de hover */
+    transform: scale(1.2); /* Aumenta o tamanho */
+}
