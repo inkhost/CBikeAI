@@ -311,7 +311,7 @@ h1, h2 {
 
 /* Estilização da seção "Contato" */
 #contato {
-    margin: 10px 20px; /* Margens laterais e verticais */
+    margin: 10px 20px; /* Mantém margens laterais e verticais */
     text-align: center; /* Centraliza o texto */
 }
 
@@ -337,12 +337,12 @@ h1, h2 {
 
 /* Estilização do formulário de contato */
 #contato form {
-    max-width: 600px; /* Limita a largura do formulário */
+    max-width: 500px; /* Reduz a largura máxima para melhor adaptação em telas menores */
     margin: 30px auto; /* Centraliza com margem */
     display: flex; /* Usa flexbox para organizar campos */
     flex-direction: column; /* Organiza campos em coluna */
-    gap: 20px; /* Espaço entre campos */
-    padding: 25px; /* Espaço interno */
+    gap: 15px; /* Espaço uniforme entre campos, reduzido para compactação */
+    padding: 25px; /* Espaço interno mantido */
     background-color: var(--input-bg); /* Fundo escuro */
     border-radius: 12px; /* Bordas arredondadas */
     box-shadow: 0 6px 20px var(--shadow-neon); /* Sombra neon */
@@ -352,16 +352,16 @@ h1, h2 {
 /* Efeito de hover no formulário */
 #contato form:hover {
     transform: translateY(-3px); /* Efeito de elevação */
-    /* Boa prática: Efeito sutil melhora a interatividade */
 }
 
 /* Estilização dos rótulos do formulário */
 #contato label {
-    font-size: 1rem; /* Tamanho da fonte */
+    font-size: 1rem; /* Tamanho da fonte mantido */
     font-weight: 600; /* Peso da fonte para destaque */
     color: var(--text-color); /* Cor do texto */
     text-align: left; /* Alinhamento à esquerda */
-    margin-bottom: 5px; /* Espaço abaixo */
+    margin-bottom: 5px; /* Espaço abaixo do rótulo */
+    display: block; /* Garante que cada rótulo ocupe uma linha */
 }
 
 /* Estilização dos campos de entrada e textarea */
@@ -370,9 +370,11 @@ h1, h2 {
     background-color: var(--input-bg); /* Fundo escuro */
     border: 2px solid var(--input-border); /* Borda padrão */
     border-radius: 8px; /* Bordas arredondadas */
-    padding: 12px; /* Espaço interno */
+    padding: 10px; /* Reduz padding para campos menores */
     font-size: 1rem; /* Tamanho da fonte */
     color: var(--text-color); /* Cor do texto */
+    width: 100%; /* Garante que os campos ocupem a largura total do formulário */
+    box-sizing: border-box; /* Inclui padding e borda na largura total */
     transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transições suaves */
 }
 
@@ -396,8 +398,8 @@ h1, h2 {
 /* Estilização do textarea */
 #contato textarea {
     resize: vertical; /* Permite redimensionamento vertical */
-    min-height: 120px; /* Altura mínima */
-    max-height: 300px; /* Altura máxima */
+    min-height: 100px; /* Altura mínima reduzida para melhor proporção */
+    max-height: 200px; /* Altura máxima ajustada */
     /* Sugestão: Adicionar overflow-y: auto como fallback para navegadores que não suportam resize: vertical */
 }
 
@@ -443,6 +445,7 @@ h1, h2 {
     font-size: 1rem; /* Tamanho da fonte */
     font-weight: 600; /* Peso da fonte para destaque */
     cursor: pointer; /* Indica que é clicável */
+    width: 100%; /* Garante que o botão ocupe a largura total */
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Transições suaves */
 }
 
@@ -515,4 +518,4 @@ footer {
 .social-media a:hover {
     color: var(--neon-green-hover); /* Cor de hover */
     transform: scale(1.2); /* Aumenta o tamanho */
-}
+    }
