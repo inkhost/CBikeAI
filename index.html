@@ -36,32 +36,214 @@
             <a href="index.html" aria-current="page">Início</a>
             <a href="quemsomos.html">Quem Somos</a>
             <a href="contato.html">Contato</a>
+            <!-- Links dinâmicos para login/perfil -->
+            <a href="login.html" id="login-link">Login</a>
+            <a href="perfil.html" id="profile-link" style="display: none;">Meu Perfil</a>
+            <a href="#" id="logout-btn" style="display: none;">Sair</a>
         </nav>
     </header>
     <main class="main-content">
         <section id="home">
-            <h1>Inovação e tecnologia para suas pedaladas!</h1>
-            <p>O farol inteligente para bicicletas que combina IA, GPS e sensores para maior segurança e praticidade.</p>
+            <div class="hero-section">
+                <h1>Inovação e tecnologia para suas pedaladas!</h1>
+                <p class="hero-subtitle">O farol inteligente para bicicletas que combina IA, GPS e sensores para maior segurança e praticidade.</p>
+                <div class="hero-buttons">
+                    <a href="criar-conta.html" class="btn-primary">Começar Agora</a>
+                    <a href="#features" class="btn-secondary">Saiba Mais</a>
+                </div>
+            </div>
+
             <div class="image-gallery" role="region" aria-label="Galeria de imagens do CBikeAI">
                 <img src="img/CBikeAI01.jpg" alt="Farol CBikeAI T1 iluminando uma trilha à noite" loading="lazy">
                 <img src="img/CBikeAI02.jpg" alt="Farol CBikeAI T2 em uma bicicleta urbana" loading="lazy">
                 <img src="img/CBikeAI03.jpg" alt="Farol CBikeAI T3 com sensores ativados" loading="lazy">
             </div>
+
+            <section id="features" class="features-section">
+                <h2>Por que escolher o CBikeAI?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>Inteligência Artificial</h3>
+                        <p>Nosso sistema de IA adapta automaticamente a iluminação conforme as condições do ambiente e sua velocidade.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-satellite"></i>
+                        </div>
+                        <h3>GPS Integrado</h3>
+                        <p>Rastreamento em tempo real e rotas inteligentes para suas aventuras sobre duas rodas.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Segurança Total</h3>
+                        <p>Sensores de proximidade e detecção de veículos para garantir sua segurança nas ruas.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-battery-full"></i>
+                        </div>
+                        <h3>Bateria de Longa Duração</h3>
+                        <p>Até 15 horas de autonomia no modo econômico e carregamento rápido por USB-C.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cta-section">
+                <div class="cta-content">
+                    <h2>Pronto para revolucionar suas pedaladas?</h2>
+                    <p>Junte-se a milhares de ciclistas que já experimentaram a segurança e tecnologia CBikeAI.</p>
+                    <div class="cta-buttons">
+                        <a href="criar-conta.html" class="btn-primary">Criar Minha Conta</a>
+                        <a href="contato.html" class="btn-secondary">Falar com Vendas</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="testimonials-section">
+                <h2>O que nossos ciclistas dizem</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"O CBikeAI mudou completamente minhas pedaladas noturnas. A sensação de segurança é incomparável!"</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <strong>Carlos Silva</strong>
+                            <span>Ciclista Urbano</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"A bateria dura o suficiente para meus treinos longos e a integração com o app é perfeita."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <strong>Ana Rodrigues</strong>
+                            <span>Ciclista de Estrada</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"Finalmente um farol que entende as necessidades reais dos ciclistas. A IA é incrível!"</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <strong>Pedro Santos</strong>
+                            <span>Mountain Biker</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </section>
     </main>
     <footer role="contentinfo">
-        <p class="copyright">© 2025 CBikeAI. Todos os direitos reservados.</p>
-        <div class="social-media">
-            <a href="https://www.instagram.com/cbikeai" onclick="gtag('event', 'click_social', {'social_network': 'Instagram'});" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no Instagram">
-                <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a href="https://www.x.com/cbikeai" onclick="gtag('event', 'click_social', {'social_network': 'X'});" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no X">
-                <i class="fa-brands fa-x-twitter"></i>
-            </a>
-            <a href="https://www.facebook.com/cbikeai" onclick="gtag('event', 'click_social', {'social_network': 'Facebook'});" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no Facebook">
-                <i class="fa-brands fa-facebook-f"></i>
-            </a>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>CBikeAI</h3>
+                <p>Revolucionando a segurança no ciclismo através da tecnologia e inovação.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Links Rápidos</h3>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="quemsomos.html">Quem Somos</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> contato@cbikeai.com</li>
+                    <li><i class="fas fa-phone"></i> (11) 9999-9999</li>
+                    <li><i class="fas fa-map-marker-alt"></i> São Paulo - SP</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="copyright">© 2025 CBikeAI. Todos os direitos reservados.</p>
+            <div class="social-media">
+                <a href="https://www.instagram.com/cbikeai" onclick="gtag('event', 'click_social', {'social_network': 'Instagram'});" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://www.x.com/cbikeai" onclick="gtag('event', 'click_social', {'social_network': 'X'});" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no X">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </a>
+                <a href="https://www.facebook.com/cbikeai" onclick="gtag('event', 'click_social', {'social_network': 'Facebook'});" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+            </div>
         </div>
     </footer>
+    
+    <!-- VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
+    <script>
+        // Verificar se o usuário está logado
+        const user = localStorage.getItem('cbikeai_user');
+        if (user) {
+            // Se estiver logado, esconde o link de login e mostra perfil e logout
+            document.getElementById('login-link').style.display = 'none';
+            document.getElementById('profile-link').style.display = 'inline';
+            document.getElementById('logout-btn').style.display = 'inline';
+        }
+
+        // Adicionar evento de logout
+        document.getElementById('logout-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('cbikeai_user');
+            localStorage.removeItem('cbikeai_token');
+            window.location.href = 'index.html';
+        });
+
+        // Smooth scroll para as seções
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animação de entrada para os elementos
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observar elementos para animação
+        document.querySelectorAll('.feature-card, .testimonial-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
 </body>
-</html>
+    </html
