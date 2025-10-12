@@ -36,31 +36,117 @@
             <a href="index.html">Início</a>
             <a href="quemsomos.html">Quem Somos</a>
             <a href="contato.html" aria-current="page">Contato</a>
+            <!-- Links dinâmicos para login/perfil -->
+            <a href="login.html" id="login-link">Login</a>
+            <a href="perfil.html" id="profile-link" style="display: none;">Meu Perfil</a>
+            <a href="#" id="logout-btn" style="display: none;">Sair</a>
         </nav>
     </header>
     <main class="main-content">
         <section id="contato">
             <h1>Entre em Contato</h1>
             <p>Envie sua mensagem para saber mais sobre o CBikeAI!</p>
-            <form id="contact-form" action="#" method="post">
-                <div>
-                    <label for="nome">Nome</label>
-                    <input type="text" id="nome" name="nome" required aria-required="true">
-                    <span class="error-message" id="nome-error" style="display: none;"></span>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Informações de Contato</h2>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Endereço</h3>
+                            <p>Av. Paulista, 1000<br>São Paulo - SP, 01310-100</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Telefone</h3>
+                            <p>(11) 9999-9999</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>E-mail</h3>
+                            <p>contato@cbikeai.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h3>Horário de Atendimento</h3>
+                            <p>Segunda a Sexta: 9h às 18h<br>Sábado: 9h às 13h</p>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <label for="email">E-mail</label>
-                    <input type="email" id="email" name="email" required aria-required="true">
-                    <span class="error-message" id="email-error" style="display: none;"></span>
+
+                <div class="contact-form-container">
+                    <form id="contact-form" action="#" method="post">
+                        <div class="form-group">
+                            <label for="nome">Nome</label>
+                            <input type="text" id="nome" name="nome" required aria-required="true">
+                            <span class="error-message" id="nome-error" style="display: none;"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" required aria-required="true">
+                            <span class="error-message" id="email-error" style="display: none;"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefone">Telefone</label>
+                            <input type="tel" id="telefone" name="telefone">
+                        </div>
+                        <div class="form-group">
+                            <label for="assunto">Assunto</label>
+                            <select id="assunto" name="assunto" required>
+                                <option value="">Selecione um assunto</option>
+                                <option value="suporte">Suporte Técnico</option>
+                                <option value="vendas">Informações de Vendas</option>
+                                <option value="parceria">Parcerias</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensagem">Mensagem</label>
+                            <textarea id="mensagem" name="mensagem" required aria-required="true" placeholder="Digite sua mensagem aqui..."></textarea>
+                            <span class="error-message" id="mensagem-error" style="display: none;"></span>
+                        </div>
+                        <button type="submit" onclick="gtag('event', 'form_submission', {'form_id': 'contact-form'});">Enviar Mensagem</button>
+                        <div class="form-message" id="form-message" style="display: none;"></div>
+                    </form>
                 </div>
-                <div>
-                    <label for="mensagem">Mensagem</label>
-                    <textarea id="mensagem" name="mensagem" required aria-required="true"></textarea>
-                    <span class="error-message" id="mensagem-error" style="display: none;"></span>
+            </div>
+
+            <div class="faq-section">
+                <h2>Perguntas Frequentes</h2>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Como funciona o farol inteligente CBikeAI?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>O CBikeAI utiliza sensores de movimento, GPS e inteligência artificial para adaptar automaticamente a intensidade da luz conforme a velocidade, condições climáticas e presença de outros veículos.</p>
+                    </div>
                 </div>
-                <button type="submit" onclick="gtag('event', 'form_submission', {'form_id': 'contact-form'});">Enviar</button>
-                <div class="form-message" id="form-message" style="display: none;"></div>
-            </form>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Qual a duração da bateria?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Nossos faróis possuem bateria com autonomia de até 8 horas contínuas no modo máximo, podendo chegar a 15 horas em modo econômico.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        O produto é resistente à água?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sim, todos os modelos CBikeAI possuem certificação IP67, sendo completamente resistentes à água e poeira.</p>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
     <footer role="contentinfo">
@@ -77,132 +163,124 @@
             </a>
         </div>
     </footer>
+    
+    <!-- VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
-        // Adiciona um ouvinte de evento para o envio do formulário
-        document.getElementById('contact-form').addEventListener('submit', function (event) {
-            event.preventDefault(); // Impede o envio padrão do formulário para validação no cliente
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
 
-            // Obtém os valores dos campos e remove espaços em branco
+    <script>
+        // Verificar se o usuário está logado
+        const user = localStorage.getItem('cbikeai_user');
+        if (user) {
+            // Se estiver logado, esconde o link de login e mostra perfil e logout
+            document.getElementById('login-link').style.display = 'none';
+            document.getElementById('profile-link').style.display = 'inline';
+            document.getElementById('logout-btn').style.display = 'inline';
+        }
+
+        // Adicionar evento de logout
+        document.getElementById('logout-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('cbikeai_user');
+            localStorage.removeItem('cbikeai_token');
+            window.location.href = 'index.html';
+        });
+
+        // FAQ functionality
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                const answer = faqItem.querySelector('.faq-answer');
+                const icon = button.querySelector('i');
+                
+                // Close all other FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    if (item !== faqItem) {
+                        item.classList.remove('active');
+                        item.querySelector('.faq-answer').style.maxHeight = null;
+                        item.querySelector('i').classList.remove('fa-chevron-up');
+                        item.querySelector('i').classList.add('fa-chevron-down');
+                    }
+                });
+                
+                // Toggle current item
+                faqItem.classList.toggle('active');
+                if (faqItem.classList.contains('active')) {
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                } else {
+                    answer.style.maxHeight = null;
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                }
+            });
+        });
+
+        // Contact form validation
+        document.getElementById('contact-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
             const nome = document.getElementById('nome').value.trim();
             const email = document.getElementById('email').value.trim();
             const mensagem = document.getElementById('mensagem').value.trim();
             let isValid = true;
 
-            // Seleciona elementos para mensagens de erro e sucesso
-            const nomeError = document.getElementById('nome-error');
-            const emailError = document.getElementById('email-error');
-            const mensagemError = document.getElementById('mensagem-error');
-            const formMessage = document.getElementById('form-message');
-            const submitButton = this.querySelector('button[type="submit"]');
+            // Reset errors
+            document.getElementById('nome-error').style.display = 'none';
+            document.getElementById('email-error').style.display = 'none';
+            document.getElementById('mensagem-error').style.display = 'none';
+            document.getElementById('form-message').style.display = 'none';
 
-            // Reseta mensagens de erro e sucesso
-            nomeError.textContent = '';
-            emailError.textContent = '';
-            mensagemError.textContent = '';
-            formMessage.textContent = '';
-            formMessage.classList.remove('form-message-success', 'form-message-error');
-            nomeError.style.display = 'none';
-            emailError.style.display = 'none';
-            mensagemError.style.display = 'none';
-            formMessage.style.display = 'none';
-
-            // Valida o campo nome (obrigatório e apenas letras/espaços)
+            // Validate name
             if (!nome) {
-                nomeError.textContent = 'Por favor, digite seu nome.';
-                nomeError.style.display = 'block';
-                document.getElementById('nome').setAttribute('aria-invalid', 'true');
+                document.getElementById('nome-error').textContent = 'Por favor, digite seu nome.';
+                document.getElementById('nome-error').style.display = 'block';
                 isValid = false;
-            } else if (!/^[a-zA-Z\s]+$/.test(nome)) {
-                nomeError.textContent = 'O nome deve conter apenas letras e espaços.';
-                nomeError.style.display = 'block';
-                document.getElementById('nome').setAttribute('aria-invalid', 'true');
-                isValid = false;
-            } else {
-                document.getElementById('nome').setAttribute('aria-invalid', 'false');
             }
 
-            // Valida o campo e-mail (obrigatório e formato válido)
+            // Validate email
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!email) {
-                emailError.textContent = 'Por favor, digite seu e-mail.';
-                emailError.style.display = 'block';
-                document.getElementById('email').setAttribute('aria-invalid', 'true');
+                document.getElementById('email-error').textContent = 'Por favor, digite seu e-mail.';
+                document.getElementById('email-error').style.display = 'block';
                 isValid = false;
             } else if (!emailPattern.test(email)) {
-                emailError.textContent = 'Por favor, digite um e-mail válido.';
-                emailError.style.display = 'block';
-                document.getElementById('email').setAttribute('aria-invalid', 'true');
+                document.getElementById('email-error').textContent = 'Por favor, digite um e-mail válido.';
+                document.getElementById('email-error').style.display = 'block';
                 isValid = false;
-            } else {
-                document.getElementById('email').setAttribute('aria-invalid', 'false');
             }
 
-            // Valida o campo mensagem (obrigatório e limite de 500 caracteres)
+            // Validate message
             if (!mensagem) {
-                mensagemError.textContent = 'Por favor, escreva sua mensagem.';
-                mensagemError.style.display = 'block';
-                document.getElementById('mensagem').setAttribute('aria-invalid', 'true');
+                document.getElementById('mensagem-error').textContent = 'Por favor, escreva sua mensagem.';
+                document.getElementById('mensagem-error').style.display = 'block';
                 isValid = false;
-            } else if (mensagem.length > 500) {
-                mensagemError.textContent = 'A mensagem não pode exceder 500 caracteres.';
-                mensagemError.style.display = 'block';
-                document.getElementById('mensagem').setAttribute('aria-invalid', 'true');
-                isValid = false;
-            } else {
-                document.getElementById('mensagem').setAttribute('aria-invalid', 'false');
             }
 
-            // Processa o envio se todos os campos forem válidos
             if (isValid) {
-                submitButton.disabled = true; // Desabilita o botão para evitar múltiplos envios
-                formMessage.textContent = 'Enviado com sucesso!';
+                const formMessage = document.getElementById('form-message');
+                formMessage.textContent = 'Mensagem enviada com sucesso! Entraremos em contato em breve.';
                 formMessage.classList.add('form-message-success');
                 formMessage.style.display = 'block';
-                formMessage.setAttribute('role', 'alert'); // Melhora acessibilidade para leitores de tela
-
-                // Reseta o formulário após 2 segundos
+                
+                // Reset form
+                this.reset();
+                
+                // Hide message after 5 seconds
                 setTimeout(() => {
-                    document.getElementById('contact-form').reset();
-                    submitButton.disabled = false;
-                    formMessage.textContent = '';
                     formMessage.style.display = 'none';
-                    formMessage.classList.remove('form-message-success');
-                    document.getElementById('nome').setAttribute('aria-invalid', 'false');
-                    document.getElementById('email').setAttribute('aria-invalid', 'false');
-                    document.getElementById('mensagem').setAttribute('aria-invalid', 'false');
-                }, 2000);
-
-                // Exemplo de envio para backend (descomente para usar)
-                /*
-                fetch('/submit', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ nome, email, mensagem })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    formMessage.textContent = 'Enviado com sucesso!';
-                    formMessage.classList.add('form-message-success');
-                    formMessage.style.display = 'block';
-                    formMessage.setAttribute('role', 'alert');
-                    document.getElementById('contact-form').reset();
-                    submitButton.disabled = false;
-                })
-                .catch(error => {
-                    formMessage.textContent = 'Erro ao enviar o formulário. Tente novamente.';
-                    formMessage.classList.add('form-message-error');
-                    formMessage.style.display = 'block';
-                    formMessage.setAttribute('role', 'alert');
-                    submitButton.disabled = false;
-                });
-                */
-            } else {
-                formMessage.textContent = 'Por favor, corrija os erros no formulário.';
-                formMessage.classList.add('form-message-error');
-                formMessage.style.display = 'block';
-                formMessage.setAttribute('role', 'alert');
+                }, 5000);
             }
         });
     </script>
 </body>
-</html>
+                            </html>
