@@ -36,13 +36,73 @@
             <a href="index.html">Início</a>
             <a href="quemsomos.html" aria-current="page">Quem Somos</a>
             <a href="contato.html">Contato</a>
+            <!-- Links dinâmicos para login/perfil -->
+            <a href="login.html" id="login-link">Login</a>
+            <a href="perfil.html" id="profile-link" style="display: none;">Meu Perfil</a>
+            <a href="#" id="logout-btn" style="display: none;">Sair</a>
         </nav>
     </header>
     <main class="main-content">
         <section id="quemsomos">
             <h1>Quem Somos</h1>
             <p>A CBikeAI é uma empresa inovadora dedicada a transformar a experiência de ciclismo com tecnologia de ponta. Nosso farol inteligente combina inteligência artificial, GPS e sensores avançados para oferecer segurança e praticidade aos ciclistas urbanos e aventureiros.</p>
-            <p>Fundada em 2024, nossa missão é tornar cada pedalada mais segura e conectada, utilizando IA para adaptar a iluminação às condições do ambiente e fornecer dados em tempo real para os ciclistas.</p>
+            <p>Fundada em 2024, nossa missão é tornar cada pedalada mais segura e conectada, utilizando IA para adaptar a iluminação às condições do ambiente e fornecer dados em tempo real para os ciclistas.</p>
+            
+            <div class="team-section">
+                <h2>Nossa Equipe</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3>João Silva</h3>
+                        <p class="member-role">CEO & Fundador</p>
+                        <p class="member-bio">Especialista em IoT e ciclismo urbano com mais de 10 anos de experiência.</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3>Maria Santos</h3>
+                        <p class="member-role">CTO</p>
+                        <p class="member-bio">Engenheira de software com expertise em IA e sistemas embarcados.</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3>Pedro Oliveira</h3>
+                        <p class="member-role">Head de Design</p>
+                        <p class="member-bio">Designer industrial focado em produtos sustentáveis e ergonomia.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="values-section">
+                <h2>Nossos Valores</h2>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Segurança</h3>
+                        <p>Priorizamos a segurança dos ciclistas em todos os nossos produtos.</p>
+                    </div>
+                    <div class="value-card">
+                        <i class="fas fa-leaf"></i>
+                        <h3>Sustentabilidade</h3>
+                        <p>Comprometidos com soluções eco-friendly e mobilidade sustentável.</p>
+                    </div>
+                    <div class="value-card">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>Inovação</h3>
+                        <p>Buscamos constantemente novas tecnologias para melhorar a experiência.</p>
+                    </div>
+                    <div class="value-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Comunidade</h3>
+                        <p>Valorizamos a comunidade ciclística e suas necessidades.</p>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
     <footer role="contentinfo">
@@ -59,6 +119,36 @@
             </a>
         </div>
     </footer>
-</body>
-</html>
+    
+    <!-- VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
 
+    <script>
+        // Verificar se o usuário está logado
+        const user = localStorage.getItem('cbikeai_user');
+        if (user) {
+            // Se estiver logado, esconde o link de login e mostra perfil e logout
+            document.getElementById('login-link').style.display = 'none';
+            document.getElementById('profile-link').style.display = 'inline';
+            document.getElementById('logout-btn').style.display = 'inline';
+        }
+
+        // Adicionar evento de logout
+        document.getElementById('logout-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('cbikeai_user');
+            localStorage.removeItem('cbikeai_token');
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+    </html>
