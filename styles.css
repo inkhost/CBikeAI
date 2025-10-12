@@ -1,521 +1,1408 @@
-/* Define variáveis CSS para facilitar a manutenção e troca de temas */
+/* ===== VARIÁVEIS CSS E TEMAS ===== */
 :root {
-    --neon-green: #09e331; /* Cor primária padrão (verde neon) */
-    --neon-green-hover: #0aff3d; /* Variação da cor primária para hover */
-    --background: #000000; /* Cor de fundo padrão (preto) */
-    --text-color: #ffffff; /* Cor padrão para texto (branco) */
-    --shadow-color: rgba(0, 0, 0, 0.6); /* Sombra padrão para elementos */
-    --shadow-neon: rgba(9, 227, 49, 0.4); /* Sombra neon associada à cor primária */
-    --shadow-neon-hover: rgba(9, 227, 49, 0.6); /* Sombra neon mais intensa para hover */
-    --border-neon: #09e331; /* Borda neon associada à cor primária */
-    --scrollbar-track: #000000; /* Cor da trilha da barra de rolagem */
-    --scrollbar-thumb: #09e331; /* Cor do polegar da barra de rolagem */
-    --scrollbar-thumb-hover: #0aff3d; /* Cor do polegar da barra de rolagem em hover */
-    --input-bg: #1a1a1a; /* Cor de fundo dos campos de entrada */
-    --input-border: #333333; /* Cor da borda dos campos de entrada */
-    --input-focus: #0aff3d; /* Cor da borda dos campos em foco */
-    --error-color: #ff4d4d; /* Cor para mensagens de erro */
-    --success-color: #09e331; /* Cor para mensagens de sucesso */
-    /* Boa prática: Uso de variáveis CSS facilita manutenção e troca de temas */
-    /* Sugestão: Renomear variáveis como --neon-green para algo mais genérico (e.g., --primary-color) para evitar confusão em temas com cores diferentes */
+    --neon-green: #09e331;
+    --neon-green-hover: #0aff3d;
+    --background: #000000;
+    --text-color: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.6);
+    --shadow-neon: rgba(9, 227, 49, 0.4);
+    --shadow-neon-hover: rgba(9, 227, 49, 0.6);
+    --border-neon: #09e331;
+    --scrollbar-track: #000000;
+    --scrollbar-thumb: #09e331;
+    --scrollbar-thumb-hover: #0aff3d;
+    --input-bg: #1a1a1a;
+    --input-border: #333333;
+    --input-focus: #0aff3d;
+    --error-color: #ff4d4d;
+    --success-color: #09e331;
 }
 
-/* Tema de cor azul */
+/* Temas alternativos */
 [data-color-theme="blue"] {
-    --neon-green: #1e90ff; /* Substitui a cor primária por azul */
-    --neon-green-hover: #40c4ff; /* Cor de hover para o tema azul */
-    --shadow-neon: rgba(30, 144, 255, 0.4); /* Sombra neon para o tema azul */
-    --shadow-neon-hover: rgba(30, 144, 255, 0.6); /* Sombra neon mais intensa para hover */
-    --border-neon: #1e90ff; /* Borda neon para o tema azul */
-    --scrollbar-thumb: #1e90ff; /* Polegar da barra de rolagem no tema azul */
-    --scrollbar-thumb-hover: #40c4ff; /* Polegar da barra de rolagem em hover */
-    --input-focus: #40c4ff; /* Cor de foco dos campos no tema azul */
-    --success-color: #1e90ff; /* Cor de sucesso no tema azul */
-    /* Boa prática: Estrutura clara para temas alternativos, facilitando escalabilidade */
+    --neon-green: #1e90ff;
+    --neon-green-hover: #40c4ff;
+    --shadow-neon: rgba(30, 144, 255, 0.4);
+    --shadow-neon-hover: rgba(30, 144, 255, 0.6);
+    --border-neon: #1e90ff;
+    --scrollbar-thumb: #1e90ff;
+    --scrollbar-thumb-hover: #40c4ff;
+    --input-focus: #40c4ff;
+    --success-color: #1e90ff;
 }
 
-/* Tema de cor roxo */
 [data-color-theme="purple"] {
-    --neon-green: #9b59b6; /* Substitui a cor primária por roxo */
-    --neon-green-hover: #c178d6; /* Cor de hover para o tema roxo */
-    --shadow-neon: rgba(155, 89, 182, 0.4); /* Sombra neon para o tema roxo */
-    --shadow-neon-hover: rgba(155, 89, 182, 0.6); /* Sombra neon mais intensa para hover */
-    --border-neon: #9b59b6; /* Borda neon para o tema roxo */
-    --scrollbar-thumb: #9b59b6; /* Polegar da barra de rolagem no tema roxo */
-    --scrollbar-thumb-hover: #c178d6; /* Polegar da barra de rolagem em hover */
-    --input-focus: #c178d6; /* Cor de foco dos campos no tema roxo */
-    --success-color: #9b59b6; /* Cor de sucesso no tema roxo */
-    /* Observação: Consistência na estrutura dos temas facilita a adição de novos temas */
+    --neon-green: #9b59b6;
+    --neon-green-hover: #c178d6;
+    --shadow-neon: rgba(155, 89, 182, 0.4);
+    --shadow-neon-hover: rgba(155, 89, 182, 0.6);
+    --border-neon: #9b59b6;
+    --scrollbar-thumb: #9b59b6;
+    --scrollbar-thumb-hover: #c178d6;
+    --input-focus: #c178d6;
+    --success-color: #9b59b6;
 }
 
-/* Tema de cor vermelho */
 [data-color-theme="red"] {
-    --neon-green: #e74c3c; /* Substitui a cor primária por vermelho */
-    --neon-green-hover: #ff7066; /* Cor de hover para o tema vermelho */
-    --shadow-neon: rgba(231, 76, 60, 0.4); /* Sombra neon para o tema vermelho */
-    --shadow-neon-hover: rgba(231, 76, 60, 0.6); /* Sombra neon mais intensa para hover */
-    --border-neon: #e74c3c; /* Borda neon para o tema vermelho */
-    --scrollbar-thumb: #e74c3c; /* Polegar da barra de rolagem no tema vermelho */
-    --scrollbar-thumb-hover: #ff7066; /* Polegar da barra de rolagem em hover */
-    --input-focus: #ff7066; /* Cor de foco dos campos no tema vermelho */
-    --success-color: #e74c3c; /* Cor de sucesso no tema vermelho */
-    /* Sugestão: Para reduzir repetição, considere usar pré-processadores como SASS para gerenciar temas de forma modular */
+    --neon-green: #e74c3c;
+    --neon-green-hover: #ff7066;
+    --shadow-neon: rgba(231, 76, 60, 0.4);
+    --shadow-neon-hover: rgba(231, 76, 60, 0.6);
+    --border-neon: #e74c3c;
+    --scrollbar-thumb: #e74c3c;
+    --scrollbar-thumb-hover: #ff7066;
+    --input-focus: #ff7066;
+    --success-color: #e74c3c;
 }
 
-/* Reset global para consistência entre navegadores */
+/* ===== RESET E ESTILOS GLOBAIS ===== */
 * {
-    box-sizing: border-box; /* Garante que padding e bordas sejam incluídos nas dimensões */
-    margin: 0; /* Remove margens padrão */
-    padding: 0; /* Remove paddings padrão */
-    /* Observação: Reset agressivo pode afetar elementos como forms; considere um reset mais específico ou Normalize.css */
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-/* Estilização do corpo da página */
 body {
-    background-color: var(--background); /* Aplica a cor de fundo definida */
-    font-family: 'Inter', 'Arial', sans-serif; /* Define fontes com fallback */
-    color: var(--text-color); /* Aplica a cor de texto padrão */
-    line-height: 1.6; /* Melhora a legibilidade do texto */
-    min-height: 100vh; /* Garante que o corpo ocupe toda a altura da janela */
-    display: flex; /* Usa flexbox para layout */
-    flex-direction: column; /* Organiza conteúdo em coluna */
-    overflow-x: hidden; /* Evita rolagem horizontal indesejada */
-    /* Boa prática: Uso de flexbox para layout responsivo e min-height para garantir altura mínima */
+    background-color: var(--background);
+    font-family: 'Inter', 'Arial', sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
 }
 
-/* Estilização do cabeçalho */
+.main-content {
+    margin-top: 20px;
+    padding: clamp(80px, 10vw, 100px) 15px;
+    text-align: center;
+    flex: 1;
+}
+
+/* ===== TIPOGRAFIA ===== */
+h1, h2 {
+    color: var(--neon-green);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 20px;
+    animation: fadeIn 1s ease;
+}
+
+h3, h4 {
+    color: var(--neon-green);
+    margin-bottom: 15px;
+}
+
+p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+/* ===== HEADER E NAVEGAÇÃO ===== */
 header {
-    background-color: var(--background); /* Aplica a cor de fundo padrão */
-    padding: 15px 0; /* Adiciona espaço interno */
-    position: sticky; /* Fixa o cabeçalho no topo durante a rolagem */
-    top: 0; /* Alinha ao topo da janela */
-    width: 100%; /* Ocupa toda a largura */
-    z-index: 1000; /* Garante que o cabeçalho fique acima de outros elementos */
-    box-shadow: 0 4px 12px var(--shadow-color); /* Adiciona sombra para destaque */
-    backdrop-filter: blur(8px); /* Aplica desfoque no fundo (suporte limitado em alguns navegadores) */
-    display: flex; /* Usa flexbox para alinhar conteúdo */
-    flex-direction: column; /* Organiza conteúdo em coluna */
-    align-items: center; /* Centraliza horizontalmente */
-    justify-content: center; /* Centraliza verticalmente */
-    /* Sugestão: Adicionar fallback para backdrop-filter, como background-color opaco, para navegadores sem suporte */
+    background-color: var(--background);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Estilização do logo */
 .logo {
-    display: flex; /* Usa flexbox para centralizar a imagem do logo */
-    justify-content: center; /* Centraliza horizontalmente */
+    display: flex;
+    justify-content: center;
 }
 
-/* Estilização da imagem do logo */
 .logo img {
-    width: 160px; /* Define largura fixa */
-    height: auto; /* Mantém proporção */
-    transition: transform 0.4s ease, filter 0.4s ease; /* Transições suaves para hover */
-    /* Boa prática: Transições adicionam interatividade visual */
+    width: 160px;
+    height: auto;
+    transition: transform 0.4s ease, filter 0.4s ease;
 }
 
 .logo img:hover {
-    transform: scale(1.1); /* Aumenta ligeiramente o tamanho no hover */
-    filter: drop-shadow(0 0 10px var(--shadow-neon)); /* Adiciona sombra neon no hover */
-    /* Observação: Efeito visual atraente, mas filter pode ser custoso em performance em dispositivos mais lentos */
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 10px var(--shadow-neon));
 }
 
-/* Estilização da navegação */
 nav {
-    margin-top: 10px; /* Espaço acima da navegação */
-    display: flex; /* Usa flexbox para organizar links */
-    justify-content: center; /* Centraliza links horizontalmente */
-    align-items: center; /* Centraliza links verticalmente */
-    gap: 30px; /* Espaço entre os links */
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
 }
 
-/* Estilização dos links de navegação */
 nav a {
-    color: var(--neon-green); /* Usa a cor primária */
-    text-decoration: none; /* Remove sublinhado padrão */
-    font-size: 18px; /* Tamanho da fonte */
-    font-weight: 600; /* Peso da fonte para destaque */
-    position: relative; /* Necessário para pseudo-elemento ::after */
-    padding: 8px 12px; /* Espaço interno para clique */
-    transition: color 0.3s ease, transform 0.3s ease; /* Transições suaves para cor e transformação */
+    color: var(--neon-green);
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    position: relative;
+    padding: 8px 12px;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
-/* Pseudo-elemento para efeito de sublinhado animado */
 nav a::after {
-    content: ''; /* Cria um elemento vazio */
-    position: absolute; /* Posiciona abaixo do link */
-    width: 0; /* Inicia com largura zero */
-    height: 2px; /* Altura da linha */
-    background-color: var(--neon-green-hover); /* Cor do sublinhado */
-    bottom: 0; /* Alinha na parte inferior */
-    left: 0; /* Alinha à esquerda */
-    transition: width 0.3s ease; /* Anima a largura */
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: var(--neon-green-hover);
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease;
 }
 
-/* Expande o sublinhado no hover e foco */
-nav a:hover::after, nav a:focus::after {
-    width: 100%; /* Expande o sublinhado para a largura total */
+nav a:hover::after,
+nav a:focus::after {
+    width: 100%;
 }
 
-/* Estilização no hover e foco */
-nav a:hover, nav a:focus {
-    color: var(--neon-green-hover); /* Aplica a cor de hover */
-    transform: translateY(-2px); /* Efeito de elevação */
-    /* Boa prática: Efeito visual sutil melhora a interatividade */
-}
-
-/* Animação ao clicar no link */
-nav a:active {
-    animation: clickPulse 0.2s ease; /* Aplica animação de clique */
-}
-
-/* Estilização para foco nos links */
+nav a:hover,
 nav a:focus {
-    outline: 2px solid var(--neon-green-hover); /* Contorno para acessibilidade */
-    outline-offset: 2px; /* Espaço do contorno */
-    /* Boa prática: Estilização de foco melhora acessibilidade para navegação por teclado */
+    color: var(--neon-green-hover);
+    transform: translateY(-2px);
 }
 
-/* Animação de clique para links */
-@keyframes clickPulse {
-    0% { transform: scale(1); } /* Tamanho normal */
-    50% { transform: scale(0.95); } /* Reduz ligeiramente */
-    100% { transform: scale(1); } /* Retorna ao normal */
-    /* Boa prática: Animação sutil para feedback de clique */
+nav a:active {
+    animation: clickPulse 0.2s ease;
 }
 
-/* Estilização dos botões de alternância de tema */
-.theme-toggle,
-.color-toggle {
-    background: none; /* Remove fundo padrão */
-    border: none; /* Remove borda padrão */
-    color: var(--neon-green); /* Usa a cor primária */
-    font-size: 24px; /* Tamanho do ícone/fonte */
-    cursor: pointer; /* Indica que é clicável */
-    transition: transform 0.3s ease, color 0.3s ease; /* Transições suaves */
-    padding: 8px; /* Espaço interno para clique */
-    /* Sugestão: Adicionar aria-label para acessibilidade (e.g., "Alternar tema claro/escuro") */
+nav a:focus {
+    outline: 2px solid var(--neon-green-hover);
+    outline-offset: 2px;
 }
 
-/* Efeitos de hover nos botões de tema */
-.theme-toggle:hover,
-.color-toggle:hover {
-    color: var(--neon-green-hover); /* Aplica a cor de hover */
-    transform: scale(1.2); /* Aumenta o tamanho */
+/* ===== FORMULÁRIOS E INPUTS ===== */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
 }
 
-/* Estilização de foco nos botões de tema */
-.theme-toggle:focus,
-.color-toggle:focus {
-    outline: 2px solid var(--neon-green-hover); /* Contorno para acessibilidade */
-    outline-offset: 2px; /* Espaço do contorno */
+.form-group label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-color);
+    text-align: left;
 }
 
-/* Estilização do conteúdo principal */
-.main-content {
-    margin-top: 20px; /* Espaço acima do conteúdo */
-    padding: clamp(80px, 10vw, 100px) 15px; /* Padding responsivo com clamp */
-    text-align: center; /* Centraliza o texto */
-    flex: 1; /* Faz o conteúdo principal ocupar o espaço disponível */
-    /* Boa prática: Uso de clamp para padding responsivo */
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 12px 16px;
+    border: 2px solid var(--input-border);
+    border-radius: 8px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-/* Estilização de títulos */
-h1, h2 {
-    color: var(--neon-green); /* Usa a cor primária */
-    font-weight: 700; /* Peso da fonte para destaque */
-    text-transform: uppercase; /* Transforma em maiúsculas */
-    letter-spacing: 1.2px; /* Espaçamento entre letras para estilo */
-    margin-bottom: 20px; /* Espaço abaixo */
-    animation: fadeIn 1s ease; /* Aplica animação de entrada */
-    /* Sugestão: Limitar animação a elementos que aparecem dinamicamente para otimizar performance */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--input-focus);
+    box-shadow: 0 0 8px var(--shadow-neon);
+    outline: none;
 }
 
-/* Animação de fade-in para títulos */
-@keyframes fadeIn {
-    0% { opacity: 0; transform: translateY(20px); } /* Inicia invisível e deslocado */
-    100% { opacity: 1; transform: translateY(0); } /* Termina visível e no lugar */
-    /* Boa prática: Animação suave para introdução de elementos */
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
 }
 
-/* Estilização da galeria de imagens */
+.error-message {
+    color: var(--error-color);
+    font-size: 0.85rem;
+    margin-top: 5px;
+    display: block;
+    text-align: left;
+    animation: shake 0.3s ease;
+}
+
+.form-message {
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+}
+
+.form-message-success {
+    background-color: var(--success-color);
+    color: var(--background);
+}
+
+.form-message-error {
+    background-color: var(--error-color);
+    color: var(--text-color);
+}
+
+/* ===== BOTÕES E INTERAÇÕES ===== */
+.btn-primary {
+    background-color: var(--neon-green);
+    color: var(--background);
+    border: none;
+    border-radius: 8px;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-primary:hover {
+    background-color: var(--neon-green-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow-neon);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--neon-green);
+    border: 2px solid var(--neon-green);
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-secondary:hover {
+    background-color: var(--neon-green);
+    color: var(--background);
+}
+
+.btn-google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    padding: 12px;
+    background-color: transparent;
+    border: 2px solid var(--input-border);
+    border-radius: 8px;
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-google:hover {
+    border-color: var(--neon-green);
+    background-color: rgba(9, 227, 49, 0.1);
+}
+
+.btn-danger {
+    background-color: transparent;
+    color: #ff4d4d;
+    border: 2px solid #ff4d4d;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #ff4d4d;
+    color: var(--background);
+}
+
+/* ===== SISTEMA DE AUTENTICAÇÃO ===== */
+.auth-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    padding: 40px 20px;
+}
+
+.auth-container {
+    background-color: var(--input-bg);
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 8px 32px var(--shadow-color);
+    width: 100%;
+    max-width: 450px;
+    border: 1px solid var(--input-border);
+}
+
+.auth-container h1 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 2rem;
+}
+
+.auth-container p {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #ccc;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.checkbox-container input {
+    display: none;
+}
+
+.checkmark {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--input-border);
+    border-radius: 4px;
+    margin-right: 8px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.checkbox-container input:checked + .checkmark {
+    background-color: var(--neon-green);
+    border-color: var(--neon-green);
+}
+
+.checkbox-container input:checked + .checkmark::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 2px;
+    width: 4px;
+    height: 8px;
+    border: solid var(--background);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.forgot-password {
+    color: var(--neon-green);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+    color: var(--neon-green-hover);
+    text-decoration: underline;
+}
+
+.auth-separator {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    color: #ccc;
+}
+
+.auth-separator::before,
+.auth-separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--input-border);
+}
+
+.auth-separator span {
+    padding: 0 15px;
+    font-size: 0.9rem;
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.auth-footer a {
+    color: var(--neon-green);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+.password-strength {
+    margin-top: 8px;
+}
+
+.strength-bar {
+    height: 4px;
+    background-color: var(--input-border);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 4px;
+}
+
+.strength-fill {
+    height: 100%;
+    width: 0%;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.strength-text {
+    font-size: 0.8rem;
+    color: #ccc;
+}
+
+/* ===== PÁGINA DE PERFIL ===== */
+.profile-section {
+    padding: 40px 20px;
+}
+
+.profile-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--input-border);
+}
+
+.profile-avatar {
+    text-align: center;
+}
+
+.profile-avatar img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--neon-green);
+    margin-bottom: 10px;
+}
+
+.change-avatar-btn {
+    background: none;
+    border: none;
+    color: var(--neon-green);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.change-avatar-btn:hover {
+    color: var(--neon-green-hover);
+    text-decoration: underline;
+}
+
+.profile-info h2 {
+    margin-bottom: 5px;
+}
+
+.member-since {
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+.profile-content {
+    display: flex;
+    gap: 30px;
+}
+
+.profile-nav {
+    flex: 0 0 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nav-btn {
+    padding: 15px 20px;
+    background: none;
+    border: none;
+    text-align: left;
+    color: var(--text-color);
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.nav-btn.active {
+    background-color: var(--neon-green);
+    color: var(--background);
+    font-weight: 600;
+}
+
+.profile-tabs {
+    flex: 1;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+.profile-form {
+    max-width: 500px;
+}
+
+.devices-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.device-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: var(--input-bg);
+    border-radius: 8px;
+    border: 1px solid var(--input-border);
+}
+
+.device-info h4 {
+    margin-bottom: 5px;
+}
+
+.device-info p {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.status-connected {
+    color: var(--neon-green);
+    font-weight: 600;
+}
+
+.status-disconnected {
+    color: #ff4d4d;
+    font-weight: 600;
+}
+
+.device-actions {
+    display: flex;
+    gap: 10px;
+}
+
+#add-device-btn {
+    width: auto;
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.security-options {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--input-border);
+}
+
+.security-options h4 {
+    margin-bottom: 15px;
+}
+
+.security-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--input-border);
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--input-border);
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: var(--background);
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--neon-green);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+    }
+
+/* ===== PÁGINA INICIAL ===== */
+.hero-section {
+    text-align: center;
+    padding: 80px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    background: linear-gradient(45deg, var(--neon-green), var(--neon-green-hover));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    color: #ccc;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.features-section {
+    padding: 100px 20px;
+    background-color: var(--input-bg);
+    margin: 50px 0;
+}
+
+.features-section h2 {
+    text-align: center;
+    margin-bottom: 60px;
+    font-size: 2.5rem;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    text-align: center;
+    padding: 40px 30px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    border: 1px solid var(--input-border);
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px var(--shadow-neon);
+    border-color: var(--neon-green);
+}
+
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 25px;
+    background: linear-gradient(45deg, var(--neon-green), var(--neon-green-hover));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: var(--background);
+}
+
+.feature-card h3 {
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+}
+
+.feature-card p {
+    color: #ccc;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+.cta-section {
+    padding: 100px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(9, 227, 49, 0.1), rgba(0, 0, 0, 0.8));
+}
+
+.cta-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.cta-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.cta-content p {
+    font-size: 1.2rem;
+    color: #ccc;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.testimonials-section {
+    padding: 100px 20px;
+}
+
+.testimonials-section h2 {
+    text-align: center;
+    margin-bottom: 60px;
+    font-size: 2.5rem;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.testimonial-card {
+    padding: 30px;
+    background-color: var(--input-bg);
+    border-radius: 12px;
+    border: 1px solid var(--input-border);
+    transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px var(--shadow-neon);
+}
+
+.testimonial-content {
+    margin-bottom: 20px;
+}
+
+.testimonial-content p {
+    color: #ccc;
+    font-style: italic;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+.testimonial-author {
+    border-top: 1px solid var(--input-border);
+    padding-top: 20px;
+}
+
+.testimonial-author strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.testimonial-author span {
+    color: #999;
+    font-size: 0.9rem;
+}
+
+/* ===== GALERIA DE IMAGENS ===== */
 .image-gallery {
-    display: flex; /* Usa flexbox para organizar imagens */
-    flex-wrap: nowrap; /* Impede quebra de linha */
-    justify-content: center; /* Centraliza imagens */
-    gap: 70px; /* Espaço entre imagens */
-    margin-top: 20px; /* Espaço acima */
-    padding: 100px 50px; /* Espaço interno generoso */
-    overflow-x: auto; /* Permite rolagem horizontal */
-    scrollbar-width: thin; /* Barra de rolagem fina (suporte limitado em alguns navegadores) */
-    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track); /* Cores da barra de rolagem */
-    will-change: scroll-position; /* Otimiza performance da rolagem */
-    /* Sugestão: Testar se will-change é necessário para evitar consumo excessivo de memória */
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 70px;
+    margin-top: 20px;
+    padding: 100px 50px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    will-change: scroll-position;
 }
 
-/* Estilização da barra de rolagem para navegadores WebKit */
 .image-gallery::-webkit-scrollbar {
-    height: 8px; /* Altura da barra de rolagem */
+    height: 8px;
 }
 
 .image-gallery::-webkit-scrollbar-track {
-    background: var(--scrollbar-track); /* Cor da trilha */
+    background: var(--scrollbar-track);
 }
 
 .image-gallery::-webkit-scrollbar-thumb {
-    background: var(--scrollbar-thumb); /* Cor do polegar */
-    border-radius: 5px; /* Bordas arredondadas */
-    transition: background 0.3s ease; /* Transição suave para hover */
+    background: var(--scrollbar-thumb);
+    border-radius: 5px;
+    transition: background 0.3s ease;
 }
 
 .image-gallery::-webkit-scrollbar-thumb:hover {
-    background: var(--scrollbar-thumb-hover); /* Cor do polegar em hover */
-    /* Sugestão: Adicionar -webkit-overflow-scrolling: touch para melhorar rolagem em iOS */
+    background: var(--scrollbar-thumb-hover);
 }
 
-/* Estilização das imagens da galeria */
 .image-gallery img {
-    width: 220px; /* Largura fixa */
-    height: 220px; /* Altura fixa */
-    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorção */
-    border: 3px solid var(--border-neon); /* Borda neon */
-    border-radius: 12px; /* Bordas arredondadas */
-    box-shadow: 0 6px 20px var(--shadow-neon); /* Sombra neon */
-    transition: transform 0.4s ease, box-shadow 0.4s ease; /* Transições suaves */
-    flex: 0 0 auto; /* Impede que as imagens sejam redimensionadas */
-    will-change: transform, box-shadow; /* Otimiza animações */
-    /* Sugestão: Avaliar necessidade de will-change para evitar sobrecarga */
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border: 3px solid var(--border-neon);
+    border-radius: 12px;
+    box-shadow: 0 6px 20px var(--shadow-neon);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    flex: 0 0 auto;
+    will-change: transform, box-shadow;
 }
 
-/* Efeito de hover nas imagens */
 .image-gallery img:hover {
-    transform: scale(1.08); /* Aumenta ligeiramente o tamanho */
-    box-shadow: 0 8px 25px var(--shadow-neon-hover); /* Sombra neon mais intensa */
+    transform: scale(1.08);
+    box-shadow: 0 8px 25px var(--shadow-neon-hover);
 }
 
-/* Estilização da seção "Quem Somos" */
-#quemsomos {
-    margin: 10px 20px; /* Margens laterais e verticais */
-    text-align: center; /* Centraliza o texto */
+/* ===== PÁGINA QUEM SOMOS ===== */
+.team-section {
+    margin: 50px 0;
+    padding: 40px 20px;
+    background-color: var(--input-bg);
+    border-radius: 12px;
 }
 
-/* Estilização do parágrafo da seção "Quem Somos" */
-#quemsomos p {
-    text-align: justify; /* Justifica o texto para melhor leitura */
-    max-width: 900px; /* Limita a largura para legibilidade */
-    margin: 0 auto; /* Centraliza o parágrafo */
-    font-size: 1.1rem; /* Tamanho da fonte */
-    line-height: 1.8; /* Espaçamento entre linhas para legibilidade */
-    /* Boa prática: max-width melhora a legibilidade em telas largas */
+.team-section h2 {
+    text-align: center;
+    margin-bottom: 40px;
 }
 
-/* Estilização da seção "Contato" */
-#contato {
-    margin: 10px 20px; /* Mantém margens laterais e verticais */
-    text-align: center; /* Centraliza o texto */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
-/* Estilização dos links na seção "Contato" */
-#contato a {
-    color: var(--neon-green); /* Usa a cor primária */
-    text-decoration: none; /* Remove sublinhado padrão */
-    font-weight: 600; /* Peso da fonte para destaque */
-    transition: color 0.3s ease, text-decoration 0.3s ease; /* Transições suaves */
+.team-member {
+    text-align: center;
+    padding: 30px 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    border: 1px solid var(--input-border);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Efeito de hover nos links de contato */
-#contato a:hover {
-    color: var(--neon-green-hover); /* Aplica a cor de hover */
-    text-decoration: underline; /* Adiciona sublinhado */
+.team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px var(--shadow-neon);
 }
 
-/* Estilização de foco nos links de contato */
-#contato a:focus {
-    outline: 2px solid var(--neon-green-hover); /* Contorno para acessibilidade */
-    outline-offset: 2px; /* Espaço do contorno */
+.member-avatar {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background-color: var(--neon-green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: var(--background);
 }
 
-/* Estilização do formulário de contato */
-#contato form {
-    max-width: 500px; /* Reduz a largura máxima para melhor adaptação em telas menores */
-    margin: 30px auto; /* Centraliza com margem */
-    display: flex; /* Usa flexbox para organizar campos */
-    flex-direction: column; /* Organiza campos em coluna */
-    gap: 15px; /* Espaço uniforme entre campos, reduzido para compactação */
-    padding: 25px; /* Espaço interno mantido */
-    background-color: var(--input-bg); /* Fundo escuro */
-    border-radius: 12px; /* Bordas arredondadas */
-    box-shadow: 0 6px 20px var(--shadow-neon); /* Sombra neon */
-    transition: transform 0.3s ease; /* Transição suave para hover */
+.team-member h3 {
+    margin-bottom: 10px;
 }
 
-/* Efeito de hover no formulário */
-#contato form:hover {
-    transform: translateY(-3px); /* Efeito de elevação */
+.member-role {
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 15px;
+    font-size: 1.1rem;
 }
 
-/* Estilização dos rótulos do formulário */
-#contato label {
-    font-size: 1rem; /* Tamanho da fonte mantido */
-    font-weight: 600; /* Peso da fonte para destaque */
-    color: var(--text-color); /* Cor do texto */
-    text-align: left; /* Alinhamento à esquerda */
-    margin-bottom: 5px; /* Espaço abaixo do rótulo */
-    display: block; /* Garante que cada rótulo ocupe uma linha */
+.member-bio {
+    color: #ccc;
+    line-height: 1.6;
 }
 
-/* Estilização dos campos de entrada e textarea */
-#contato input,
-#contato textarea {
-    background-color: var(--input-bg); /* Fundo escuro */
-    border: 2px solid var(--input-border); /* Borda padrão */
-    border-radius: 8px; /* Bordas arredondadas */
-    padding: 10px; /* Reduz padding para campos menores */
-    font-size: 1rem; /* Tamanho da fonte */
-    color: var(--text-color); /* Cor do texto */
-    width: 100%; /* Garante que os campos ocupem a largura total do formulário */
-    box-sizing: border-box; /* Inclui padding e borda na largura total */
-    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transições suaves */
+.values-section {
+    margin: 50px 0;
 }
 
-/* Estilização de foco nos campos */
-#contato input:focus,
-#contato textarea:focus {
-    border-color: var(--input-focus); /* Cor da borda em foco */
-    box-shadow: 0 0 8px var(--shadow-neon); /* Sombra neon em foco */
-    outline: none; /* Remove contorno padrão do navegador */
-    /* Boa prática: Feedback visual claro para foco */
+.values-section h2 {
+    text-align: center;
+    margin-bottom: 40px;
 }
 
-/* Estilização de campos com erro */
-#contato input[aria-invalid="true"],
-#contato textarea[aria-invalid="true"] {
-    border-color: var(--error-color); /* Borda vermelha para erro */
-    box-shadow: 0 0 8px rgba(255, 77, 77, 0.4); /* Sombra vermelha para erro */
-    /* Boa prática: Uso de aria-invalid para acessibilidade */
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* Estilização do textarea */
-#contato textarea {
-    resize: vertical; /* Permite redimensionamento vertical */
-    min-height: 100px; /* Altura mínima reduzida para melhor proporção */
-    max-height: 200px; /* Altura máxima ajustada */
-    /* Sugestão: Adicionar overflow-y: auto como fallback para navegadores que não suportam resize: vertical */
+.value-card {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: var(--input-bg);
+    border-radius: 12px;
+    border: 1px solid var(--input-border);
+    transition: transform 0.3s ease;
 }
 
-/* Estilização das mensagens de erro */
-#contato .error-message {
-    color: var(--error-color); /* Cor vermelha para erro */
-    font-size: 0.85rem; /* Tamanho menor para mensagens */
-    margin-top: 5px; /* Espaço acima */
-    display: block; /* Garante que ocupe a linha inteira */
-    text-align: left; /* Alinhamento à esquerda */
-    animation: shake 0.3s ease; /* Aplica animação de shake */
+.value-card:hover {
+    transform: translateY(-5px);
 }
 
-/* Estilização da mensagem geral do formulário */
-#contato .form-message {
-    font-size: 1rem; /* Tamanho da fonte */
-    font-weight: 600; /* Peso da fonte para destaque */
-    padding: 10px; /* Espaço interno */
-    border-radius: 8px; /* Bordas arredondadas */
-    text-align: center; /* Centraliza o texto */
-    animation: fadeIn 0.5s ease; /* Aplica animação de entrada */
+.value-card i {
+    font-size: 3rem;
+    color: var(--neon-green);
+    margin-bottom: 20px;
 }
 
-/* Estilo para mensagem de sucesso */
-#contato .form-message-success {
-    background-color: var(--success-color); /* Fundo com a cor de sucesso */
-    color: var(--background); /* Texto contrastante */
+.value-card h3 {
+    margin-bottom: 15px;
+    font-size: 1.3rem;
 }
 
-/* Estilo para mensagem de erro */
-#contato .form-message-error {
-    background-color: var(--error-color); /* Fundo vermelho para erro */
-    color: var(--text-color); /* Texto contrastante */
+.value-card p {
+    color: #ccc;
+    line-height: 1.6;
 }
 
-/* Estilização do botão de envio */
-#contato button[type="submit"] {
-    background-color: var(--neon-green); /* Cor primária */
-    color: var(--background); /* Texto contrastante */
-    border: none; /* Remove borda padrão */
-    border-radius: 8px; /* Bordas arredondadas */
-    padding: 12px; /* Espaço interno */
-    font-size: 1rem; /* Tamanho da fonte */
-    font-weight: 600; /* Peso da fonte para destaque */
-    cursor: pointer; /* Indica que é clicável */
-    width: 100%; /* Garante que o botão ocupe a largura total */
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Transições suaves */
+/* ===== PÁGINA DE CONTATO ===== */
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
 }
 
-/* Efeito de hover no botão de envio */
-#contato button[type="submit"]:hover {
-    background-color: var(--neon-green-hover); /* Cor de hover */
-    transform: scale(1.05); /* Aumenta ligeiramente o tamanho */
-    box-shadow: 0 0 8px var(--shadow-neon-hover); /* Sombra neon mais intensa */
+.contact-info {
+    padding: 30px;
+    background-color: var(--input-bg);
+    border-radius: 12px;
+    border: 1px solid var(--input-border);
 }
 
-/* Estilização de foco no botão de envio */
-#contato button[type="submit"]:focus {
-    outline: 2px solid var(--neon-green-hover); /* Contorno para acessibilidade */
-    outline-offset: 2px; /* Espaço do contorno */
+.contact-info h2 {
+    margin-bottom: 30px;
+    text-align: center;
 }
 
-/* Estilização do botão desabilitado */
-#contato button[type="submit"]:disabled {
-    background-color: #666; /* Cor cinza para estado desabilitado */
-    cursor: not-allowed; /* Indica que não é clicável */
-    transform: none; /* Remove transformações */
-    box-shadow: none; /* Remove sombra */
-    /* Boa prática: Feedback claro para estado desabilitado */
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--input-border);
 }
 
-/* Animação de shake em erros */
-@keyframes shake {
-    0% { transform: translateX(0); } /* Posição inicial */
-    25% { transform: translateX(-5px); } /* Move para a esquerda */
-    50% { transform: translateX(5px); } /* Move para a direita */
-    75% { transform: translateX(-5px); } /* Move para a esquerda novamente */
-    100% { transform: translateX(0); } /* Retorna à posição inicial */
-    /* Boa prática: Animação visual para destacar erros */
+.contact-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
 }
 
-/* Estilização do footer */
+.contact-item i {
+    font-size: 1.5rem;
+    color: var(--neon-green);
+    margin-top: 5px;
+    min-width: 30px;
+}
+
+.contact-item h3 {
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+.contact-item p {
+    color: #ccc;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.contact-form-container {
+    padding: 30px;
+    background-color: var(--input-bg);
+    border-radius: 12px;
+    border: 1px solid var(--input-border);
+}
+
+.faq-section {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.faq-section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.faq-item {
+    margin-bottom: 15px;
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: var(--input-bg);
+}
+
+.faq-question {
+    width: 100%;
+    padding: 20px;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.faq-question:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.faq-question i {
+    color: var(--neon-green);
+    transition: transform 0.3s ease;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.faq-answer p {
+    padding: 20px;
+    margin: 0;
+    color: #ccc;
+    line-height: 1.6;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 200px;
+}
+
+/* ===== FOOTER ===== */
 footer {
-    background-color: var(--background); /* Cor de fundo padrão */
-    padding: 20px 0; /* Espaço interno */
-    text-align: center; /* Centraliza o texto */
-    box-shadow: 0 -4px 12px var(--shadow-color); /* Sombra na parte superior */
+    background-color: var(--background);
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 -4px 12px var(--shadow-color);
 }
 
-/* Estilização do texto de copyright */
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+}
+
+.footer-section h3 {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.footer-section p {
+    color: #ccc;
+    line-height: 1.6;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: var(--neon-green);
+}
+
+.footer-section ul li i {
+    color: var(--neon-green);
+    margin-right: 10px;
+    width: 20px;
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--input-border);
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
 .copyright {
-    font-size: 0.9rem; /* Tamanho menor para texto secundário */
-    color: var(--text-color); /* Cor do texto */
-    margin: 10px auto; /* Centraliza com margens */
-    max-width: 600px; /* Limita a largura para legibilidade */
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin: 10px auto;
+    max-width: 600px;
 }
 
-/* Estilização dos ícones de redes sociais */
 .social-media {
-    display: flex; /* Usa flexbox para organizar ícones */
-    gap: 20px; /* Espaço entre ícones */
-    justify-content: center; /* Centraliza horizontalmente */
-    margin-top: 10px; /* Espaço acima */
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 10px;
 }
 
-/* Estilização dos links de redes sociais */
 .social-media a {
-    font-size: 1.5rem; /* Tamanho do ícone */
-    color: var(--neon-green); /* Cor primária */
-    text-decoration: none; /* Remove sublinhado padrão */
-    transition: color 0.3s ease, transform 0.3s ease; /* Transições suaves */
-    /* Sugestão: Adicionar aria-label para acessibilidade (e.g., "Visitar perfil no Twitter") */
+    font-size: 1.5rem;
+    color: var(--neon-green);
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
-/* Efeito de hover nos links de redes sociais */
 .social-media a:hover {
-    color: var(--neon-green-hover); /* Cor de hover */
-    transform: scale(1.2); /* Aumenta o tamanho */
+    color: var(--neon-green-hover);
+    transform: scale(1.2);
+}
+
+/* ===== ANIMAÇÕES ===== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes clickPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 768px) {
+    .auth-container {
+        padding: 30px 20px;
     }
+    
+    .profile-header,
+    .profile-content {
+        flex-direction: column;
+    }
+    
+    .profile-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .nav-btn {
+        flex: 1;
+        min-width: 120px;
+        text-align: center;
+    }
+    
+    .device-card {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .device-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+    
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .team-grid,
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-info,
+    .contact-form-container {
+        padding: 20px;
+    }
+    
+    .contact-item {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .faq-question {
+        font-size: 1rem;
+        padding: 15px;
+    }
+    
+    .hero-section h1 {
+        font-size: 2.2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .hero-buttons,
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .hero-buttons .btn-primary,
+    .hero-buttons .btn-secondary,
+    .cta-buttons .btn-primary,
+    .cta-buttons .btn-secondary {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+    }
+    
+    .features-section h2,
+    .cta-content h2,
+    .testimonials-section h2 {
+        font-size: 2rem;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    
+    .feature-card,
+    .testimonial-card {
+        padding: 25px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section {
+        padding: 60px 15px;
+    }
+    
+    .hero-section h1 {
+        font-size: 1.8rem;
+    }
+    
+    .features-section,
+    .cta-section,
+    .testimonials-section {
+        padding: 60px 15px;
+    }
+    
+    .features-grid,
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .team-member,
+    .value-card {
+        padding: 20px 15px;
+    }
+    
+    .member-avatar {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+}
