@@ -1406,3 +1406,136 @@ footer {
         font-size: 1.5rem;
     }
 }
+
+/* ===== ESTILOS PARA PÁGINAS LEGAIS ===== */
+.legal-section {
+    padding: 60px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.legal-container {
+    background-color: var(--input-bg);
+    border-radius: 12px;
+    padding: 50px;
+    border: 1px solid var(--input-border);
+    box-shadow: 0 8px 32px var(--shadow-color);
+}
+
+.legal-container h1 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 2.5rem;
+    color: var(--neon-green);
+}
+
+.last-updated {
+    text-align: center;
+    color: #ccc;
+    margin-bottom: 40px;
+    font-style: italic;
+}
+
+.legal-content {
+    text-align: left;
+}
+
+.legal-article {
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--input-border);
+}
+
+.legal-article:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.legal-article h2 {
+    color: var(--neon-green);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+.legal-article h3 {
+    color: var(--neon-green);
+    margin: 25px 0 15px 0;
+    font-size: 1.2rem;
+}
+
+.legal-article p {
+    margin-bottom: 15px;
+    line-height: 1.7;
+    color: #e0e0e0;
+}
+
+.legal-article ul {
+    margin: 15px 0;
+    padding-left: 25px;
+}
+
+.legal-article li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+    color: #e0e0e0;
+}
+
+.legal-article strong {
+    color: var(--neon-green);
+}
+
+/* Links dentro do conteúdo legal */
+.legal-content a {
+    color: var(--neon-green);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.legal-content a:hover {
+    color: var(--neon-green-hover);
+    text-decoration: underline;
+}
+
+/* Responsividade para páginas legais */
+@media (max-width: 768px) {
+    .legal-section {
+        padding: 40px 15px;
+    }
+    
+    .legal-container {
+        padding: 30px 20px;
+    }
+    
+    .legal-container h1 {
+        font-size: 2rem;
+    }
+    
+    .legal-article h2 {
+        font-size: 1.3rem;
+    }
+    
+    .legal-article h3 {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .legal-container {
+        padding: 20px 15px;
+    }
+    
+    .legal-container h1 {
+        font-size: 1.8rem;
+    }
+    
+    .legal-article {
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+    }
+    
+    .legal-article ul {
+        padding-left: 20px;
+    }
+}
