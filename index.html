@@ -150,7 +150,8 @@
                     <li><a href="index.html">Início</a></li>
                     <li><a href="quemsomos.html">Quem Somos</a></li>
                     <li><a href="contato.html">Contato</a></li>
-                    <li><a href="login.html">Login</a></li>
+                    <li><a href="termos-servico.html">Termos de Serviço</a></li>
+                    <li><a href="politica-privacidade.html">Política de Privacidade</a></li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -194,7 +195,6 @@
         // Verificar se o usuário está logado
         const user = localStorage.getItem('cbikeai_user');
         if (user) {
-            // Se estiver logado, esconde o link de login e mostra perfil e logout
             document.getElementById('login-link').style.display = 'none';
             document.getElementById('profile-link').style.display = 'inline';
             document.getElementById('logout-btn').style.display = 'inline';
@@ -246,4 +246,4 @@
         });
     </script>
 </body>
-    </html
+</html>
