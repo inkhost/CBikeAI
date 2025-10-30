@@ -17,6 +17,99 @@
       gtag('js', new Date());
       gtag('config', 'G-7C6KGFMFV6');
     </script>
+
+    <!-- ESTILOS ESPECÍFICOS -->
+    <style>
+        .profile-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4{ border: 4px solid var(--neon-green); }
+            box-shadow: 0 0 20px var(--shadow-neon);
+            margin-bottom: 1rem;
+        }
+
+        .profile-name {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--neon-green);
+        }
+
+        .profile-email {
+            color: #aaa;
+            font-size: 1rem;
+        }
+
+        .profile-info {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(0, 255, 136, 0.1);
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: var(--neon-green);
+        }
+
+        .info-value {
+            color: var(--text-color);
+        }
+
+        .logout-btn {
+            background-color: #e63946;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 1rem;
+        }
+
+        .logout-btn:hover {
+            background-color: #d00000;
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+        }
+
+        .not-logged {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #ccc;
+        }
+
+        .not-logged a {
+            color: var(--neon-blue);
+            text-decoration: underline;
+        }
+
+        .not-logged a:hover {
+            color: var(--neon-green);
+        }
+    </style>
 </head>
 <body>
     <header role="banner">
@@ -28,232 +121,109 @@
             <a href="quemsomos.html">Quem Somos</a>
             <a href="contato.html">Contato</a>
             <a href="perfil.html" aria-current="page">Meu Perfil</a>
-            <a href="#" id="logout-btn">Sair</a>
         </nav>
     </header>
-    
+
     <main class="main-content">
-        <section id="perfil" class="profile-section">
+        <section class="profile-section">
             <div class="profile-container">
-                <h1>Meu Perfil</h1>
-                
-                <div class="profile-header">
-                    <div class="profile-avatar">
-                        <img src="img/avatar-placeholder.png" alt="Avatar do usuário" id="user-avatar">
-                        <button class="change-avatar-btn">Alterar foto</button>
-                    </div>
-                    <div class="profile-info">
-                        <h2 id="user-name">Nome do Usuário</h2>
-                        <p id="user-email">usuario@exemplo.com</p>
-                        <p class="member-since">Membro desde <span id="member-since">2024</span></p>
-                    </div>
-                </div>
-                
-                <div class="profile-content">
-                    <div class="profile-nav">
-                        <button class="nav-btn active" data-tab="dados-pessoais">Dados Pessoais</button>
-                        <button class="nav-btn" data-tab="seguranca">Segurança</button>
-                        <button class="nav-btn" data-tab="dispositivos">Meus Dispositivos</button>
-                        <button class="nav-btn" data-tab="preferencias">Preferências</button>
-                    </div>
-                    
-                    <div class="profile-tabs">
-                        <!-- Dados Pessoais -->
-                        <div id="dados-pessoais" class="tab-content active">
-                            <h3>Dados Pessoais</h3>
-                            <form id="profile-form" class="profile-form">
-                                <div class="form-group">
-                                    <label for="profile-name">Nome completo</label>
-                                    <input type="text" id="profile-name" name="name" required>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="profile-email">E-mail</label>
-                                    <input type="email" id="profile-email" name="email" required>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="profile-phone">Telefone</label>
-                                    <input type="tel" id="profile-phone" name="phone">
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="profile-birthdate">Data de nascimento</label>
-                                    <input type="date" id="profile-birthdate" name="birthdate">
-                                </div>
-                                
-                                <button type="submit" class="btn-primary">Salvar alterações</button>
-                            </form>
-                        </div>
-                        
-                        <!-- Segurança -->
-                        <div id="seguranca" class="tab-content">
-                            <h3>Segurança da Conta</h3>
-                            <form id="security-form" class="profile-form">
-                                <div class="form-group">
-                                    <label for="current-password">Senha atual</label>
-                                    <input type="password" id="current-password" name="current-password">
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="new-password">Nova senha</label>
-                                    <input type="password" id="new-password" name="new-password">
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="confirm-new-password">Confirmar nova senha</label>
-                                    <input type="password" id="confirm-new-password" name="confirm-new-password">
-                                </div>
-                                
-                                <button type="submit" class="btn-primary">Alterar senha</button>
-                            </form>
-                            
-                            <div class="security-options">
-                                <h4>Outras opções de segurança</h4>
-                                <div class="security-option">
-                                    <span>Autenticação de dois fatores</span>
-                                    <label class="switch">
-                                        <input type="checkbox" id="two-factor-auth">
-                                        <span class="slider"></span>
-                                    </label>
-                                </div>
-                                <div class="security-option">
-                                    <span>Notificações de segurança</span>
-                                    <label class="switch">
-                                        <input type="checkbox" id="security-notifications" checked>
-                                        <span class="slider"></span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Meus Dispositivos -->
-                        <div id="dispositivos" class="tab-content">
-                            <h3>Meus Dispositivos CBikeAI</h3>
-                            <div class="devices-list">
-                                <div class="device-card">
-                                    <div class="device-info">
-                                        <h4>CBikeAI T1</h4>
-                                        <p>Serial: CBK-123456</p>
-                                        <p>Status: <span class="status-connected">Conectado</span></p>
-                                    </div>
-                                    <div class="device-actions">
-                                        <button class="btn-secondary">Configurar</button>
-                                        <button class="btn-danger">Desvincular</button>
-                                    </div>
-                                </div>
-                                
-                                <div class="device-card">
-                                    <div class="device-info">
-                                        <h4>CBikeAI T2</h4>
-                                        <p>Serial: CBK-789012</p>
-                                        <p>Status: <span class="status-disconnected">Desconectado</span></p>
-                                    </div>
-                                    <div class="device-actions">
-                                        <button class="btn-secondary">Configurar</button>
-                                        <button class="btn-danger">Desvincular</button>
-                                    </div>
-                                </div>
-                                
-                                <button class="btn-primary" id="add-device-btn">
-                                    <i class="fas fa-plus"></i> Adicionar dispositivo
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <!-- Preferências -->
-                        <div id="preferencias" class="tab-content">
-                            <h3>Preferências</h3>
-                            <form id="preferences-form" class="profile-form">
-                                <div class="form-group">
-                                    <label for="theme-preference">Tema do site</label>
-                                    <select id="theme-preference" name="theme">
-                                        <option value="auto">Automático (segue o sistema)</option>
-                                        <option value="light">Claro</option>
-                                        <option value="dark">Escuro</option>
-                                    </select>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="language-preference">Idioma</label>
-                                    <select id="language-pference" name="language">
-                                        <option value="pt-BR">Português (Brasil)</option>
-                                        <option value="en">English</option>
-                                        <option value="es">Español</option>
-                                    </select>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="notifications-preference">Notificações por e-mail</label>
-                                    <select id="notifications-preference" name="notifications">
-                                        <option value="all">Todas as notificações</option>
-                                        <option value="important">Apenas importantes</option>
-                                        <option value="none">Nenhuma</option>
-                                    </select>
-                                </div>
-                                
-                                <button type="submit" class="btn-primary">Salvar preferências</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                <!-- Conteúdo carregado via JS -->
+                <div id="profile-content"></div>
             </div>
         </section>
     </main>
-    
+
+    <!-- Footer -->
     <footer role="contentinfo">
         <div class="footer-content">
             <div class="footer-section">
                 <h3>CBikeAI</h3>
-                <p>Revolucionando a segurança no ciclismo através da tecnologia e inovação.</p>
+                <p>Revolucionando a segurança no ciclismo.</p>
             </div>
             <div class="footer-section">
                 <h3>Links Rápidos</h3>
                 <ul>
                     <li><a href="index.html">Início</a></li>
-                    <li><a href="quemsomos.html">Quem Somos</a></li>
-                    <li><a href="contato.html">Contato</a></li>
-                    <li><a href="termos-servico.html">Termos de Serviço</a></li>
-                    <li><a href="politica-privacidade.html">Política de Privacidade</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Contato</h3>
-                <ul>
-                    <li><i class="fas fa-envelope"></i> contato@cbikeai.com</li>
-                    <li><i class="fas fa-phone"></i> (11) 9999-9999</li>
-                    <li><i class="fas fa-map-marker-alt"></i> São Paulo - SP</li>
+                    <li><a href="perfil.html">Perfil</a></li>
+                    <li><a href="login.html">Login</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
             <p class="copyright">© 2025 CBikeAI. Todos os direitos reservados.</p>
-            <div class="social-media">
-                <a href="https://www.instagram.com/cbikeai" onclick="gtag('event', 'click_social', {'social_network': 'Instagram'});" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no Instagram">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-                <a href="https://www.x.com/cbikeai" onclick="gtag('event', 'click_social', {'social_network': 'X'});" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no X">
-                    <i class="fa-brands fa-x-twitter"></i>
-                </a>
-                <a href="https://www.facebook.com/cbikeai" onclick="gtag('event', 'click_social', {'social_network': 'Facebook'});" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no Facebook">
-                    <i class="fa-brands fa-facebook-f"></i>
-                </a>
-            </div>
         </div>
     </footer>
-    
+
     <!-- VLibras -->
     <div vw class="enabled">
         <div vw-access-button class="active"></div>
-        <div vw-plugin-wrapper>
-            <div class="vw-plugin-top-wrapper"></div>
-        </div>
+        <div vw-plugin-wrapper"><div class="vw-plugin-top-wrapper"></div></div>
     </div>
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+
+    <!-- JavaScript -->
     <script>
-        new window.VLibras.Widget('https://vlibras.gov.br/app');
+        // perfil.js – Carrega dados do usuário
+        document.addEventListener('DOMContentLoaded', function () {
+            const profileContent = document.getElementById('profile-content');
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            const userName = localStorage.getItem('userName') || 'Usuário';
+            const userEmail = localStorage.getItem('userEmail') || 'email@exemplo.com';
+            const userAvatar = localStorage.getItem('userAvatar') || 'https://via.placeholder.com/120?text=User';
+
+            if (!isLoggedIn) {
+                profileContent.innerHTML = `
+                    <div class="not-logged">
+                        <h2>Você não está logado</h2>
+                        <p>Faça login para acessar seu perfil.</p>
+                        <p><a href="login.html">Ir para Login</a></p>
+                    </div>
+                `;
+                return;
+            }
+
+            profileContent.innerHTML = `
+                <div class="profile-header">
+                    <img src="${userAvatar}" alt="Foto do usuário" class="profile-avatar" onerror="this.src='https://via.placeholder.com/120?text=${userName.charAt(0).toUpperCase()}'">
+                    <h1 class="profile-name">${userName}</h1>
+                    <p class="profile-email">${userEmail}</p>
+                </div>
+
+                <div class="profile-info">
+                    <div class="info-item">
+                        <span class="info-label">E-mail</span>
+                        <span class="info-value">${userEmail}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Membro desde</span>
+                        <span class="info-value">Outubro 2025</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Método de login</span>
+                        <span class="info-value">
+                            ${userEmail.includes('google') ? 'Google' : 
+                               userEmail.includes('facebook') ? 'Facebook' : 
+                               userEmail.includes('apple') ? 'Apple' : 'E-mail'}
+                        </span>
+                    </div>
+                </div>
+
+                <button class="logout-btn" id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Sair da Conta
+                </button>
+            `;
+
+            // Logout
+            document.getElementById('logout-btn').addEventListener('click', function () {
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('userName');
+                localStorage.removeItem('userEmail');
+                localStorage.removeItem('userAvatar');
+                window.location.href = 'login.html';
+            });
+        });
     </script>
-    
-    <script src="auth.js"></script>
 </body>
 </html>
