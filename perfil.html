@@ -30,7 +30,7 @@
             height: 120px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4{ border: 4px solid var(--neon-green); }
+            border: 4px solid var(--neon-green);
             box-shadow: 0 0 20px var(--shadow-neon);
             margin-bottom: 1rem;
         }
@@ -127,13 +127,11 @@
     <main class="main-content">
         <section class="profile-section">
             <div class="profile-container">
-                <!-- Conteúdo carregado via JS -->
                 <div id="profile-content"></div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
     <footer role="contentinfo">
         <div class="footer-content">
             <div class="footer-section">
@@ -162,9 +160,8 @@
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
 
-    <!-- JavaScript -->
+    <!-- JavaScript do Perfil -->
     <script>
-        // perfil.js – Carrega dados do usuário
         document.addEventListener('DOMContentLoaded', function () {
             const profileContent = document.getElementById('profile-content');
             const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
@@ -183,9 +180,15 @@
                 return;
             }
 
+            // Detecta método de login
+            const loginMethod = userEmail.includes('@google') ? 'Google' :
+                               userEmail.includes('@facebook') ? 'Facebook' :
+                               userEmail.includes('@apple') ? 'Apple' : 'E-mail';
+
             profileContent.innerHTML = `
                 <div class="profile-header">
-                    <img src="${userAvatar}" alt="Foto do usuário" class="profile-avatar" onerror="this.src='https://via.placeholder.com/120?text=${userName.charAt(0).toUpperCase()}'">
+                    <img src="${userAvatar}" alt="Foto do usuário" class="profile-avatar" 
+                         onerror="this.src='https://via.placeholder.com/120?text=${userName.charAt(0).toUpperCase()}'">
                     <h1 class="profile-name">${userName}</h1>
                     <p class="profile-email">${userEmail}</p>
                 </div>
@@ -201,11 +204,7 @@
                     </div>
                     <div class="info-item">
                         <span class="info-label">Método de login</span>
-                        <span class="info-value">
-                            ${userEmail.includes('google') ? 'Google' : 
-                               userEmail.includes('facebook') ? 'Facebook' : 
-                               userEmail.includes('apple') ? 'Apple' : 'E-mail'}
-                        </span>
+                        <span class="info-value">${loginMethod}</span>
                     </div>
                 </div>
 
@@ -215,12 +214,8 @@
                 </button>
             `;
 
-            // Logout
             document.getElementById('logout-btn').addEventListener('click', function () {
-                localStorage.removeItem('isLoggedIn');
-                localStorage.removeItem('userName');
-                localStorage.removeItem('userEmail');
-                localStorage.removeItem('userAvatar');
+                localStorage.clear();
                 window.location.href = 'login.html';
             });
         });
