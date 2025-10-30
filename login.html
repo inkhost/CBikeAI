@@ -20,7 +20,6 @@
 
     <!-- ESTILOS ESPECÍFICOS -->
     <style>
-        /* Botões Sociais */
         .btn-google, .btn-facebook, .btn-apple {
             display: flex;
             align-items: center;
@@ -44,7 +43,6 @@
         .btn-apple { background-color: #000; border-color: #000; }
         .btn-apple:hover { background-color: #333; border-color: #333; }
 
-        /* Mensagens Toast */
         .success-message, .error-message {
             position: fixed;
             top: 20px;
@@ -91,7 +89,6 @@
                     <p>Entre com sua conta</p>
                 </div>
 
-                <!-- Formulário de Login (E-mail + Senha) -->
                 <form id="login-form" class="auth-form" novalidate>
                     <div class="form-group">
                         <label for="login-email">E-mail</label>
@@ -128,10 +125,8 @@
                     <button type="submit" class="btn-primary">Entrar</button>
                 </form>
 
-                <!-- Separador -->
                 <div class="auth-separator"><span>ou</span></div>
 
-                <!-- Botão Google -->
                 <button id="google-login" class="btn-google" data-client-id="SEU_GOOGLE_CLIENT_ID">
                     <i class="fab fa-google"></i>
                     Entrar com Google
@@ -139,7 +134,6 @@
 
                 <div class="auth-separator"><span>ou</span></div>
 
-                <!-- Botão Facebook -->
                 <button id="facebook-login" class="btn-facebook" data-app-id="SEU_FACEBOOK_APP_ID">
                     <i class="fab fa-facebook-f"></i>
                     Entrar com Facebook
@@ -147,13 +141,11 @@
 
                 <div class="auth-separator"><span>ou</span></div>
 
-                <!-- Botão Apple -->
                 <button id="apple-login" class="btn-apple" data-services-id="com.seusite.login">
                     <i class="fab fa-apple"></i>
                     Entrar com Apple
                 </button>
 
-                <!-- Rodapé do formulário -->
                 <div class="auth-footer">
                     <p>Não tem uma conta? <a href="criar-conta.html">Criar conta</a></p>
                 </div>
@@ -165,7 +157,6 @@
     <div class="success-message" id="success-message"><i class="fas fa-check-circle"></i> <span></span></div>
     <div class="error-message" id="error-message"><i class="fas fa-exclamation-triangle"></i> <span></span></div>
 
-    <!-- Footer -->
     <footer role="contentinfo">
         <div class="footer-content">
             <div class="footer-section">
@@ -194,106 +185,6 @@
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
 
-    <!-- JavaScript -->
-    <script src="auth.js"></script>
-</body>
-</html>                <h1>Entrar na sua conta</h1>
-                <p>Acesse sua conta CBikeAI para gerenciar seu perfil e dispositivos.</p>
-                
-                <form id="login-form" class="auth-form">
-                    <div class="form-group">
-                        <label for="login-email">E-mail</label>
-                        <input type="email" id="login-email" name="email" required>
-                        <span class="error-message" id="login-email-error"></span>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="login-password">Senha</label>
-                        <input type="password" id="login-password" name="password" required>
-                        <span class="error-message" id="login-password-error"></span>
-                    </div>
-                    
-                    <div class="form-options">
-                        <label class="checkbox-container">
-                            <input type="checkbox" id="remember-me" name="remember-me">
-                            <span class="checkmark"></span>
-                            Lembrar-me
-                        </label>
-                        <a href="esqueci-senha.html" class="forgot-password">Esqueci minha senha</a>
-                    </div>
-                    
-                    <button type="submit" class="btn-primary">Entrar</button>
-                </form>
-                
-                <div class="auth-separator">
-                    <span>ou</span>
-                </div>
-                
-                <button id="google-login" class="btn-google">
-                    <i class="fab fa-google"></i>
-                    Entrar com Google
-                </button>
-                
-                <div class="auth-footer">
-                    <p>Não tem uma conta? <a href="criar-conta.html">Criar conta</a></p>
-                </div>
-            </div>
-        </section>
-    </main>
-    
-    <footer role="contentinfo">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>CBikeAI</h3>
-                <p>Revolucionando a segurança no ciclismo através da tecnologia e inovação.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Links Rápidos</h3>
-                <ul>
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="quemsomos.html">Quem Somos</a></li>
-                    <li><a href="contato.html">Contato</a></li>
-                    <li><a href="termos-servico.html">Termos de Serviço</a></li>
-                    <li><a href="politica-privacidade.html">Política de Privacidade</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Contato</h3>
-                <ul>
-                    <li><i class="fas fa-envelope"></i> contato@cbikeai.com</li>
-                    <li><i class="fas fa-phone"></i> (11) 9999-9999</li>
-                    <li><i class="fas fa-map-marker-alt"></i> São Paulo - SP</li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p class="copyright">© 2025 CBikeAI. Todos os direitos reservados.</p>
-            <div class="social-media">
-                <a href="https://www.instagram.com/cbikeai" onclick="gtag('event', 'click_social', {'social_network': 'Instagram'});" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no Instagram">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-                <a href="https://www.x.com/cbikeai" onclick="gtag('event', 'click_social', {'social_network': 'X'});" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no X">
-                    <i class="fa-brands fa-x-twitter"></i>
-                </a>
-                <a href="https://www.facebook.com/cbikeai" onclick="gtag('event', 'click_social', {'social_network': 'Facebook'});" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no Facebook">
-                    <i class="fa-brands fa-facebook-f"></i>
-                </a>
-            </div>
-        </div>
-    </footer>
-    
-    <!-- VLibras -->
-    <div vw class="enabled">
-        <div vw-access-button class="active"></div>
-        <div vw-plugin-wrapper>
-            <div class="vw-plugin-top-wrapper"></div>
-        </div>
-    </div>
-    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-    <script>
-        new window.VLibras.Widget('https://vlibras.gov.br/app');
-    </script>
-    
     <script src="auth.js"></script>
 </body>
 </html>
