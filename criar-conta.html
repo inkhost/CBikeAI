@@ -7,7 +7,7 @@
     <title>CBikeAI - Criar Conta</title>
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-7C6KGFMFV6"></script>
@@ -39,20 +39,34 @@
                 
                 <form id="signup-form" class="auth-form">
                     <div class="form-group">
-                        <label for="signup-name">Nome completo</label>
+                        <label for="signup-name">
+                            <i class="fas fa-user"></i>
+                            Nome completo
+                        </label>
                         <input type="text" id="signup-name" name="name" required>
                         <span class="error-message" id="signup-name-error"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label for="signup-email">E-mail</label>
+                        <label for="signup-email">
+                            <i class="fas fa-envelope"></i>
+                            E-mail
+                        </label>
                         <input type="email" id="signup-email" name="email" required>
                         <span class="error-message" id="signup-email-error"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label for="signup-password">Senha</label>
-                        <input type="password" id="signup-password" name="password" required>
+                        <label for="signup-password">
+                            <i class="fas fa-lock"></i>
+                            Senha
+                        </label>
+                        <div class="password-input-container">
+                            <input type="password" id="signup-password" name="password" required>
+                            <span class="toggle-password" id="toggle-password">
+                                <i class="fas fa-eye"></i>
+                            </span>
+                        </div>
                         <span class="error-message" id="signup-password-error"></span>
                         <div class="password-strength">
                             <div class="strength-bar">
@@ -63,8 +77,16 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="signup-confirm-password">Confirmar senha</label>
-                        <input type="password" id="signup-confirm-password" name="confirm-password" required>
+                        <label for="signup-confirm-password">
+                            <i class="fas fa-lock"></i>
+                            Confirmar senha
+                        </label>
+                        <div class="password-input-container">
+                            <input type="password" id="signup-confirm-password" name="confirm-password" required>
+                            <span class="toggle-password" id="toggle-confirm-password">
+                                <i class="fas fa-eye"></i>
+                            </span>
+                        </div>
                         <span class="error-message" id="signup-confirm-password-error"></span>
                     </div>
                     
@@ -80,13 +102,25 @@
                 </form>
                 
                 <div class="auth-separator">
-                    <span>ou</span>
+                    <span>ou cadastre com</span>
                 </div>
                 
-                <button id="google-signup" class="btn-google">
-                    <i class="fab fa-google"></i>
-                    Cadastrar com Google
-                </button>
+                <div class="social-buttons">
+                    <button id="google-signup" class="btn-social btn-google">
+                        <i class="fab fa-google"></i>
+                        <span>Google</span>
+                    </button>
+                    
+                    <button id="apple-signup" class="btn-social btn-apple">
+                        <i class="fab fa-apple"></i>
+                        <span>Apple</span>
+                    </button>
+                    
+                    <button id="microsoft-signup" class="btn-social btn-microsoft">
+                        <i class="fab fa-microsoft"></i>
+                        <span>Microsoft</span>
+                    </button>
+                </div>
                 
                 <div class="auth-footer">
                     <p>Já tem uma conta? <a href="login.html">Fazer login</a></p>
