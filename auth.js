@@ -1,26 +1,77 @@
 /* ============================================================= */
-/*  auth.js – Login normal + Google + Facebook + Apple */
+/*  auth.js – Validação de formulário de cadastro */
 /* ============================================================= */
 
 document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('login-form');
-    const emailInput = document.getElementById('login-email');
-    const emailError = document.getElementById('login-email-error');
-    const passwordInput = document.getElementById('login-password');
-    const passwordError = document.getElementById('login-password-error');
-    const togglePassword = document.querySelector('.toggle-password');
-    const googleLoginBtn = document.getElementById('google-login');
-    const facebookLoginBtn = document.getElementById('facebook-login');
-    const appleLoginBtn = document.getElementById('apple-login');
+    const form = document.getElementById('signup-form');
+    const nameInput = document.getElementById('signup-name');
+    const nameError = document.getElementById('signup-name-error');
+    const emailInput = document.getElementById('signup-email');
+    const emailError = document.getElementById('signup-email-error');
+    const passwordInput = document.getElementById('signup-password');
+    const passwordError = document.getElementById('signup-password-error');
+    const confirmPasswordInput = document.getElementById('signup-confirm-password');
+    const confirmPasswordError = document.getElementById('signup-confirm-password-error');
+    const passwordStrengthFill = document.getElementById('password-strength-fill');
+    const passwordStrengthText = document.getElementById('password-strength-text');
+    const googleSignupBtn = document.getElementById('google-signup');
+    const appleSignupBtn = document.getElementById('apple-signup');
+    const microsoftSignupBtn = document.getElementById('microsoft-signup');
+    const acceptTerms = document.getElementById('accept-terms');
+    
+    // Elementos do toggle de senha
+    const togglePassword = document.getElementById('toggle-password');
+    const toggleConfirmPassword = document.getElementById('toggle-confirm-password');
 
-    const strengthContainer = document.getElementById('password-strength');
-    const strengthFill = document.getElementById('strength-fill');
-    const strengthText = document.getElementById('strength-text');
+    /* ---------- TOGGLE DE VISUALIZAÇÃO DE SENHA ---------- */
+    function setupPasswordToggle(toggleElement, passwordInput) {
+        toggleElement.addEventListener('click', function() {
+            // Alterna entre tipo password e text
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            // Alterna a classe active no botão
+            this.classList.toggle('active');
+            
+            // Alterna o ícone do olho
+            const icon = this.querySelector('i');
+            if (type === 'text') {
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+    }
 
-    // IDs das APIs (substitua!)
-    const GOOGLE_CLIENT_ID = googleLoginBtn ? googleLoginBtn.dataset.clientId : '';
-    const FACEBOOK_APP_ID = facebookLoginBtn ? facebookLoginBtn.dataset.appId : '';
-    const APPLE_SERVICES_ID = appleLoginBtn ? appleLoginBtn.dataset.servicesId : '';
+    // Configura os toggles de senha
+    if (togglePassword && passwordInput) {
+        setupPasswordToggle(togglePassword, passwordInput);
+    }
+    
+    if (toggleConfirmPassword && confirmPasswordInput) {
+        setupPasswordToggle(toggleConfirmPassword, confirmPasswordInput);
+    }
+
+    /* ---------- VALIDAÇÃO DE NOME ---------- */
+    function validateName() {
+        const value = nameInput.value.trim();
+        nameError.textContent = '';
+
+        if (!value) {
+            showError(nameError, 'O nome é obrigatório.');
+            return false;
+        }
+        if (value.length < 2) {
+            showError(nameError, 'O nome deve ter pelo menos 2 caracteres.');
+            return false;
+        }
+        return true;
+    }
+
+    nameInput.addEventListener('input', validateName);
+    nameInput.addEventListener('blur', validateName);
 
     /* ---------- VALIDAÇÃO DE E-MAIL ---------- */
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -49,90 +100,79 @@ document.addEventListener('DOMContentLoaded', function () {
     emailInput.addEventListener('blur', validateEmail);
 
     /* ---------- VALIDAÇÃO DE SENHA ---------- */
-    const requirements = [
-        { regex: /.{8,}/, text: 'Pelo menos 8 caracteres', icon: 'check' },
-        { regex: /[A-Z]/, text: 'Uma letra maiúscula', icon: 'check' },
-        { regex: /[a-z]/, text: 'Uma letra minúscula', icon: 'check' },
-        { regex: /[0-9]/, text: 'Um número', icon: 'check' },
-        { regex: /[^A-Za-z0-9]/, text: 'Um caractere especial (!@#$% etc)', icon: 'check' }
-    ];
-
-    // Cria lista de requisitos
-    const reqList = document.createElement('ul');
-    reqList.className = 'requirement-list';
-    requirements.forEach(req => {
-        const li = document.createElement('li');
-        li.innerHTML = `<i class="fas fa-${req.icon}"></i> ${req.text}`;
-        li.dataset.valid = 'false';
-        reqList.appendChild(li);
-    });
-    strengthContainer.appendChild(reqList);
-
     function validatePassword() {
         const value = passwordInput.value;
-        let validCount = 0;
+        let strength = 0;
+        let text = '';
 
-        requirements.forEach((req, i) => {
-            const ok = req.regex.test(value);
-            const li = reqList.children[i];
-            if (ok) {
-                li.classList.add('valid');
-                li.dataset.valid = 'true';
-                validCount++;
-            } else {
-                li.classList.remove('valid');
-                li.dataset.valid = 'false';
-            }
-        });
+        // Critérios de força
+        if (value.length >= 8) strength += 25;
+        if (/[A-Z]/.test(value)) strength += 25;
+        if (/[a-z]/.test(value)) strength += 25;
+        if (/[0-9]/.test(value)) strength += 15;
+        if (/[^A-Za-z0-9]/.test(value)) strength += 10;
 
-        strengthContainer.classList.toggle('active', value !== '');
-        strengthFill.className = 'strength-fill';
-
-        if (value === '') {
-            strengthContainer.classList.remove('active');
-            return;
-        }
-
-        if (validCount === 5) {
-            strengthContainer.classList.add('strength-strong');
-            strengthText.textContent = 'Senha forte!';
-        } else if (validCount >= 3) {
-            strengthContainer.classList.add('strength-good');
-            strengthText.textContent = 'Senha boa. Adicione mais variedade.';
-        } else if (validCount >= 2) {
-            strengthContainer.classList.add('strength-fair');
-            strengthText.textContent = 'Senha razoável. Melhore a segurança.';
+        // Atualizar barra de força
+        passwordStrengthFill.className = 'strength-fill';
+        
+        if (strength <= 25) {
+            passwordStrengthFill.classList.add('strength-weak');
+            text = 'Senha fraca';
+        } else if (strength <= 50) {
+            passwordStrengthFill.classList.add('strength-fair');
+            text = 'Senha razoável';
+        } else if (strength <= 75) {
+            passwordStrengthFill.classList.add('strength-good');
+            text = 'Senha boa';
         } else {
-            strengthContainer.classList.add('strength-weak');
-            strengthText.textContent = 'Senha fraca. Atenda aos requisitos.';
+            passwordStrengthFill.classList.add('strength-strong');
+            text = 'Senha forte!';
         }
+        
+        passwordStrengthText.textContent = text;
     }
 
     passwordInput.addEventListener('input', validatePassword);
     passwordInput.addEventListener('focus', validatePassword);
 
-    /* ---------- OLHO (mostrar/esconder senha) ---------- */
-    if (togglePassword) {
-        togglePassword.addEventListener('click', function () {
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
-            this.classList.toggle('active');
-            const icon = this.querySelector('i');
-            icon.classList.toggle('fa-eye');
-            icon.classList.toggle('fa-eye-slash');
-        });
+    /* ---------- VALIDAÇÃO DE CONFIRMAÇÃO DE SENHA ---------- */
+    function validateConfirmPassword() {
+        const password = passwordInput.value;
+        const confirmPassword = confirmPasswordInput.value;
+        confirmPasswordError.textContent = '';
+
+        if (!confirmPassword) {
+            showError(confirmPasswordError, 'Por favor, confirme sua senha.');
+            return false;
+        }
+        if (password !== confirmPassword) {
+            showError(confirmPasswordError, 'As senhas não coincidem.');
+            return false;
+        }
+        return true;
     }
 
-    /* ---------- LOGIN NORMAL ---------- */
+    confirmPasswordInput.addEventListener('input', validateConfirmPassword);
+    confirmPasswordInput.addEventListener('blur', validateConfirmPassword);
+
+    /* ---------- CADASTRO NORMAL ---------- */
     if (form) {
         form.addEventListener('submit', function (e) {
             e.preventDefault();
 
+            const nameOk = validateName();
             const emailOk = validateEmail();
-            const passwordOk = requirements.every(r => r.regex.test(passwordInput.value));
+            const passwordOk = passwordInput.value.length >= 8;
+            const confirmPasswordOk = validateConfirmPassword();
+            const termsOk = acceptTerms.checked;
 
             passwordError.textContent = '';
             passwordError.style.display = 'none';
+
+            if (!nameOk) {
+                nameInput.focus();
+                return;
+            }
 
             if (!emailOk) {
                 emailInput.focus();
@@ -140,148 +180,62 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             if (!passwordOk) {
-                passwordError.textContent = 'A senha não atende aos requisitos de segurança.';
+                passwordError.textContent = 'A senha deve ter pelo menos 8 caracteres.';
                 passwordError.style.display = 'block';
                 passwordInput.focus();
                 return;
             }
 
-            // Simula login bem-sucedido
+            if (!confirmPasswordOk) {
+                confirmPasswordInput.focus();
+                return;
+            }
+
+            if (!termsOk) {
+                alert('Você deve aceitar os Termos de Serviço e Política de Privacidade');
+                acceptTerms.focus();
+                return;
+            }
+
+            // Simula cadastro bem-sucedido
             localStorage.setItem('isLoggedIn', 'true');
             localStorage.setItem('userEmail', emailInput.value);
-            localStorage.setItem('userName', emailInput.value.split('@')[0]); // Nome simples
+            localStorage.setItem('userName', nameInput.value);
 
-            console.log('Login normal bem-sucedido!');
-            window.location.href = 'perfil.html';
+            console.log('Cadastro normal bem-sucedido!');
+            alert('Conta criada com sucesso! Redirecionando...');
+            
+            // Em um cenário real, aqui você faria uma requisição para o backend
+            setTimeout(() => {
+                window.location.href = 'perfil.html';
+            }, 1000);
         });
     }
 
-    /* ---------- LOGIN COM GOOGLE ---------- */
-    if (googleLoginBtn && GOOGLE_CLIENT_ID) {
-        // Carrega a biblioteca do Google
-        const googleScript = document.createElement('script');
-        googleScript.src = 'https://accounts.google.com/gsi/client';
-        googleScript.async = true;
-        googleScript.defer = true;
-        document.head.appendChild(googleScript);
-
-        googleScript.onload = function() {
-            // Inicializa o Google Sign-In
-            window.google.accounts.id.initialize({
-                client_id: GOOGLE_CLIENT_ID,
-                callback: handleGoogleSignIn,
-                auto_select: false,
-                cancel_on_tap_outside: false
-            });
-
-            // Renderiza o botão
-            window.google.accounts.id.renderButton(
-                googleLoginBtn,
-                { theme: 'outline', size: 'large', type: 'standard', text: 'signin_with' }
-            );
-        };
-    }
-
-    // Callback do Google
-    function handleGoogleSignIn(response) {
-        const payload = JSON.parse(atob(response.credential.split('.')[1]));
-        localStorage.setItem('isLoggedIn', 'true');
-        localStorage.setItem('userEmail', payload.email);
-        localStorage.setItem('userName', payload.name);
-        localStorage.setItem('userAvatar', payload.picture);
-        console.log('Login Google bem-sucedido!', payload);
-        window.location.href = 'perfil.html';
-    }
-
-    /* ---------- LOGIN COM FACEBOOK ---------- */
-    if (facebookLoginBtn && FACEBOOK_APP_ID) {
-        // Carrega a SDK do Facebook
-        window.fbAsyncInit = function() {
-            FB.init({
-                appId: FACEBOOK_APP_ID,
-                cookie: true,
-                xfbml: true,
-                version: 'v20.0'
-            });
-
-            FB.AppEvents.logPageView();
-
-            FB.getLoginStatus(function(response) {
-                if (response.status === 'connected') {
-                    console.log('Usuário já logado no Facebook');
-                }
-            });
-        };
-
-        // Carrega o script da SDK
-        (function(d, s, id) {
-            const fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            const js = d.createElement(s); js.id = id;
-            js.src = 'https://connect.facebook.net/pt_BR/sdk.js';
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-
-        // Event listener para o botão Facebook
-        facebookLoginBtn.addEventListener('click', function(e) {
+    /* ---------- CADASTRO COM GOOGLE ---------- */
+    if (googleSignupBtn) {
+        googleSignupBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            FB.login(function(response) {
-                if (response.authResponse) {
-                    const accessToken = response.authResponse.accessToken;
-                    FB.api('/me', { fields: 'name,email,picture.type(large)' }, function(userResponse) {
-                        localStorage.setItem('isLoggedIn', 'true');
-                        localStorage.setItem('userEmail', userResponse.email);
-                        localStorage.setItem('userName', userResponse.name);
-                        localStorage.setItem('userAvatar', userResponse.picture.data.url);
-                        console.log('Login Facebook bem-sucedido!', userResponse);
-                        window.location.href = 'perfil.html';
-                    });
-                } else {
-                    console.log('Login Facebook cancelado');
-                }
-            }, { scope: 'public_profile,email' });
+            alert('Funcionalidade de cadastro com Google será implementada em breve!');
+            // Implementação real viria aqui
         });
     }
 
-    /* ---------- LOGIN COM APPLE ---------- */
-    if (appleLoginBtn && APPLE_SERVICES_ID) {
-        // Carrega a SDK do Apple
-        const appleScript = document.createElement('script');
-        appleScript.src = 'https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js';
-        appleScript.async = true;
-        document.head.appendChild(appleScript);
+    /* ---------- CADASTRO COM APPLE ---------- */
+    if (appleSignupBtn) {
+        appleSignupBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Funcionalidade de cadastro com Apple será implementada em breve!');
+            // Implementação real viria aqui
+        });
+    }
 
-        appleScript.onload = function() {
-            // Configura o Apple Sign In
-            AppleID.auth.init({
-                clientId: APPLE_SERVICES_ID,
-                scope: 'name email',
-                redirectURI: window.location.origin + '/callback',  // Ajuste se necessário
-                usePopup: true  // Popup em vez de redirect
-            });
-
-            // Event listener para o botão Apple
-            appleLoginBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                AppleID.auth.signIn().then(function(response) {
-                    // Extrai dados do usuário
-                    const userEmail = response.user.email;
-                    const userName = (response.user.name && response.user.name.firstName) ? 
-                        `${response.user.name.firstName} ${response.user.name.lastName || ''}`.trim() : 'Usuário Apple';
-                    const userPicture = 'https://via.placeholder.com/120?text=Apple';  // Placeholder, pois Apple não fornece foto
-
-                    // Simula login
-                    localStorage.setItem('isLoggedIn', 'true');
-                    localStorage.setItem('userEmail', userEmail);
-                    localStorage.setItem('userName', userName);
-                    localStorage.setItem('userAvatar', userPicture);
-
-                    console.log('Login Apple bem-sucedido!', response.user);
-                    window.location.href = 'perfil.html';
-                }).catch(function(error) {
-                    console.log('Login Apple cancelado ou erro:', error);
-                });
-            });
-        };
+    /* ---------- CADASTRO COM MICROSOFT ---------- */
+    if (microsoftSignupBtn) {
+        microsoftSignupBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Funcionalidade de cadastro com Microsoft será implementada em breve!');
+            // Implementação real viria aqui
+        });
     }
 });
