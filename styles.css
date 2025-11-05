@@ -16,6 +16,7 @@
     --input-focus: #0aff3d;
     --error-color: #ff4d4d;
     --success-color: #09e331;
+    --card-bg: rgba(26, 26, 26, 0.9);
 }
 
 /* Temas alternativos */
@@ -71,13 +72,19 @@ body {
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(9, 227, 49, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(9, 227, 49, 0.05) 0%, transparent 20%);
 }
 
 .main-content {
     margin-top: 20px;
-    padding: clamp(80px, 10vw, 100px) 15px;
+    padding: clamp(40px, 8vw, 80px) 15px;
     text-align: center;
     flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* ===== TIPOGRAFIA ===== */
@@ -128,7 +135,7 @@ header {
 }
 
 .logo img:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     filter: drop-shadow(0 0 10px var(--shadow-neon));
 }
 
@@ -181,185 +188,53 @@ nav a:focus {
     outline-offset: 2px;
 }
 
-/* ===== FORMULÁRIOS E INPUTS ===== */
-.form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: var(--text-color);
-    text-align: left;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-    padding: 12px 16px;
-    border: 2px solid var(--input-border);
-    border-radius: 8px;
-    background-color: var(--input-bg);
-    color: var(--text-color);
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    border-color: var(--input-focus);
-    box-shadow: 0 0 8px var(--shadow-neon);
-    outline: none;
-}
-
-.form-group textarea {
-    resize: vertical;
-    min-height: 120px;
-}
-
-.error-message {
-    color: var(--error-color);
-    font-size: 0.85rem;
-    margin-top: 5px;
-    display: block;
-    text-align: left;
-    animation: shake 0.3s ease;
-}
-
-.form-message {
-    font-size: 1rem;
-    font-weight: 600;
-    padding: 10px;
-    border-radius: 8px;
-    text-align: center;
-    animation: fadeIn 0.5s ease;
-}
-
-.form-message-success {
-    background-color: var(--success-color);
-    color: var(--background);
-}
-
-.form-message-error {
-    background-color: var(--error-color);
-    color: var(--text-color);
-}
-
-/* ===== BOTÕES E INTERAÇÕES ===== */
-.btn-primary {
-    background-color: var(--neon-green);
-    color: var(--background);
-    border: none;
-    border-radius: 8px;
-    padding: 14px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 100%;
-    text-decoration: none;
-    display: inline-block;
-    text-align: center;
-}
-
-.btn-primary:hover {
-    background-color: var(--neon-green-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px var(--shadow-neon);
-}
-
-.btn-secondary {
-    background-color: transparent;
-    color: var(--neon-green);
-    border: 2px solid var(--neon-green);
-    border-radius: 8px;
-    padding: 12px 24px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    display: inline-block;
-    text-align: center;
-}
-
-.btn-secondary:hover {
-    background-color: var(--neon-green);
-    color: var(--background);
-}
-
-.btn-google {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    width: 100%;
-    padding: 12px;
-    background-color: transparent;
-    border: 2px solid var(--input-border);
-    border-radius: 8px;
-    color: var(--text-color);
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.btn-google:hover {
-    border-color: var(--neon-green);
-    background-color: rgba(9, 227, 49, 0.1);
-}
-
-.btn-danger {
-    background-color: transparent;
-    color: #ff4d4d;
-    border: 2px solid #ff4d4d;
-    border-radius: 6px;
-    padding: 8px 16px;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.btn-danger:hover {
-    background-color: #ff4d4d;
-    color: var(--background);
-}
-
-/* ===== SISTEMA DE AUTENTICAÇÃO ===== */
+/* ===== SEÇÃO DE AUTENTICAÇÃO ===== */
 .auth-section {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 70vh;
-    padding: 40px 20px;
+    width: 100%;
+    padding: 20px;
 }
 
 .auth-container {
-    background-color: var(--input-bg);
-    border-radius: 12px;
+    background-color: var(--card-bg);
+    border-radius: 16px;
     padding: 40px;
     box-shadow: 0 8px 32px var(--shadow-color);
     width: 100%;
-    max-width: 450px;
+    max-width: 480px;
     border: 1px solid var(--input-border);
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 0.6s ease;
+}
+
+.auth-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--neon-green), var(--neon-green-hover));
 }
 
 .auth-container h1 {
     text-align: center;
-    margin-bottom: 10px;
-    font-size: 2rem;
+    margin-bottom: 12px;
+    font-size: 2.2rem;
+    background: linear-gradient(45deg, var(--neon-green), var(--neon-green-hover));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
-.auth-container p {
+.auth-container > p {
     text-align: center;
     margin-bottom: 30px;
     color: #ccc;
+    font-size: 1.1rem;
 }
 
 .auth-form {
@@ -368,18 +243,149 @@ nav a:focus {
     gap: 20px;
 }
 
-.form-options {
+/* ===== GRUPOS DE FORMULÁRIO ===== */
+.form-group {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-color);
+    display: flex;
     align-items: center;
-    margin: 10px 0;
+    gap: 8px;
+}
+
+.form-group label i {
+    color: var(--neon-green);
+    font-size: 0.9rem;
+}
+
+.form-group input {
+    padding: 14px 16px;
+    border: 2px solid var(--input-border);
+    border-radius: 10px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-group input:focus {
+    border-color: var(--input-focus);
+    box-shadow: 0 0 0 3px rgba(10, 255, 61, 0.2);
+    outline: none;
+}
+
+.form-group input:valid {
+    border-color: rgba(9, 227, 49, 0.5);
+}
+
+.error-message {
+    color: var(--error-color);
+    font-size: 0.85rem;
+    margin-top: 6px;
+    display: block;
+    text-align: left;
+    min-height: 20px;
+}
+
+/* ===== CAMPOS DE SENHA COM ÍCONE DE OLHO ===== */
+.password-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-input-container input {
+    padding-right: 45px; /* Espaço para o ícone do olho */
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    cursor: pointer;
+    color: var(--input-border);
+    transition: color 0.3s ease;
+    padding: 8px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toggle-password:hover {
+    color: var(--neon-green);
+    background-color: rgba(9, 227, 49, 0.1);
+}
+
+.toggle-password.active {
+    color: var(--neon-green);
+}
+
+/* ===== FORÇA DA SENHA ===== */
+.password-strength {
+    margin-top: 12px;
+}
+
+.strength-bar {
+    height: 6px;
+    background-color: var(--input-border);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.strength-fill {
+    height: 100%;
+    width: 0%;
+    transition: all 0.3s ease;
+    border-radius: 3px;
+}
+
+.strength-weak {
+    background-color: #ff4d4d;
+    width: 25%;
+}
+
+.strength-fair {
+    background-color: #ffa500;
+    width: 50%;
+}
+
+.strength-good {
+    background-color: #ffd700;
+    width: 75%;
+}
+
+.strength-strong {
+    background-color: var(--success-color);
+    width: 100%;
+}
+
+.strength-text {
+    font-size: 0.8rem;
+    color: #ccc;
+    text-align: left;
+}
+
+/* ===== OPÇÕES DO FORMULÁRIO ===== */
+.form-options {
+    margin: 15px 0;
 }
 
 .checkbox-container {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    line-height: 1.4;
 }
 
 .checkbox-container input {
@@ -387,13 +393,15 @@ nav a:focus {
 }
 
 .checkmark {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     border: 2px solid var(--input-border);
     border-radius: 4px;
-    margin-right: 8px;
+    margin-right: 10px;
     position: relative;
     transition: all 0.3s ease;
+    flex-shrink: 0;
+    margin-top: 2px;
 }
 
 .checkbox-container input:checked + .checkmark {
@@ -404,32 +412,58 @@ nav a:focus {
 .checkbox-container input:checked + .checkmark::after {
     content: '';
     position: absolute;
-    left: 5px;
+    left: 6px;
     top: 2px;
-    width: 4px;
-    height: 8px;
+    width: 5px;
+    height: 10px;
     border: solid var(--background);
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
 }
 
-.forgot-password {
+.checkbox-container a {
     color: var(--neon-green);
     text-decoration: none;
-    font-size: 0.9rem;
     transition: color 0.3s ease;
 }
 
-.forgot-password:hover {
+.checkbox-container a:hover {
     color: var(--neon-green-hover);
     text-decoration: underline;
+}
+
+/* ===== BOTÕES ===== */
+.btn-primary {
+    background: linear-gradient(135deg, var(--neon-green), var(--neon-green-hover));
+    color: var(--background);
+    border: none;
+    border-radius: 10px;
+    padding: 16px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(9, 227, 49, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(9, 227, 49, 0.5);
+}
+
+.btn-primary:active {
+    transform: translateY(-1px);
 }
 
 .auth-separator {
     display: flex;
     align-items: center;
-    margin: 20px 0;
-    color: #ccc;
+    margin: 25px 0;
+    color: #888;
 }
 
 .auth-separator::before,
@@ -444,260 +478,99 @@ nav a:focus {
     font-size: 0.9rem;
 }
 
+/* ===== BOTÕES SOCIAIS ===== */
+.social-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.btn-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    padding: 14px;
+    background-color: transparent;
+    border: 2px solid var(--input-border);
+    border-radius: 10px;
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-social:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-social i {
+    font-size: 1.2rem;
+    width: 20px;
+    text-align: center;
+}
+
+.btn-social span {
+    flex-grow: 1;
+    text-align: center;
+}
+
+/* Botão Google */
+.btn-google {
+    border-color: #DB4437;
+    color: #DB4437;
+}
+
+.btn-google:hover {
+    border-color: #DB4437;
+    background-color: rgba(219, 68, 55, 0.05);
+}
+
+/* Botão Apple */
+.btn-apple {
+    border-color: #000000;
+    color: #ffffff;
+    background-color: transparent;
+}
+
+.btn-apple:hover {
+    border-color: #000000;
+    background-color: #000000;
+    color: #ffffff;
+}
+
+/* Botão Microsoft */
+.btn-microsoft {
+    border-color: #0078D4;
+    color: #0078D4;
+}
+
+.btn-microsoft:hover {
+    border-color: #0078D4;
+    background-color: rgba(0, 120, 212, 0.05);
+}
+
 .auth-footer {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid var(--input-border);
 }
 
 .auth-footer a {
     color: var(--neon-green);
     text-decoration: none;
     font-weight: 600;
-}
-
-.auth-footer a:hover {
-    text-decoration: underline;
-}
-
-.password-strength {
-    margin-top: 8px;
-}
-
-.strength-bar {
-    height: 4px;
-    background-color: var(--input-border);
-    border-radius: 2px;
-    overflow: hidden;
-    margin-bottom: 4px;
-}
-
-.strength-fill {
-    height: 100%;
-    width: 0%;
-    transition: all 0.3s ease;
-    border-radius: 2px;
-}
-
-.strength-text {
-    font-size: 0.8rem;
-    color: #ccc;
-}
-
-/* ===== PÁGINA DE PERFIL ===== */
-.profile-section {
-    padding: 40px 20px;
-}
-
-.profile-container {
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.profile-header {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    margin-bottom: 40px;
-    padding-bottom: 30px;
-    border-bottom: 1px solid var(--input-border);
-}
-
-.profile-avatar {
-    text-align: center;
-}
-
-.profile-avatar img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid var(--neon-green);
-    margin-bottom: 10px;
-}
-
-.change-avatar-btn {
-    background: none;
-    border: none;
-    color: var(--neon-green);
-    cursor: pointer;
-    font-size: 0.9rem;
     transition: color 0.3s ease;
 }
 
-.change-avatar-btn:hover {
+.auth-footer a:hover {
     color: var(--neon-green-hover);
     text-decoration: underline;
-}
-
-.profile-info h2 {
-    margin-bottom: 5px;
-}
-
-.member-since {
-    color: #ccc;
-    font-size: 0.9rem;
-}
-
-.profile-content {
-    display: flex;
-    gap: 30px;
-}
-
-.profile-nav {
-    flex: 0 0 250px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.nav-btn {
-    padding: 15px 20px;
-    background: none;
-    border: none;
-    text-align: left;
-    color: var(--text-color);
-    font-size: 1rem;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-}
-
-.nav-btn:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-}
-
-.nav-btn.active {
-    background-color: var(--neon-green);
-    color: var(--background);
-    font-weight: 600;
-}
-
-.profile-tabs {
-    flex: 1;
-}
-
-.tab-content {
-    display: none;
-}
-
-.tab-content.active {
-    display: block;
-    animation: fadeIn 0.5s ease;
-}
-
-.profile-form {
-    max-width: 500px;
-}
-
-.devices-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.device-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: var(--input-bg);
-    border-radius: 8px;
-    border: 1px solid var(--input-border);
-}
-
-.device-info h4 {
-    margin-bottom: 5px;
-}
-
-.device-info p {
-    margin-bottom: 5px;
-    font-size: 0.9rem;
-}
-
-.status-connected {
-    color: var(--neon-green);
-    font-weight: 600;
-}
-
-.status-disconnected {
-    color: #ff4d4d;
-    font-weight: 600;
-}
-
-.device-actions {
-    display: flex;
-    gap: 10px;
-}
-
-#add-device-btn {
-    width: auto;
-    align-self: flex-start;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.security-options {
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid var(--input-border);
-}
-
-.security-options h4 {
-    margin-bottom: 15px;
-}
-
-.security-option {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 0;
-    border-bottom: 1px solid var(--input-border);
-}
-
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 50px;
-    height: 24px;
-}
-
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: var(--input-border);
-    transition: .4s;
-    border-radius: 24px;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 16px;
-    width: 16px;
-    left: 4px;
-    bottom: 4px;
-    background-color: var(--background);
-    transition: .4s;
-    border-radius: 50%;
-}
-
-input:checked + .slider {
-    background-color: var(--neon-green);
-}
-
-input:checked + .slider:before {
-    transform: translateX(26px);
 }
 
 /* ===== PÁGINA INICIAL ===== */
@@ -1148,6 +1021,13 @@ input:checked + .slider:before {
     background-color: rgba(0, 0, 0, 0.2);
 }
 
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
 .faq-answer p {
     padding: 20px;
     margin: 0;
@@ -1252,9 +1132,10 @@ input:checked + .slider:before {
 /* ===== FOOTER ===== */
 footer {
     background-color: var(--background);
-    padding: 20px 0;
+    padding: 40px 0 20px;
     text-align: center;
     box-shadow: 0 -4px 12px var(--shadow-color);
+    margin-top: auto;
 }
 
 .footer-content {
@@ -1269,9 +1150,10 @@ footer {
 .footer-section h3 {
     margin-bottom: 20px;
     font-size: 1.2rem;
+    color: var(--neon-green);
 }
 
-.footer-section p {
+.footer-section p, .footer-section li {
     color: #ccc;
     line-height: 1.6;
 }
@@ -1316,15 +1198,11 @@ footer {
 .copyright {
     font-size: 0.9rem;
     color: var(--text-color);
-    margin: 10px auto;
-    max-width: 600px;
 }
 
 .social-media {
     display: flex;
     gap: 20px;
-    justify-content: center;
-    margin-top: 10px;
 }
 
 .social-media a {
@@ -1363,6 +1241,19 @@ footer {
 @media (max-width: 768px) {
     .auth-container {
         padding: 30px 20px;
+    }
+    
+    .auth-container h1 {
+        font-size: 1.8rem;
+    }
+    
+    nav {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+    
+    nav a {
+        font-size: 16px;
     }
     
     .profile-header,
@@ -1478,6 +1369,10 @@ footer {
     .legal-article h3 {
         font-size: 1.1rem;
     }
+    
+    .social-buttons {
+        gap: 10px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1532,4 +1427,29 @@ footer {
     .legal-article ul {
         padding-left: 20px;
     }
+    
+    .auth-container {
+        padding: 25px 15px;
     }
+    
+    .auth-container h1 {
+        font-size: 1.6rem;
+    }
+    
+    .form-group input {
+        padding: 12px 14px;
+    }
+    
+    .btn-primary, .btn-social {
+        padding: 14px;
+    }
+    
+    .btn-social i {
+        font-size: 1.1rem;
+    }
+    
+    .social-buttons {
+        gap: 8px;
+    }
+}
+   
