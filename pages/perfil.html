@@ -118,9 +118,9 @@
         </div>
         <nav aria-label="Navegação principal">
             <a href="index.html">Início</a>
-            <a href="quemsomos.html">Quem Somos</a>
-            <a href="contato.html">Contato</a>
-            <a href="perfil.html" aria-current="page">Meu Perfil</a>
+            <a href="pages/quemsomos.html">Quem Somos</a>
+            <a href="pages/contato.html">Contato</a>
+            <a href="pages/perfil.html" aria-current="page">Meu Perfil</a>
         </nav>
     </header>
 
@@ -142,8 +142,8 @@
                 <h3>Links Rápidos</h3>
                 <ul>
                     <li><a href="index.html">Início</a></li>
-                    <li><a href="perfil.html">Perfil</a></li>
-                    <li><a href="login.html">Login</a></li>
+                    <li><a href="pages/perfil.html">Perfil</a></li>
+                    <li><a href="pages/login.html">Login</a></li>
                 </ul>
             </div>
         </div>
@@ -174,7 +174,7 @@
                     <div class="not-logged">
                         <h2>Você não está logado</h2>
                         <p>Faça login para acessar seu perfil.</p>
-                        <p><a href="login.html">Ir para Login</a></p>
+                        <p><a href="pages/login.html">Ir para Login</a></p>
                     </div>
                 `;
                 return;
@@ -216,7 +216,7 @@
 
             document.getElementById('logout-btn').addEventListener('click', function () {
                 localStorage.clear();
-                window.location.href = 'login.html';
+                window.location.href = 'pages/login.html';
             });
         });
     </script>
