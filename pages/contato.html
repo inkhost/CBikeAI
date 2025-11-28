@@ -11,13 +11,15 @@
     <meta property="og:url" content="https://www.cbikeai.com/contato.html">
     <meta name="twitter:card" content="summary_large_image">
     <title>CBikeAI - Contato</title>
-    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../img/favicon.ico" type="image/x-icon">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="preload" href="../css/style.css" as="style">
+    <link rel="preload" href="../css/contato.css" as="style">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/contato.css">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-7C6KGFMFV6"></script>
     <script>
@@ -30,10 +32,10 @@
 <body>
     <header role="banner">
         <div class="logo">
-            <img src="../img/CBikeAILOGO.png" alt="Logo CBikeAI">
+            <img src="../img/logotipo-cbikeai.png" alt="Logo CBikeAI">
         </div>
         <nav aria-label="Navegação principal">
-            <a href="index.html">Início</a>
+            <a href="../index.html">Início</a>
             <a href="../pages/quemsomos.html">Quem Somos</a>
             <a href="../pages/contato.html" aria-current="page">Contato</a>
             <!-- Links dinâmicos para login/perfil -->
@@ -81,20 +83,31 @@
                 </div>
 
                 <div class="contact-form-container">
+                    <h2>Envie sua Mensagem</h2>
                     <form id="contact-form" action="#" method="post">
                         <div class="form-group">
-                            <label for="nome">Nome</label>
-                            <input type="text" id="nome" name="nome" required aria-required="true">
+                            <label for="nome">
+                                Nome
+                                <span class="char-counter" id="nome-counter">0/50</span>
+                            </label>
+                            <input type="text" id="nome" name="nome" required aria-required="true" maxlength="50">
                             <span class="error-message" id="nome-error" style="display: none;"></span>
                         </div>
                         <div class="form-group">
-                            <label for="email">E-mail</label>
-                            <input type="email" id="email" name="email" required aria-required="true">
+                            <label for="email">
+                                E-mail
+                                <span class="char-counter" id="email-counter">0/100</span>
+                            </label>
+                            <input type="email" id="email" name="email" required aria-required="true" maxlength="100">
                             <span class="error-message" id="email-error" style="display: none;"></span>
                         </div>
                         <div class="form-group">
-                            <label for="telefone">Telefone</label>
-                            <input type="tel" id="telefone" name="telefone">
+                            <label for="telefone">
+                                Telefone
+                                <span class="char-counter" id="telefone-counter">0/20</span>
+                            </label>
+                            <input type="tel" id="telefone" name="telefone" maxlength="20">
+                            <span class="error-message" id="telefone-error" style="display: none;"></span>
                         </div>
                         <div class="form-group">
                             <label for="assunto">Assunto</label>
@@ -107,8 +120,12 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="mensagem">Mensagem</label>
-                            <textarea id="mensagem" name="mensagem" required aria-required="true" placeholder="Digite sua mensagem aqui..."></textarea>
+                            <label for="mensagem">
+                                Mensagem
+                                <span class="char-counter" id="mensagem-counter">0/500</span>
+                            </label>
+                            <textarea id="mensagem" name="mensagem" required aria-required="true" 
+                                      placeholder="Digite sua mensagem aqui..." maxlength="500"></textarea>
                             <span class="error-message" id="mensagem-error" style="display: none;"></span>
                         </div>
                         <button type="submit" onclick="gtag('event', 'form_submission', {'form_id': 'contact-form'});">Enviar Mensagem</button>
@@ -146,6 +163,24 @@
                         <p>Sim, todos os modelos CBikeAI possuem certificação IP67, sendo completamente resistentes à água e poeira.</p>
                     </div>
                 </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Como faço para adquirir o CBikeAI?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Você pode adquirir o CBikeAI através do nosso site, lojas parceiras ou entrando em contato direto com nossa equipe de vendas.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Qual o tempo de garantia do produto?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Oferecemos 12 meses de garantia contra defeitos de fabricação para todos os nossos produtos.</p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -158,7 +193,7 @@
             <div class="footer-section">
                 <h3>Links Rápidos</h3>
                 <ul>
-                    <li><a href="index.html">Início</a></li>
+                    <li><a href="../index.html">Início</a></li>
                     <li><a href="../pages/quemsomos.html">Quem Somos</a></li>
                     <li><a href="../pages/contato.html">Contato</a></li>
                     <li><a href="../pages/termos-servico.html">Termos de Serviço</a></li>
@@ -170,7 +205,7 @@
                 <ul>
                     <li><i class="fas fa-envelope"></i> contato@cbikeai.com</li>
                     <li><i class="fas fa-phone"></i> (16) 99232-0372</li>
-                    <li><i class="fas fa-map-marker-alt"></i> São Paulo - SP</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Taquaritinga - SP</li>
                 </ul>
             </div>
         </div>
@@ -216,106 +251,11 @@
             e.preventDefault();
             localStorage.removeItem('cbikeai_user');
             localStorage.removeItem('cbikeai_token');
-            window.location.href = 'index.html';
-        });
-
-        // FAQ functionality
-        document.querySelectorAll('.faq-question').forEach(button => {
-            button.addEventListener('click', () => {
-                const faqItem = button.parentElement;
-                const answer = faqItem.querySelector('.faq-answer');
-                const icon = button.querySelector('i');
-                
-                // Close all other FAQ items
-                document.querySelectorAll('.faq-item').forEach(item => {
-                    if (item !== faqItem) {
-                        item.classList.remove('active');
-                        item.querySelector('.faq-answer').style.maxHeight = null;
-                        item.querySelector('i').classList.remove('fa-chevron-up');
-                        item.querySelector('i').classList.add('fa-chevron-down');
-                    }
-                });
-                
-                // Toggle current item
-                faqItem.classList.toggle('active');
-                if (faqItem.classList.contains('active')) {
-                    answer.style.maxHeight = answer.scrollHeight + 'px';
-                    icon.classList.remove('fa-chevron-down');
-                    icon.classList.add('fa-chevron-up');
-                } else {
-                    answer.style.maxHeight = null;
-                    icon.classList.remove('fa-chevron-up');
-                    icon.classList.add('fa-chevron-down');
-                }
-            });
-        });
-
-        // Contact form validation
-        document.getElementById('contact-form').addEventListener('submit', function (event) {
-            event.preventDefault();
-
-            const nome = document.getElementById('nome').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const mensagem = document.getElementById('mensagem').value.trim();
-            let isValid = true;
-
-            // Reset errors
-            document.getElementById('nome-error').style.display = 'none';
-            document.getElementById('email-error').style.display = 'none';
-            document.getElementById('mensagem-error').style.display = 'none';
-            document.getElementById('form-message').style.display = 'none';
-
-            // Validate name
-            if (!nome) {
-                document.getElementById('nome-error').textContent = 'Por favor, digite seu nome.';
-                document.getElementById('nome-error').style.display = 'block';
-                isValid = false;
-            }
-
-            // Validate email
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!email) {
-                document.getElementById('email-error').textContent = 'Por favor, digite seu e-mail.';
-                document.getElementById('email-error').style.display = 'block';
-                isValid = false;
-            } else if (!emailPattern.test(email)) {
-                document.getElementById('email-error').textContent = 'Por favor, digite um e-mail válido.';
-                document.getElementById('email-error').style.display = 'block';
-                isValid = false;
-            }
-
-            // Validate message
-            if (!mensagem) {
-                document.getElementById('mensagem-error').textContent = 'Por favor, escreva sua mensagem.';
-                document.getElementById('mensagem-error').style.display = 'block';
-                isValid = false;
-            }
-
-            if (isValid) {
-                const formMessage = document.getElementById('form-message');
-                formMessage.textContent = 'Mensagem enviada com sucesso! Entraremos em contato em breve.';
-                formMessage.classList.add('form-message-success');
-                formMessage.style.display = 'block';
-                
-                // Reset form
-                this.reset();
-                
-                // Hide message after 5 seconds
-                setTimeout(() => {
-                    formMessage.style.display = 'none';
-                }, 5000);
-            }
+            window.location.href = '../index.html';
         });
     </script>
+
+    <!-- Incluir o arquivo JavaScript externo -->
+    <script src="../js/contato.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
