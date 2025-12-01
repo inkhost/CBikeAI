@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Recuperar Senha CBikeAI - Recupere o acesso à sua conta">
+    <!-- Metadados para SEO -->
+    <meta property="og:title" content="CBikeAI - Recuperar Senha">
+    <meta property="og:image" content="https://www.cbikeai.com/img/logotipo-cbikeai.png">
+    <meta property="og:url" content="https://www.cbikeai.com/esqueci-senha.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>CBikeAI - Recuperar Senha</title>
+    <link rel="icon" href="../img/favicon.ico" type="image/x-icon">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="preload" href="../css/style.css" as="style">
+    <link rel="preload" href="../css/esqueci-senha.css" as="style">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/esqueci-senha.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7C6KGFMFV6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-7C6KGFMFV6');
+    </script>
+</head>
+<body>
+    <header role="banner">
+        <div class="logo">
+            <img src="../img/logotipo-cbikeai.png" alt="Logo CBikeAI">
+        </div>
+        <nav aria-label="Navegação principal">
+            <a href="../index.html">Início</a>
+            <a href="../pages/quemsomos.html">Quem Somos</a>
+            <a href="../pages/contato.html">Contato</a>
+            <a href="../pages/login.html" class="nav-cta">Login</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <section class="password-recovery-section">
+            <div class="recovery-container">
+                <div class="recovery-header">
+                    <div class="recovery-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h1 class="recovery-title">Recuperar Senha</h1>
+                    <p class="recovery-subtitle">Digite seu e-mail para receber as instruções de redefinição de senha</p>
+                </div>
+
+                <!-- Formulário de Solicitação de Recuperação -->
+                <form id="recovery-form" class="recovery-form" novalidate>
+                    <div class="form-group">
+                        <label for="recovery-email" class="form-label">
+                            <i class="fas fa-envelope"></i>
+                            E-mail cadastrado
+                        </label>
+                        <input type="email" id="recovery-email" name="email" class="form-input" 
+                               placeholder="seu@email.com" required autocomplete="email">
+                        <span class="error-message" id="recovery-email-error"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <span class="btn-text">Enviar instruções</span>
+                        <i class="fas fa-paper-plane btn-icon"></i>
+                    </button>
+                </form>
+
+                <!-- Formulário de Código de Verificação (Oculto Inicialmente) -->
+                <form id="verification-form" class="recovery-form hidden" novalidate>
+                    <div class="verification-info">
+                        <i class="fas fa-shield-check"></i>
+                        <p>Enviamos um código de 6 dígitos para: <strong id="user-email"></strong></p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="verification-code" class="form-label">
+                            <i class="fas fa-qrcode"></i>
+                            Código de verificação
+                        </label>
+                        <div class="code-input-container">
+                            <input type="text" id="verification-code" name="code" class="form-input code-input" 
+                                   placeholder="000000" maxlength="6" required pattern="[0-9]{6}">
+                            <button type="button" class="resend-code-btn" id="resend-code-btn">
+                                Reenviar código
+                            </button>
+                        </div>
+                        <span class="error-message" id="verification-code-error"></span>
+                        <div class="code-timer">
+                            <i class="fas fa-clock"></i>
+                            <span id="timer-text">Reenviar em: <span id="countdown">05:00</span></span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <span class="btn-text">Verificar código</span>
+                        <i class="fas fa-check-circle btn-icon"></i>
+                    </button>
+                </form>
+
+                <!-- Formulário de Nova Senha (Oculto Inicialmente) -->
+                <form id="new-password-form" class="recovery-form hidden" novalidate>
+                    <div class="success-info">
+                        <i class="fas fa-check-circle"></i>
+                        <p>Código verificado com sucesso! Agora defina sua nova senha.</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="new-password" class="form-label">
+                            <i class="fas fa-lock"></i>
+                            Nova senha
+                        </label>
+                        <div class="password-wrapper">
+                            <input type="password" id="new-password" name="new-password" class="form-input" 
+                                   placeholder="Crie uma nova senha segura" required autocomplete="new-password">
+                            <button type="button" class="toggle-password" id="toggle-new-password" aria-label="Mostrar senha">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <span class="error-message" id="new-password-error"></span>
+                        <div class="password-strength">
+                            <div class="strength-bar">
+                                <div class="strength-fill" id="password-strength-fill"></div>
+                            </div>
+                            <span class="strength-text" id="password-strength-text">Força da senha</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm-new-password" class="form-label">
+                            <i class="fas fa-lock"></i>
+                            Confirmar nova senha
+                        </label>
+                        <div class="password-wrapper">
+                            <input type="password" id="confirm-new-password" name="confirm-new-password" class="form-input" 
+                                   placeholder="Digite a nova senha novamente" required autocomplete="new-password">
+                            <button type="button" class="toggle-password" id="toggle-confirm-new-password" aria-label="Mostrar senha">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <span class="error-message" id="confirm-new-password-error"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <span class="btn-text">Redefinir senha</span>
+                        <i class="fas fa-sync-alt btn-icon"></i>
+                    </button>
+                </form>
+
+                <!-- Mensagem de Sucesso Final (Oculto Inicialmente) -->
+                <div id="success-message" class="success-message hidden">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h2 class="success-title">Senha redefinida com sucesso!</h2>
+                    <p class="success-text">Sua senha foi alterada com sucesso. Agora você pode fazer login com sua nova senha.</p>
+                    <div class="success-actions">
+                        <a href="../pages/login.html" class="btn btn-primary">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Fazer Login
+                        </a>
+                        <a href="../index.html" class="btn btn-secondary">
+                            <i class="fas fa-home"></i>
+                            Página Inicial
+                        </a>
+                    </div>
+                </div>
+
+                <div class="recovery-footer">
+                    <p class="recovery-footer-text">
+                        Lembrou sua senha? <a href="../pages/login.html" class="link link-accent">Fazer login</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Mensagens Toast -->
+    <div class="toast-message success-message" id="success-toast" role="alert" aria-live="polite">
+        <i class="fas fa-check-circle toast-icon"></i>
+        <span class="toast-text"></span>
+    </div>
+    <div class="toast-message error-message" id="error-toast" role="alert" aria-live="polite">
+        <i class="fas fa-exclamation-triangle toast-icon"></i>
+        <span class="toast-text"></span>
+    </div>
+
+    <footer role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>CBikeAI</h3>
+                <p>Revolucionando a segurança no ciclismo através da tecnologia e inovação.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Links Rápidos</h3>
+                <ul>
+                    <li><a href="../index.html">Início</a></li>
+                    <li><a href="../pages/quemsomos.html">Quem Somos</a></li>
+                    <li><a href="../pages/contato.html">Contato</a></li>
+                    <li><a href="../pages/perfil.html">Meu Perfil</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> contato@cbikeai.com</li>
+                    <li><i class="fas fa-phone"></i> (16) 99232-0372</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Taquaritinga - SP</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="copyright">© 2025 CBikeAI. Todos os direitos reservados.</p>
+            <div class="social-media">
+                <a href="https://www.instagram.com/cbikeai" onclick="gtag('event', 'click_social', {'social_network': 'Instagram'});" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://www.x.com/cbikeai" onclick="gtag('event', 'click_social', {'social_network': 'X'});" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no X">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </a>
+                <a href="https://www.facebook.com/cbikeai" onclick="gtag('event', 'click_social', {'social_network': 'Facebook'});" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
+    <script src="../js/esqueci-senha.js"></script>
+</body>
+</html>
