@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Login">
+    <!-- Metadados para SEO -->
+    <meta property="og:title" content="CBikeAI - Login">
+    <meta property="og:image" content="https://www.cbikeai.com/img/logotipo-cbikeai.png">
+    <meta property="og:url" content="https://www.cbikeai.com/login.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>CBikeAI - Login</title>
+    <link rel="icon" href="../img/favicon.ico" type="image/x-icon">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="preload" href="../css/style.css" as="style">
+    <link rel="preload" href="../css/login.css" as="style">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7C6KGFMFV6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-7C6KGFMFV6');
+    </script>
+</head>
+<body>
+    <header role="banner">
+        <div class="logo">
+            <img src="../img/logotipo-cbikeai.png" alt="Logo CBikeAI">
+        </div>
+        <nav aria-label="Navegação principal">
+            <a href="../index.html">Início</a>
+            <a href="../pages/quemsomos.html">Quem Somos</a>
+            <a href="../pages/contato.html">Contato</a>
+            <a href="../pages/perfil.html" class="nav-cta">Meu Perfil</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <section class="auth-section">
+            <div class="auth-container">
+                <div class="auth-header">
+                    <h1 class="auth-title">Bem-vindo de volta!</h1>
+                    <p class="auth-subtitle">Entre com sua conta CBikeAI</p>
+                </div>
+
+                <form id="login-form" class="auth-form" novalidate>
+                    <div class="form-group">
+                        <label for="login-email" class="form-label">
+                            <i class="fas fa-envelope"></i>
+                            E-mail
+                        </label>
+                        <input type="email" id="login-email" name="email" class="form-input" placeholder="seu@email.com" required autocomplete="email">
+                        <span class="error-message" id="login-email-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="login-password" class="form-label">
+                            <i class="fas fa-lock"></i>
+                            Senha
+                        </label>
+                        <div class="password-wrapper">
+                            <input type="password" id="login-password" name="password" class="form-input" placeholder="Sua senha" required autocomplete="current-password">
+                            <button type="button" class="toggle-password" id="toggle-password" aria-label="Mostrar senha">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <span class="error-message" id="login-password-error"></span>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="remember-me" name="remember-me">
+                            <span class="checkmark"></span>
+                            Lembrar-me
+                        </label>
+                        <a href="../pages/esqueci-senha.html" class="link link-accent">Esqueci minha senha</a>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <span class="btn-text">Entrar</span>
+                        <i class="fas fa-arrow-right btn-icon"></i>
+                    </button>
+                </form>
+
+                <div class="auth-footer">
+                    <p class="auth-footer-text">
+                        Não tem uma conta? <a href="../pages/criar-conta.html" class="link link-accent">Criar conta</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Mensagens Toast -->
+    <div class="toast-message success-message" id="success-toast" role="alert" aria-live="polite">
+        <i class="fas fa-check-circle toast-icon"></i>
+        <span class="toast-text"></span>
+    </div>
+    <div class="toast-message error-message" id="error-toast" role="alert" aria-live="polite">
+        <i class="fas fa-exclamation-triangle toast-icon"></i>
+        <span class="toast-text"></span>
+    </div>
+
+    <footer role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>CBikeAI</h3>
+                <p>Revolucionando a segurança no ciclismo através da tecnologia e inovação.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Links Rápidos</h3>
+                <ul>
+                    <li><a href="../index.html">Início</a></li>
+                    <li><a href="../pages/quemsomos.html">Quem Somos</a></li>
+                    <li><a href="../pages/contato.html">Contato</a></li>
+                    <li><a href="../pages/perfil.html">Meu Perfil</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> contato@cbikeai.com</li>
+                    <li><i class="fas fa-phone"></i> (11) 99232-0372</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Taquaritinga - SP</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="copyright">© 2025 CBikeAI. Todos os direitos reservados.</p>
+            <div class="social-media">
+                <a href="https://www.instagram.com/cbikeai" onclick="gtag('event', 'click_social', {'social_network': 'Instagram'});" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://www.x.com/cbikeai" onclick="gtag('event', 'click_social', {'social_network': 'X'});" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no X">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </a>
+                <a href="https://www.facebook.com/cbikeai" onclick="gtag('event', 'click_social', {'social_network': 'Facebook'});" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
+    <script src="../js/login.js"></script>
+</body>
+</html>
