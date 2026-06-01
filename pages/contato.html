@@ -84,28 +84,26 @@
 
                 <div class="contact-form-container">
                     <h2>Envie sua Mensagem</h2>
-                    <form id="contact-form" action="#" method="post">
+                    <!-- Formulário atualizado com envio real via FormSubmit -->
+                    <form id="contact-form" method="post" action="https://formsubmit.co/claudiofelipe6@gmail.com">
+                        <!-- Campos ocultos do FormSubmit -->
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="https://www.cbikeai.com/obrigado.html">
+                        <input type="hidden" name="_subject" value="Novo contato pelo site CBikeAI">
+                        <input type="hidden" name="_replyto" id="replyto" value="">
+
                         <div class="form-group">
-                            <label for="nome">
-                                Nome
-                                <span class="char-counter" id="nome-counter">0/50</span>
-                            </label>
-                            <input type="text" id="nome" name="nome" required aria-required="true" maxlength="50">
+                            <label for="nome">Nome <span class="char-counter" id="nome-counter">0/50</span></label>
+                            <input type="text" id="nome" name="nome" required maxlength="50">
                             <span class="error-message" id="nome-error" style="display: none;"></span>
                         </div>
                         <div class="form-group">
-                            <label for="email">
-                                E-mail
-                                <span class="char-counter" id="email-counter">0/100</span>
-                            </label>
-                            <input type="email" id="email" name="email" required aria-required="true" maxlength="100">
+                            <label for="email">E-mail <span class="char-counter" id="email-counter">0/100</span></label>
+                            <input type="email" id="email" name="email" required maxlength="100">
                             <span class="error-message" id="email-error" style="display: none;"></span>
                         </div>
                         <div class="form-group">
-                            <label for="telefone">
-                                Telefone
-                                <span class="char-counter" id="telefone-counter">0/20</span>
-                            </label>
+                            <label for="telefone">Telefone <span class="char-counter" id="telefone-counter">0/20</span></label>
                             <input type="tel" id="telefone" name="telefone" maxlength="20">
                             <span class="error-message" id="telefone-error" style="display: none;"></span>
                         </div>
@@ -118,14 +116,11 @@
                                 <option value="parceria">Parcerias</option>
                                 <option value="outro">Outro</option>
                             </select>
+                            <span class="error-message" id="assunto-error" style="display: none;"></span>
                         </div>
                         <div class="form-group">
-                            <label for="mensagem">
-                                Mensagem
-                                <span class="char-counter" id="mensagem-counter">0/500</span>
-                            </label>
-                            <textarea id="mensagem" name="mensagem" required aria-required="true" 
-                                      placeholder="Digite sua mensagem aqui..." maxlength="500"></textarea>
+                            <label for="mensagem">Mensagem <span class="char-counter" id="mensagem-counter">0/500</span></label>
+                            <textarea id="mensagem" name="mensagem" required maxlength="500" placeholder="Digite sua mensagem aqui..."></textarea>
                             <span class="error-message" id="mensagem-error" style="display: none;"></span>
                         </div>
                         <button type="submit" onclick="gtag('event', 'form_submission', {'form_id': 'contact-form'});">Enviar Mensagem</button>
@@ -255,7 +250,7 @@
         });
     </script>
 
-    <!-- Incluir o arquivo JavaScript externo -->
+    <!-- Incluir o arquivo JavaScript externo atualizado -->
     <script src="../js/contato.js"></script>
 </body>
 </html>
