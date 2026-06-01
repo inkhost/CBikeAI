@@ -1,1 +1,181 @@
+/* Estilos exclusivos da página de Política de Cookies */
 
+.policy-card {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    padding: 2rem;
+    margin: 2.5rem 0;
+}
+
+h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    background: linear-gradient(to right, #1e293b, #2563eb);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.last-updated {
+    color: #475569;
+    border-left: 4px solid #3b82f6;
+    padding-left: 1rem;
+    margin: 1rem 0 2rem 0;
+    font-size: 0.9rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 2rem 0 1rem 0;
+    color: #1e293b;
+}
+
+p {
+    margin-bottom: 1rem;
+    color: #475569;
+}
+
+/* Tabela de cookies */
+.cookie-table-wrapper {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+
+th {
+    background: #eff6ff;
+    color: #2563eb;
+    font-weight: 600;
+    padding: 1rem;
+    text-align: left;
+}
+
+td {
+    padding: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+    color: #475569;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+.badge {
+    background: #eff6ff;
+    color: #2563eb;
+    padding: 0.25rem 0.75rem;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    display: inline-block;
+}
+
+/* Banner de cookies (fixo inferior) */
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+    padding: 1.2rem 1.5rem;
+    z-index: 1000;
+    display: none; /* será mostrado via JS se não houver consentimento */
+    justify-content: center;
+    border-top: 1px solid #e2e8f0;
+}
+
+.cookie-banner-content {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.cookie-banner-content p {
+    flex: 1;
+    margin: 0;
+}
+
+.cookie-banner-buttons {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+/* Modal de preferências */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1100;
+}
+
+.modal-content {
+    background: white;
+    max-width: 500px;
+    width: 90%;
+    padding: 2rem;
+    border-radius: 1rem;
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.checkbox-label {
+    display: block;
+    margin: 1rem 0;
+    cursor: pointer;
+}
+
+.checkbox-label input {
+    margin-right: 0.75rem;
+    transform: scale(1.1);
+}
+
+.modal-buttons {
+    margin-top: 1.5rem;
+    text-align: right;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .cookie-banner-content {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .cookie-banner-buttons {
+        justify-content: center;
+    }
+    .policy-card {
+        padding: 1.5rem;
+    }
+    h1 {
+        font-size: 1.8rem;
+    }
+}
