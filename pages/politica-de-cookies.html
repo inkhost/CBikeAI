@@ -1,1 +1,222 @@
-teste
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Política de Cookies | CBikeAI</title>
+    
+    <!-- Preload dos CSS conforme padrão do site -->
+    <link rel="preload" href="../css/style.css" as="style">
+    <link rel="preload" href="../css/politica-de-cookies.css" as="style">
+    
+    <!-- Carregamento dos CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/politica-de-cookies.css">
+    
+    <!-- Google Analytics será carregado dinamicamente via JS (somente com consentimento) -->
+</head>
+<body>
+
+    <header class="header">
+        <div class="container nav">
+            <div class="logo">CBikeAI</div>
+            <div class="nav-links">
+                <a href="../index.html">Início</a>
+                <a href="politica-de-cookies.html">Política de Cookies</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="policy-card">
+            <h1>Política de Cookies</h1>
+            <div class="last-updated">Última atualização: Junho de 2026</div>
+            
+            <p>Na <strong>CBikeAI</strong>, utilizamos cookies para garantir desempenho, segurança e personalização. Esta Política explica o que são cookies, como os usamos e como você pode gerenciá-los.</p>
+            
+            <h2>1. O que são Cookies?</h2>
+            <p>Pequenos arquivos de texto armazenados no seu dispositivo ao visitar sites. Eles ajudam a reconhecer seu navegador, lembrar preferências e entender como você interage com o conteúdo.</p>
+            
+            <h2>2. Tipos de Cookies que utilizamos</h2>
+            <div class="cookie-table-wrapper">
+                <table>
+                    <thead>
+                        <tr><th>Categoria</th><th>Finalidade</th><th>Salvo por padrão?</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="badge-cell"><span class="badge">Estritamente necessários</span></td><td>Essenciais para navegação e áreas seguras. Não podem ser desativados.</td><td>Sim</td></tr>
+                        <tr><td class="badge-cell"><span class="badge">Desempenho e análise</span></td><td>Coletam dados anônimos de uso (ex: páginas mais visitadas). Usamos Google Analytics.</td><td>Somente com consentimento</td></tr>
+                        <tr><td class="badge-cell"><span class="badge">Funcionais</span></td><td>Lembram preferências como idioma e região.</td><td>Sim</td></tr>
+                        <tr><td class="badge-cell"><span class="badge">Publicidade / Marketing</span></td><td>Exibem anúncios relevantes baseados na navegação.</td><td>Somente com consentimento</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h2>3. Como gerenciar seus cookies?</h2>
+            <p>Você pode aceitar, recusar ou revogar seu consentimento a qualquer momento através do botão abaixo. Além disso, a maioria dos navegadores permite o gerenciamento direto nas configurações.</p>
+            
+            <button id="openPreferencesBtn" class="button">⚙️ Gerenciar preferências de cookies</button>
+            
+            <h2>4. Cookies de terceiros e Google Analytics</h2>
+            <p>Utilizamos o <strong>Google Analytics</strong> (código G-7C6KGFMFV6) para entender o tráfego e comportamento dos usuários. Esse serviço coleta IP anonimizado, tipo de dispositivo, páginas visitadas e duração da sessão. O Google Analytics só é ativado se você autorizar os cookies de estatística.</p>
+            
+            <h2>5. Consentimento e revogação</h2>
+            <p>Ao aceitar os cookies de análise e marketing, você nos ajuda a oferecer uma experiência mais relevante. Seus dados nunca são vendidos.</p>
+            
+            <h2>6. Contato</h2>
+            <p>Dúvidas sobre nossa Política de Cookies? <strong>contato@cbikeai.com</strong></p>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 CBikeAI - Inovação em micromobilidade elétrica. <a href="politica-de-cookies.html">Política de Cookies</a></p>
+        </div>
+    </footer>
+    
+    <!-- Banner de consentimento -->
+    <div id="cookieBanner" class="cookie-banner">
+        <div class="cookie-banner-content">
+            <p><strong>🍪 Nós usamos cookies</strong> — O site CBikeAI utiliza cookies para melhorar sua experiência, analisar tráfego e personalizar conteúdo. Ao clicar em "Aceitar todos", você concorda com o uso de TODOS os cookies. Caso contrário, você pode rejeitar ou personalizar.</p>
+            <div class="cookie-banner-buttons">
+                <button id="acceptAllBtn" class="button">✅ Aceitar todos</button>
+                <button id="rejectAllBtn" class="button button-outline">❌ Rejeitar não essenciais</button>
+                <button id="customizeBtn" class="button button-outline">⚙️ Personalizar</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal de preferências -->
+    <div id="preferencesModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Preferências de cookies</h3>
+            <p>Selecione quais categorias você autoriza:</p>
+            <label class="checkbox-label">
+                <input type="checkbox" id="necessaryCheckbox" disabled checked> 
+                <strong>Estritamente necessários</strong> (sempre ativos)
+            </label>
+            <label class="checkbox-label">
+                <input type="checkbox" id="analyticsCheckbox"> 
+                <strong>Desempenho e análise (Google Analytics)</strong>
+            </label>
+            <label class="checkbox-label">
+                <input type="checkbox" id="functionalCheckbox" checked> 
+                <strong>Funcionais</strong> (idioma, região)
+            </label>
+            <label class="checkbox-label">
+                <input type="checkbox" id="marketingCheckbox"> 
+                <strong>Publicidade / Marketing</strong>
+            </label>
+            <div class="modal-buttons">
+                <button id="savePreferencesBtn" class="button">Salvar preferências</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ----- Gerenciamento de cookies e Google Analytics -----
+        const STORAGE_KEY = 'cbikeai_cookie_consent';
+        
+        function loadGoogleAnalytics() {
+            if (window.gaLoaded) return;
+            window.gaLoaded = true;
+            
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://www.googletagmanager.com/gtag/js?id=G-7C6KGFMFV6';
+            document.head.appendChild(script);
+            
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){ dataLayer.push(arguments); }
+            window.gtag = gtag;
+            gtag('js', new Date());
+            gtag('config', 'G-7C6KGFMFV6');
+        }
+        
+        function removeGoogleAnalytics() {
+            if (window.gtag) window.gtag = function(){};
+            // Remove cookies do GA
+            document.cookie.split(";").forEach(c => {
+                const name = c.split("=")[0].trim();
+                if (name.startsWith('_ga') || name.startsWith('_gid') || name === '_gat') {
+                    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+                }
+            });
+            window.gaLoaded = false;
+        }
+        
+        function applyConsent(consent) {
+            if (consent.analytics) loadGoogleAnalytics();
+            else removeGoogleAnalytics();
+            // Funcionais e marketing podem ser tratados futuramente
+        }
+        
+        function getConsent() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            return saved ? JSON.parse(saved) : null;
+        }
+        
+        function setConsent(consent) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(consent));
+            applyConsent(consent);
+            hideBannerAndModal();
+        }
+        
+        function hideBannerAndModal() {
+            const banner = document.getElementById('cookieBanner');
+            const modal = document.getElementById('preferencesModal');
+            if (banner) banner.style.display = 'none';
+            if (modal) modal.style.display = 'none';
+        }
+        
+        function showBanner() {
+            const banner = document.getElementById('cookieBanner');
+            if (banner) banner.style.display = 'flex';
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const existing = getConsent();
+            if (existing) {
+                applyConsent(existing);
+                hideBannerAndModal();
+            } else {
+                showBanner();
+            }
+            
+            // Botões do banner
+            document.getElementById('acceptAllBtn')?.addEventListener('click', () => {
+                setConsent({ analytics: true, functional: true, marketing: true });
+            });
+            document.getElementById('rejectAllBtn')?.addEventListener('click', () => {
+                setConsent({ analytics: false, functional: false, marketing: false });
+            });
+            document.getElementById('customizeBtn')?.addEventListener('click', () => {
+                const curr = getConsent() || { analytics: false, functional: true, marketing: false };
+                document.getElementById('analyticsCheckbox').checked = curr.analytics;
+                document.getElementById('functionalCheckbox').checked = curr.functional;
+                document.getElementById('marketingCheckbox').checked = curr.marketing;
+                document.getElementById('preferencesModal').style.display = 'flex';
+            });
+            document.querySelector('.close-modal')?.addEventListener('click', () => {
+                document.getElementById('preferencesModal').style.display = 'none';
+            });
+            document.getElementById('savePreferencesBtn')?.addEventListener('click', () => {
+                const newConsent = {
+                    analytics: document.getElementById('analyticsCheckbox').checked,
+                    functional: document.getElementById('functionalCheckbox').checked,
+                    marketing: document.getElementById('marketingCheckbox').checked
+                };
+                setConsent(newConsent);
+            });
+            document.getElementById('openPreferencesBtn')?.addEventListener('click', () => {
+                const curr = getConsent() || { analytics: false, functional: true, marketing: false };
+                document.getElementById('analyticsCheckbox').checked = curr.analytics;
+                document.getElementById('functionalCheckbox').checked = curr.functional;
+                document.getElementById('marketingCheckbox').checked = curr.marketing;
+                document.getElementById('preferencesModal').style.display = 'flex';
+            });
+        });
+    </script>
+</body>
+</html>
