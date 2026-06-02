@@ -1,10 +1,10 @@
-// perfil.js - Módulo de gerenciamento do perfil CBikeAI
+// perfil.js - Módulo de gerenciamento do perfil CBikeAI (responsivo)
 window.ProfileManager = (function() {
     // Dados padrão
     let currentUser = {
         name: 'Ciclista CBike',
         email: 'ciclista@cbikeai.com',
-        avatar: null, // base64
+        avatar: null,
         preferences: {
             bikeType: 'Urbana',
             experience: 'Intermediário',
@@ -20,7 +20,7 @@ window.ProfileManager = (function() {
         }
     };
     
-    let routes = []; // array de rotas { id, name, distance, lat, lng, description }
+    let routes = [];
     let chartInstance = null;
     let mapInstance = null;
     let currentMarker = null;
@@ -38,14 +38,12 @@ window.ProfileManager = (function() {
         if (storedRoutes) {
             routes = JSON.parse(storedRoutes);
         } else {
-            // rotas de exemplo
             routes = [
-                { id: '1', name: 'Trilha do Lago', distance: 15.2, lat: -21.067, lng: -48.662, description: 'Percurso plano e agradável' },
+                { id: '1', name: 'Trilha do Lago', distance: 15.2, lat: -21.067, lng: -48.662, description: 'Percurso plano' },
                 { id: '2', name: 'Circuito Urbano', distance: 8.5, lat: -21.082, lng: -48.645, description: 'Ruas centrais' }
             ];
             saveRoutes();
         }
-        // atualizar estatísticas baseado nas rotas
         updateStatsFromRoutes();
     }
     
@@ -63,7 +61,32 @@ window.ProfileManager = (function() {
         saveUser();
     }
     
-    // Atualizar UI
+    // Escape HTML
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+    
+    // Renderizar gráfico
+    function renderChart() {
+        const ctx = document.getElementById('performanceChart')?.getContext('2d');
+        if (!ctx) return;
+        if (chartInstance) chartInstance.destroy();
+        const months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'];
+        const kmData = [42, 58, 73, 91, 112, currentUser.stats.totalKm % 130 || 87];
+        chartInstance = new Chart(ctx, {
+            type: 'bar',
+            data: { labels: months, datasets: [{ label: 'Km percorridos', data: kmData, backgroundColor: '#09e331', borderRadius: 8 }] },
+            options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { labels: { color: 'white' } } } }
+        });
+    }
+    
+    // Renderizar UI principal
     function renderProfile() {
         const container = document.getElementById('profile-container');
         if (!container) return;
@@ -92,10 +115,10 @@ window.ProfileManager = (function() {
             <div class="info-card">
                 <h3 class="section-title"><i class="fas fa-bicycle"></i> Preferências de Ciclismo</h3>
                 <div class="preferences-row">
-                    <div class="preference-item"><span>🚲 Bicicleta</span><span class="preference-value" id="prefBike">${currentUser.preferences.bikeType}</span></div>
-                    <div class="preference-item"><span>📈 Nível</span><span class="preference-value" id="prefExp">${currentUser.preferences.experience}</span></div>
-                    <div class="preference-item"><span>📍 Distância</span><span class="preference-value" id="prefDist">${currentUser.preferences.preferredDistance}</span></div>
-                    <div class="preference-item"><span>🔔 Notificações</span><span class="preference-value" id="prefNotif">${currentUser.preferences.notifications ? 'Ativas' : 'Desativadas'}</span></div>
+                    <div class="preference-item"><span>🚲 Bicicleta</span><span class="preference-value">${escapeHtml(currentUser.preferences.bikeType)}</span></div>
+                    <div class="preference-item"><span>📈 Nível</span><span class="preference-value">${escapeHtml(currentUser.preferences.experience)}</span></div>
+                    <div class="preference-item"><span>📍 Distância</span><span class="preference-value">${escapeHtml(currentUser.preferences.preferredDistance)}</span></div>
+                    <div class="preference-item"><span>🔔 Notificações</span><span class="preference-value">${currentUser.preferences.notifications ? 'Ativas' : 'Desativadas'}</span></div>
                 </div>
                 <button class="btn-neon" id="openPrefModalBtn" style="margin-top:1rem"><i class="fas fa-sliders-h"></i> Personalizar Preferências</button>
             </div>
@@ -108,7 +131,7 @@ window.ProfileManager = (function() {
             
             <div class="info-card">
                 <h3 class="section-title"><i class="fas fa-chart-line"></i> Estatísticas de Desempenho</h3>
-                <canvas id="performanceChart" width="400" height="200" style="max-height:250px"></canvas>
+                <canvas id="performanceChart" width="400" height="200" style="max-height:250px; width:100%"></canvas>
             </div>
             
             <div class="profile-actions">
@@ -121,7 +144,7 @@ window.ProfileManager = (function() {
         const routesDiv = document.getElementById('routesList');
         if (routesDiv) {
             if (routes.length === 0) {
-                routesDiv.innerHTML = '<p class="muted">Nenhuma rota salva ainda.</p>';
+                routesDiv.innerHTML = '<p class="muted" style="color:#aaa;">Nenhuma rota salva ainda.</p>';
             } else {
                 routesDiv.innerHTML = routes.map(route => `
                     <div class="route-item" data-id="${route.id}">
@@ -138,47 +161,32 @@ window.ProfileManager = (function() {
             }
         }
         
-        // Renderizar gráfico
         renderChart();
-        // Eventos
         attachEvents();
     }
     
     function attachEvents() {
-        // Editar perfil
-        const editBtn = document.getElementById('editProfileBtn');
-        if (editBtn) editBtn.onclick = () => openProfileModal();
-        const openPref = document.getElementById('openPrefModalBtn');
-        if (openPref) openPref.onclick = () => openPreferencesModal();
+        document.getElementById('editProfileBtn')?.addEventListener('click', openProfileModal);
+        document.getElementById('openPrefModalBtn')?.addEventListener('click', openPreferencesModal);
+        document.getElementById('addRouteBtn')?.addEventListener('click', openRouteModal);
+        document.getElementById('avatarImg')?.addEventListener('click', uploadAvatar);
+        document.getElementById('logoutBtn')?.addEventListener('click', () => { localStorage.clear(); window.location.href = '../pages/login.html'; });
         
-        // Adicionar rota
-        const addRoute = document.getElementById('addRouteBtn');
-        if (addRoute) addRoute.onclick = () => openRouteModal();
-        
-        // Excluir / ver rotas (event delegation)
         document.querySelectorAll('.delete-route-btn').forEach(btn => {
-            btn.onclick = (e) => {
+            btn.addEventListener('click', (e) => {
                 const id = btn.getAttribute('data-id');
                 deleteRoute(id);
-            };
+            });
         });
         document.querySelectorAll('.view-route-btn').forEach(btn => {
-            btn.onclick = (e) => {
+            btn.addEventListener('click', (e) => {
                 const id = btn.getAttribute('data-id');
                 viewRouteOnMap(id);
-            };
+            });
         });
-        
-        // Avatar click
-        const avatarImg = document.getElementById('avatarImg');
-        if (avatarImg) avatarImg.onclick = () => uploadAvatar();
-        
-        // Logout
-        const logout = document.getElementById('logoutBtn');
-        if (logout) logout.onclick = () => { localStorage.clear(); window.location.href = '../pages/login.html'; };
     }
     
-    // Modal de edição de perfil (nome, email, foto já tem)
+    // Modais (com estrutura responsiva)
     function openProfileModal() {
         const modalHtml = `
             <div class="modal-overlay" id="profileModalOverlay">
@@ -198,7 +206,6 @@ window.ProfileManager = (function() {
         document.body.insertAdjacentHTML('beforeend', modalHtml);
         const overlay = document.getElementById('profileModalOverlay');
         overlay.classList.add('active');
-        
         document.getElementById('closeProfileModal').onclick = () => overlay.remove();
         document.getElementById('saveProfileBtn').onclick = () => {
             currentUser.name = document.getElementById('editName').value;
@@ -209,7 +216,6 @@ window.ProfileManager = (function() {
         };
     }
     
-    // Modal de preferências (tipo de bike, nível, distância, notificações)
     function openPreferencesModal() {
         const modalHtml = `
             <div class="modal-overlay" id="prefModalOverlay">
@@ -258,7 +264,6 @@ window.ProfileManager = (function() {
         };
     }
     
-    // Modal de adicionar rota (com mapa)
     function openRouteModal() {
         const modalHtml = `
             <div class="modal-overlay" id="routeModalOverlay">
@@ -283,9 +288,8 @@ window.ProfileManager = (function() {
         const overlay = document.getElementById('routeModalOverlay');
         overlay.classList.add('active');
         
-        // Inicializar mapa
         const mapDiv = document.getElementById('routeMapContainer');
-        mapDiv.style.height = '280px';
+        mapDiv.style.height = '250px';
         if (mapInstance) mapInstance.remove();
         mapInstance = L.map(mapDiv).setView([-21.067, -48.662], 13);
         L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
@@ -331,13 +335,12 @@ window.ProfileManager = (function() {
     function viewRouteOnMap(id) {
         const route = routes.find(r => r.id === id);
         if (!route) return;
-        // Abrir modal simples com mapa
         const modalMap = `
             <div class="modal-overlay" id="viewMapOverlay">
                 <div class="modal-container" style="max-width:700px">
                     <h3>${escapeHtml(route.name)} - ${route.distance} km</h3>
                     <div class="map-container" id="singleMap" style="height:300px"></div>
-                    <button class="btn-neon" id="closeViewMap">Fechar</button>
+                    <button class="btn-neon" id="closeViewMap" style="margin-top:1rem">Fechar</button>
                 </div>
             </div>
         `;
@@ -370,26 +373,9 @@ window.ProfileManager = (function() {
         input.click();
     }
     
-    function renderChart() {
-        const ctx = document.getElementById('performanceChart')?.getContext('2d');
-        if (!ctx) return;
-        if (chartInstance) chartInstance.destroy();
-        // Dados mensais simulados (futuramente poderia ser baseado nas rotas)
-        const months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'];
-        const kmData = [42, 58, 73, 91, 112, currentUser.stats.totalKm % 130 || 87];
-        chartInstance = new Chart(ctx, {
-            type: 'bar',
-            data: { labels: months, datasets: [{ label: 'Km percorridos', data: kmData, backgroundColor: '#09e331', borderRadius: 8 }] },
-            options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { labels: { color: 'white' } } } }
-        });
-    }
-    
-    function escapeHtml(str) { return str.replace(/[&<>]/g, function(m){if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
-    
     function init() {
         loadData();
         renderProfile();
-        // Re-render ao redimensionar (opcional)
         window.addEventListener('resize', () => { if(chartInstance) chartInstance.resize(); });
     }
     
