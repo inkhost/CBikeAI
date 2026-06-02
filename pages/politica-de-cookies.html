@@ -15,16 +15,20 @@
 </head>
 <body>
 
-    <header>
+     <header role="banner">
         <div class="logo">
-            <img src="../images/logo.png" alt="CBikeAI Logo" loading="lazy">
+            <img src="../img/logotipo-cbikeai.png" alt="Logo CBikeAI">
         </div>
-        <nav>
-            <a href="../index.html">Início</a>
-            <a href="politica-de-cookies.html">Política de Cookies</a>
+        <nav aria-label="Navegação principal">
+            <a href="index.html">Início</a>
+            <a href="../pages/quemsomos.html">Quem Somos</a>
+            <a href="../pages/contato.html">Contato</a>
+            <!-- Links dinâmicos para login/perfil -->
+            <a href="../pages/login.html" id="login-link">Login</a>
+            <a href="../pages/perfil.html" id="profile-link" style="display: none;">Meu Perfil</a>
+            <a href="#" id="logout-btn" style="display: none;">Sair</a>
         </nav>
-    </header>
-
+        </header>
     <main class="main-content">
         <div class="container policy-card">
             <h1>Política de Cookies</h1>
