@@ -70,33 +70,58 @@
         </div>
     </main>
 
-    <footer>
+    <footer role="contentinfo">
         <div class="footer-content">
             <div class="footer-section">
                 <h3>CBikeAI</h3>
-                <p>Inovação em micromobilidade elétrica.</p>
+                <p>Revolucionando a segurança no ciclismo através da tecnologia e inovação.</p>
             </div>
             <div class="footer-section">
                 <h3>Links Rápidos</h3>
                 <ul>
-                    <li><a href="../index.html">Início</a></li>
-                    <li><a href="politica-de-cookies.html">Política de Cookies</a></li>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="../pages/quemsomos.html">Quem Somos</a></li>
+                    <li><a href="../pages/contato.html">Contato</a></li>
+                    <li><a href="../pages/termos-servico.html">Termos de Serviço</a></li>
+                    <li><a href="../pages/politica-privacidade.html">Política de Privacidade</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h3>Contato</h3>
-                <p><i class="fas fa-envelope"></i> contato@cbikeai.com</p>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> contato@cbikeai.com</li>
+                    <li><i class="fas fa-phone"></i> (16) 99232-0372</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Taquaritinga - SP</li>
+                </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <div class="copyright">&copy; 2026 CBikeAI. Todos os direitos reservados.</div>
+            <p class="copyright">© 2026 CBikeAI. Todos os direitos reservados.</p>
             <div class="social-media">
-                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/cbikeai" onclick="gtag('event', 'click_social', {'social_network': 'Instagram'});" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://www.x.com/cbikeai" onclick="gtag('event', 'click_social', {'social_network': 'X'});" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no X">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </a>
+                <a href="https://www.facebook.com/cbikeai" onclick="gtag('event', 'click_social', {'social_network': 'Facebook'});" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
             </div>
         </div>
     </footer>
+
+    <!-- VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
 
     <!-- Banner de consentimento -->
     <div id="cookieBanner" class="cookie-banner">
