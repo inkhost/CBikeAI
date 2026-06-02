@@ -1,465 +1,397 @@
-// perfil.js - Gerenciamento da página de perfil do usuário CBikeAI
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Elementos principais da página
-    const profileContent = document.getElementById('profile-content');
-    
-    // Estado do usuário
-    let isLoggedIn = false;
-    let userData = null;
-
-    // Inicialização da página
-    initProfilePage();
-
-    /**
-     * Inicializa a página de perfil verificando o estado de login
-     * e carregando os dados do usuário
-     */
-    function initProfilePage() {
-        checkLoginStatus();
-        loadUserData();
-        renderProfileContent();
-        setupEventListeners();
-    }
-
-    /**
-     * Verifica se o usuário está logado através do localStorage
-     */
-    function checkLoginStatus() {
-        isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-        
-        // Se não estiver logado, redireciona para login após 3 segundos
-        if (!isLoggedIn) {
-            setTimeout(() => {
-                if (!isLoggedIn) {
-                    window.location.href = '../pages/login.html';
-                }
-            }, 3000);
-        }
-    }
-
-    /**
-     * Carrega os dados do usuário do localStorage
-     */
-    function loadUserData() {
-        if (isLoggedIn) {
-            userData = {
-                name: localStorage.getItem('userName') || 'Usuário',
-                email: localStorage.getItem('userEmail') || 'email@exemplo.com',
-                avatar: localStorage.getItem('userAvatar') || getDefaultAvatar(),
-                memberSince: localStorage.getItem('memberSince') || getCurrentDate(),
-                loginMethod: detectLoginMethod(),
-                preferences: getUserPreferences()
-            };
-        }
-    }
-
-    /**
-     * Detecta o método de login baseado no e-mail ou dados salvos
-     */
-    function detectLoginMethod() {
-        const email = userData.email;
-        if (email.includes('@google')) return 'Google';
-        if (email.includes('@facebook')) return 'Facebook';
-        if (email.includes('@apple')) return 'Apple';
-        return localStorage.getItem('loginMethod') || 'E-mail';
-    }
-
-    /**
-     * Obtém as preferências do usuário do localStorage
-     */
-    function getUserPreferences() {
-        return {
-            bikeType: localStorage.getItem('bikeType') || 'Urbana',
-            experienceLevel: localStorage.getItem('experienceLevel') || 'Intermediário',
-            preferredDistance: localStorage.getItem('preferredDistance') || '10-20 km',
-            notifications: localStorage.getItem('notifications') || 'Ativas'
-        };
-    }
-
-    /**
-     * Gera um avatar padrão baseado no nome do usuário
-     */
-    function getDefaultAvatar() {
-        const name = userData?.name || 'Usuário';
-        return `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=09e331&color=000&size=200`;
-    }
-
-    /**
-     * Obtém a data atual formatada
-     */
-    function getCurrentDate() {
-        const now = new Date();
-        const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 
-                       'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
-        return `${months[now.getMonth()]} ${now.getFullYear()}`;
-    }
-
-    /**
-     * Renderiza o conteúdo do perfil baseado no estado de login
-     */
-    function renderProfileContent() {
-        if (!isLoggedIn) {
-            renderNotLoggedIn();
-        } else {
-            renderUserProfile();
-        }
-    }
-
-    /**
-     * Renderiza a interface quando o usuário não está logado
-     */
-    function renderNotLoggedIn() {
-        profileContent.innerHTML = `
-            <div class="not-logged">
-                <div class="not-logged-icon">
-                    <i class="fas fa-user-lock"></i>
-                </div>
-                <h2>Acesso Restrito</h2>
-                <p>Faça login para acessar seu perfil personalizado e todos os recursos da CBikeAI.</p>
-                <div class="not-logged-actions">
-                    <a href="../pages/login.html" class="btn btn-primary">
-                        <i class="fas fa-sign-in-alt"></i>
-                        Fazer Login
-                    </a>
-                    <a href="../pages/criar-conta.html" class="btn btn-secondary">
-                        <i class="fas fa-user-plus"></i>
-                        Criar Conta
-                    </a>
-                </div>
-                <p class="redirect-notice">Você será redirecionado para a página de login em instantes...</p>
-            </div>
-        `;
-    }
-
-    /**
-     * Renderiza o perfil completo do usuário
-     */
-    function renderUserProfile() {
-        profileContent.innerHTML = `
-            <div class="profile-header">
-                <button class="edit-profile-btn" id="edit-profile-btn" aria-label="Editar perfil">
-                    <i class="fas fa-edit"></i>
-                    Editar Perfil
-                </button>
-                
-                <div class="avatar-container" id="avatar-container" role="button" aria-label="Alterar foto do perfil">
-                    <img src="${userData.avatar}" 
-                         alt="Foto do perfil de ${userData.name}" 
-                         class="profile-avatar"
-                         onerror="this.src='${getDefaultAvatar()}'">
-                    <div class="avatar-overlay">
-                        <i class="fas fa-camera"></i>
-                    </div>
-                </div>
-                
-                <h1 class="profile-name">${userData.name}</h1>
-                <p class="profile-email">${userData.email}</p>
-                <div class="profile-badges">
-                    <span class="user-badge">
-                        <i class="fas fa-check-circle"></i> Verificado
-                    </span>
-                    <span class="premium-badge">
-                        <i class="fas fa-crown"></i> Premium
-                    </span>
-                </div>
-            </div>
-
-            <div class="profile-stats">
-                <div class="stat-card">
-                    <span class="stat-number" id="saved-routes">12</span>
-                    <span class="stat-label">Rotas Salvas</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number" id="total-distance">347</span>
-                    <span class="stat-label">Km Percorridos</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number" id="usage-days">28</span>
-                    <span class="stat-label">Dias de Uso</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number" id="friends-count">5</span>
-                    <span class="stat-label">Amigos</span>
-                </div>
-            </div>
-
-            <div class="profile-info">
-                <div class="info-section">
-                    <h3 class="section-title">
-                        <i class="fas fa-user-circle"></i> Informações Pessoais
-                    </h3>
-                    <div class="info-grid">
-                        <div class="info-item">
-                            <span class="info-label">
-                                <i class="fas fa-envelope"></i>
-                                E-mail
-                            </span>
-                            <span class="info-value">${userData.email}</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">
-                                <i class="fas fa-calendar-alt"></i>
-                                Membro desde
-                            </span>
-                            <span class="info-value">${userData.memberSince}</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">
-                                <i class="fas fa-sign-in-alt"></i>
-                                Método de login
-                            </span>
-                            <span class="info-value">
-                                ${userData.loginMethod}
-                                ${userData.loginMethod !== 'E-mail' ? 
-                                    '<i class="fas fa-check verified-icon" aria-label="Verificado"></i>' : ''}
-                            </span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">
-                                <i class="fas fa-shield-alt"></i>
-                                Status da conta
-                            </span>
-                            <span class="info-value status-active">
-                                <i class="fas fa-circle"></i>
-                                Ativa
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="info-section">
-                    <h3 class="section-title">
-                        <i class="fas fa-bicycle"></i> Preferências de Ciclismo
-                    </h3>
-                    <div class="preferences-grid">
-                        <div class="preference-item">
-                            <span class="preference-label">Tipo de bicicleta</span>
-                            <span class="preference-value">${userData.preferences.bikeType}</span>
-                        </div>
-                        <div class="preference-item">
-                            <span class="preference-label">Nível de experiência</span>
-                            <span class="preference-value">${userData.preferences.experienceLevel}</span>
-                        </div>
-                        <div class="preference-item">
-                            <span class="preference-label">Distância preferida</span>
-                            <span class="preference-value">${userData.preferences.preferredDistance}</span>
-                        </div>
-                        <div class="preference-item">
-                            <span class="preference-label">Notificações</span>
-                            <span class="preference-value">${userData.preferences.notifications}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="profile-features">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-route"></i>
-                    </div>
-                    <h4 class="feature-title">Minhas Rotas</h4>
-                    <p class="feature-description">Acesse e gerencie suas rotas salvas e histórico de percursos.</p>
-                    <button class="btn btn-outline" id="view-routes-btn">
-                        <i class="fas fa-eye"></i>
-                        Ver Rotas
-                    </button>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h4 class="feature-title">Estatísticas</h4>
-                    <p class="feature-description">Acompanhe seu progresso e métricas de desempenho.</p>
-                    <button class="btn btn-outline" id="view-stats-btn">
-                        <i class="fas fa-chart-bar"></i>
-                        Ver Estatísticas
-                    </button>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-cog"></i>
-                    </div>
-                    <h4 class="feature-title">Configurações</h4>
-                    <p class="feature-description">Personalize suas preferências e configurações da conta.</p>
-                    <button class="btn btn-outline" id="settings-btn">
-                        <i class="fas fa-sliders-h"></i>
-                        Configurar
-                    </button>
-                </div>
-            </div>
-
-            <div class="profile-actions">
-                <a href="../index.html" class="action-btn">
-                    <i class="fas fa-home"></i>
-                    Voltar ao Início
-                </a>
-                <button class="action-btn" id="preferences-btn">
-                    <i class="fas fa-user-cog"></i>
-                    Preferências
-                </button>
-                <button class="logout-btn" id="logout-btn">
-                    <i class="fas fa-sign-out-alt"></i>
-                    Sair da Conta
-                </button>
-            </div>
-        `;
-    }
-
-    /**
-     * Configura todos os event listeners da página
-     */
-    function setupEventListeners() {
-        if (!isLoggedIn) return;
-
-        // Logout
-        document.getElementById('logout-btn').addEventListener('click', handleLogout);
-
-        // Editar perfil
-        document.getElementById('edit-profile-btn').addEventListener('click', handleEditProfile);
-
-        // Alterar avatar
-        document.getElementById('avatar-container').addEventListener('click', handleAvatarChange);
-
-        // Botões de funcionalidades
-        document.getElementById('view-routes-btn').addEventListener('click', () => showFeatureMessage('Rotas'));
-        document.getElementById('view-stats-btn').addEventListener('click', () => showFeatureMessage('Estatísticas'));
-        document.getElementById('settings-btn').addEventListener('click', () => showFeatureMessage('Configurações'));
-        document.getElementById('preferences-btn').addEventListener('click', () => showFeatureMessage('Preferências'));
-
-        // Teclado accessibility
-        setupKeyboardAccessibility();
-    }
-
-    /**
-     * Manipula o logout do usuário
-     */
-    function handleLogout() {
-        if (confirm('Tem certeza que deseja sair da sua conta?')) {
-            // Limpar dados sensíveis, manter preferências
-            const preferences = userData.preferences;
-            
-            localStorage.clear();
-            
-            // Restaurar preferências
-            Object.keys(preferences).forEach(key => {
-                localStorage.setItem(key, preferences[key]);
-            });
-            
-            // Registrar evento de logout
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'logout');
-            }
-            
-            // Redirecionar para login
-            window.location.href = '../pages/login.html';
-        }
-    }
-
-    /**
-     * Manipula a edição do perfil
-     */
-    function handleEditProfile() {
-        showFeatureMessage('Edição de Perfil');
-        // Em implementação futura, abrir modal de edição
-    }
-
-    /**
-     * Manipula a alteração do avatar
-     */
-    function handleAvatarChange() {
-        showFeatureMessage('Alteração de Foto');
-        // Em implementação futura, abrir seletor de arquivos
-    }
-
-    /**
-     * Mostra mensagem de funcionalidade em desenvolvimento
-     */
-    function showFeatureMessage(featureName) {
-        alert(`🎯 ${featureName} - Funcionalidade em desenvolvimento!\n\nEsta feature estará disponível em breve.`);
-        
-        // Registrar interesse na feature
-        if (typeof gtag !== 'undefined') {
-            gtag('event', 'feature_interest', {
-                'feature_name': featureName
-            });
-        }
-    }
-
-    /**
-     * Configura acessibilidade via teclado
-     */
-    function setupKeyboardAccessibility() {
-        document.addEventListener('keydown', function(e) {
-            // Logout com Ctrl + L
-            if (e.ctrlKey && e.key === 'l') {
-                e.preventDefault();
-                handleLogout();
-            }
-            
-            // Editar perfil com Ctrl + E
-            if (e.ctrlKey && e.key === 'e') {
-                e.preventDefault();
-                handleEditProfile();
-            }
-        });
-    }
-
-    /**
-     * Atualiza estatísticas do usuário (simulação)
-     */
-    function updateUserStats() {
-        // Em implementação real, buscaríamos esses dados de uma API
-        const stats = {
-            savedRoutes: Math.floor(Math.random() * 20) + 5,
-            totalDistance: Math.floor(Math.random() * 500) + 100,
-            usageDays: Math.floor(Math.random() * 60) + 10,
-            friendsCount: Math.floor(Math.random() * 10) + 1
-        };
-
-        // Atualizar DOM
-        Object.keys(stats).forEach(stat => {
-            const element = document.getElementById(stat.replace(/([A-Z])/g, '-$1').toLowerCase());
-            if (element) {
-                animateValue(element, 0, stats[stat], 1000);
-            }
-        });
-    }
-
-    /**
-     * Anima a transição de valores numéricos
-     */
-    function animateValue(element, start, end, duration) {
-        let startTimestamp = null;
-        const step = (timestamp) => {
-            if (!startTimestamp) startTimestamp = timestamp;
-            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-            element.textContent = Math.floor(progress * (end - start) + start);
-            if (progress < 1) {
-                window.requestAnimationFrame(step);
-            }
-        };
-        window.requestAnimationFrame(step);
-    }
-
-    // Public methods para possível uso externo
-    return {
-        refreshProfile: () => {
-            loadUserData();
-            renderProfileContent();
-            setupEventListeners();
+// perfil.js - Módulo de gerenciamento do perfil CBikeAI
+window.ProfileManager = (function() {
+    // Dados padrão
+    let currentUser = {
+        name: 'Ciclista CBike',
+        email: 'ciclista@cbikeai.com',
+        avatar: null, // base64
+        preferences: {
+            bikeType: 'Urbana',
+            experience: 'Intermediário',
+            preferredDistance: '10-20 km',
+            notifications: true
         },
-        
-        updatePreferences: (newPreferences) => {
-            Object.keys(newPreferences).forEach(key => {
-                localStorage.setItem(key, newPreferences[key]);
-            });
-            loadUserData();
-            renderProfileContent();
-        },
-        
-        getUserData: () => userData
+        memberSince: new Date().toLocaleDateString('pt-BR'),
+        stats: {
+            totalKm: 347,
+            routesCount: 12,
+            daysActive: 28,
+            friends: 5
+        }
     };
-});
+    
+    let routes = []; // array de rotas { id, name, distance, lat, lng, description }
+    let chartInstance = null;
+    let mapInstance = null;
+    let currentMarker = null;
+    
+    // Carregar dados salvos
+    function loadData() {
+        const storedUser = localStorage.getItem('cbikeai_user_profile');
+        if (storedUser) {
+            try {
+                const parsed = JSON.parse(storedUser);
+                currentUser = { ...currentUser, ...parsed };
+            } catch(e) {}
+        }
+        const storedRoutes = localStorage.getItem('cbikeai_routes');
+        if (storedRoutes) {
+            routes = JSON.parse(storedRoutes);
+        } else {
+            // rotas de exemplo
+            routes = [
+                { id: '1', name: 'Trilha do Lago', distance: 15.2, lat: -21.067, lng: -48.662, description: 'Percurso plano e agradável' },
+                { id: '2', name: 'Circuito Urbano', distance: 8.5, lat: -21.082, lng: -48.645, description: 'Ruas centrais' }
+            ];
+            saveRoutes();
+        }
+        // atualizar estatísticas baseado nas rotas
+        updateStatsFromRoutes();
+    }
+    
+    function saveUser() {
+        localStorage.setItem('cbikeai_user_profile', JSON.stringify(currentUser));
+    }
+    function saveRoutes() {
+        localStorage.setItem('cbikeai_routes', JSON.stringify(routes));
+        updateStatsFromRoutes();
+    }
+    function updateStatsFromRoutes() {
+        const totalKm = routes.reduce((sum, r) => sum + (r.distance || 0), 0);
+        currentUser.stats.totalKm = Math.round(totalKm);
+        currentUser.stats.routesCount = routes.length;
+        saveUser();
+    }
+    
+    // Atualizar UI
+    function renderProfile() {
+        const container = document.getElementById('profile-container');
+        if (!container) return;
+        
+        const avatarUrl = currentUser.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(currentUser.name)}&background=09e331&color=000&size=130`;
+        
+        container.innerHTML = `
+            <div class="profile-header">
+                <img src="${avatarUrl}" alt="Avatar" class="avatar-large" id="avatarImg" style="cursor:pointer">
+                <h2 class="profile-name">${escapeHtml(currentUser.name)}</h2>
+                <p class="profile-email">${escapeHtml(currentUser.email)}</p>
+                <div class="profile-badges">
+                    <span class="user-badge"><i class="fas fa-check-circle"></i> Verificado</span>
+                    <span class="premium-badge"><i class="fas fa-crown"></i> Premium</span>
+                </div>
+                <button class="btn-outline edit-main-btn" id="editProfileBtn" style="margin-top:1rem"><i class="fas fa-user-edit"></i> Editar Perfil</button>
+            </div>
+            
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-card"><div class="stat-number">${currentUser.stats.totalKm}</div><div class="stat-label">Km Totais</div></div>
+                <div class="stat-card"><div class="stat-number">${currentUser.stats.routesCount}</div><div class="stat-label">Rotas Salvas</div></div>
+                <div class="stat-card"><div class="stat-number">${currentUser.stats.daysActive}</div><div class="stat-label">Dias de Uso</div></div>
+                <div class="stat-card"><div class="stat-number">${currentUser.stats.friends}</div><div class="stat-label">Amigos</div></div>
+            </div>
+            
+            <div class="info-card">
+                <h3 class="section-title"><i class="fas fa-bicycle"></i> Preferências de Ciclismo</h3>
+                <div class="preferences-row">
+                    <div class="preference-item"><span>🚲 Bicicleta</span><span class="preference-value" id="prefBike">${currentUser.preferences.bikeType}</span></div>
+                    <div class="preference-item"><span>📈 Nível</span><span class="preference-value" id="prefExp">${currentUser.preferences.experience}</span></div>
+                    <div class="preference-item"><span>📍 Distância</span><span class="preference-value" id="prefDist">${currentUser.preferences.preferredDistance}</span></div>
+                    <div class="preference-item"><span>🔔 Notificações</span><span class="preference-value" id="prefNotif">${currentUser.preferences.notifications ? 'Ativas' : 'Desativadas'}</span></div>
+                </div>
+                <button class="btn-neon" id="openPrefModalBtn" style="margin-top:1rem"><i class="fas fa-sliders-h"></i> Personalizar Preferências</button>
+            </div>
+            
+            <div class="info-card">
+                <h3 class="section-title"><i class="fas fa-route"></i> Minhas Rotas</h3>
+                <div id="routesList" class="routes-list"></div>
+                <button class="add-route-btn" id="addRouteBtn"><i class="fas fa-plus"></i> Nova Rota</button>
+            </div>
+            
+            <div class="info-card">
+                <h3 class="section-title"><i class="fas fa-chart-line"></i> Estatísticas de Desempenho</h3>
+                <canvas id="performanceChart" width="400" height="200" style="max-height:250px"></canvas>
+            </div>
+            
+            <div class="profile-actions">
+                <a href="../index.html" class="action-btn"><i class="fas fa-home"></i> Início</a>
+                <button class="logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sair</button>
+            </div>
+        `;
+        
+        // Preencher lista de rotas
+        const routesDiv = document.getElementById('routesList');
+        if (routesDiv) {
+            if (routes.length === 0) {
+                routesDiv.innerHTML = '<p class="muted">Nenhuma rota salva ainda.</p>';
+            } else {
+                routesDiv.innerHTML = routes.map(route => `
+                    <div class="route-item" data-id="${route.id}">
+                        <div>
+                            <div class="route-name">${escapeHtml(route.name)}</div>
+                            <div class="route-distance">${route.distance} km</div>
+                        </div>
+                        <div class="route-actions">
+                            <button class="view-route-btn" data-id="${route.id}" title="Ver no mapa"><i class="fas fa-map-marker-alt"></i></button>
+                            <button class="delete-route-btn" data-id="${route.id}" title="Excluir"><i class="fas fa-trash-alt"></i></button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+        
+        // Renderizar gráfico
+        renderChart();
+        // Eventos
+        attachEvents();
+    }
+    
+    function attachEvents() {
+        // Editar perfil
+        const editBtn = document.getElementById('editProfileBtn');
+        if (editBtn) editBtn.onclick = () => openProfileModal();
+        const openPref = document.getElementById('openPrefModalBtn');
+        if (openPref) openPref.onclick = () => openPreferencesModal();
+        
+        // Adicionar rota
+        const addRoute = document.getElementById('addRouteBtn');
+        if (addRoute) addRoute.onclick = () => openRouteModal();
+        
+        // Excluir / ver rotas (event delegation)
+        document.querySelectorAll('.delete-route-btn').forEach(btn => {
+            btn.onclick = (e) => {
+                const id = btn.getAttribute('data-id');
+                deleteRoute(id);
+            };
+        });
+        document.querySelectorAll('.view-route-btn').forEach(btn => {
+            btn.onclick = (e) => {
+                const id = btn.getAttribute('data-id');
+                viewRouteOnMap(id);
+            };
+        });
+        
+        // Avatar click
+        const avatarImg = document.getElementById('avatarImg');
+        if (avatarImg) avatarImg.onclick = () => uploadAvatar();
+        
+        // Logout
+        const logout = document.getElementById('logoutBtn');
+        if (logout) logout.onclick = () => { localStorage.clear(); window.location.href = '../pages/login.html'; };
+    }
+    
+    // Modal de edição de perfil (nome, email, foto já tem)
+    function openProfileModal() {
+        const modalHtml = `
+            <div class="modal-overlay" id="profileModalOverlay">
+                <div class="modal-container">
+                    <h3>Editar Perfil</h3>
+                    <label>Nome</label>
+                    <input type="text" id="editName" value="${escapeHtml(currentUser.name)}">
+                    <label>E-mail</label>
+                    <input type="email" id="editEmail" value="${escapeHtml(currentUser.email)}">
+                    <div class="modal-actions">
+                        <button class="btn-outline" id="closeProfileModal">Cancelar</button>
+                        <button class="btn-neon" id="saveProfileBtn">Salvar</button>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+        const overlay = document.getElementById('profileModalOverlay');
+        overlay.classList.add('active');
+        
+        document.getElementById('closeProfileModal').onclick = () => overlay.remove();
+        document.getElementById('saveProfileBtn').onclick = () => {
+            currentUser.name = document.getElementById('editName').value;
+            currentUser.email = document.getElementById('editEmail').value;
+            saveUser();
+            overlay.remove();
+            renderProfile();
+        };
+    }
+    
+    // Modal de preferências (tipo de bike, nível, distância, notificações)
+    function openPreferencesModal() {
+        const modalHtml = `
+            <div class="modal-overlay" id="prefModalOverlay">
+                <div class="modal-container">
+                    <h3>Preferências de Ciclismo</h3>
+                    <label>Tipo de bicicleta</label>
+                    <select id="prefBikeSelect">
+                        <option ${currentUser.preferences.bikeType === 'Urbana' ? 'selected' : ''}>Urbana</option>
+                        <option ${currentUser.preferences.bikeType === 'Mountain Bike' ? 'selected' : ''}>Mountain Bike</option>
+                        <option ${currentUser.preferences.bikeType === 'Speed' ? 'selected' : ''}>Speed</option>
+                        <option ${currentUser.preferences.bikeType === 'Elétrica' ? 'selected' : ''}>Elétrica</option>
+                    </select>
+                    <label>Nível de experiência</label>
+                    <select id="prefExpSelect">
+                        <option ${currentUser.preferences.experience === 'Iniciante' ? 'selected' : ''}>Iniciante</option>
+                        <option ${currentUser.preferences.experience === 'Intermediário' ? 'selected' : ''}>Intermediário</option>
+                        <option ${currentUser.preferences.experience === 'Avançado' ? 'selected' : ''}>Avançado</option>
+                    </select>
+                    <label>Distância preferida</label>
+                    <select id="prefDistSelect">
+                        <option ${currentUser.preferences.preferredDistance === '5-10 km' ? 'selected' : ''}>5-10 km</option>
+                        <option ${currentUser.preferences.preferredDistance === '10-20 km' ? 'selected' : ''}>10-20 km</option>
+                        <option ${currentUser.preferences.preferredDistance === '20-40 km' ? 'selected' : ''}>20-40 km</option>
+                        <option ${currentUser.preferences.preferredDistance === '40+ km' ? 'selected' : ''}>40+ km</option>
+                    </select>
+                    <label><input type="checkbox" id="prefNotifCheck" ${currentUser.preferences.notifications ? 'checked' : ''}> Ativar notificações</label>
+                    <div class="modal-actions">
+                        <button class="btn-outline" id="closePrefModal">Cancelar</button>
+                        <button class="btn-neon" id="savePrefBtn">Salvar</button>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+        const overlay = document.getElementById('prefModalOverlay');
+        overlay.classList.add('active');
+        document.getElementById('closePrefModal').onclick = () => overlay.remove();
+        document.getElementById('savePrefBtn').onclick = () => {
+            currentUser.preferences.bikeType = document.getElementById('prefBikeSelect').value;
+            currentUser.preferences.experience = document.getElementById('prefExpSelect').value;
+            currentUser.preferences.preferredDistance = document.getElementById('prefDistSelect').value;
+            currentUser.preferences.notifications = document.getElementById('prefNotifCheck').checked;
+            saveUser();
+            overlay.remove();
+            renderProfile();
+        };
+    }
+    
+    // Modal de adicionar rota (com mapa)
+    function openRouteModal() {
+        const modalHtml = `
+            <div class="modal-overlay" id="routeModalOverlay">
+                <div class="modal-container" style="max-width:700px">
+                    <h3><i class="fas fa-plus-circle"></i> Adicionar Nova Rota</h3>
+                    <label>Nome da rota</label>
+                    <input type="text" id="routeName" placeholder="Ex: Parque Central">
+                    <label>Distância (km)</label>
+                    <input type="number" id="routeDistance" step="0.1" placeholder="12.5">
+                    <label>Descrição (opcional)</label>
+                    <textarea id="routeDesc" rows="2" placeholder="Detalhes do percurso..."></textarea>
+                    <label>Localização (clique no mapa)</label>
+                    <div class="map-container" id="routeMapContainer"></div>
+                    <div class="modal-actions">
+                        <button class="btn-outline" id="closeRouteModal">Cancelar</button>
+                        <button class="btn-neon" id="saveRouteBtn">Salvar Rota</button>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+        const overlay = document.getElementById('routeModalOverlay');
+        overlay.classList.add('active');
+        
+        // Inicializar mapa
+        const mapDiv = document.getElementById('routeMapContainer');
+        mapDiv.style.height = '280px';
+        if (mapInstance) mapInstance.remove();
+        mapInstance = L.map(mapDiv).setView([-21.067, -48.662], 13);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>'
+        }).addTo(mapInstance);
+        let selectedLat = -21.067, selectedLng = -48.662;
+        if (currentMarker) mapInstance.removeLayer(currentMarker);
+        currentMarker = L.marker([selectedLat, selectedLng]).addTo(mapInstance);
+        mapInstance.on('click', (e) => {
+            selectedLat = e.latlng.lat;
+            selectedLng = e.latlng.lng;
+            currentMarker.setLatLng([selectedLat, selectedLng]);
+        });
+        
+        document.getElementById('closeRouteModal').onclick = () => { overlay.remove(); if(mapInstance) mapInstance.remove(); };
+        document.getElementById('saveRouteBtn').onclick = () => {
+            const name = document.getElementById('routeName').value.trim();
+            const dist = parseFloat(document.getElementById('routeDistance').value);
+            if (!name || isNaN(dist)) { alert('Preencha nome e distância válida'); return; }
+            const newRoute = {
+                id: Date.now().toString(),
+                name: name,
+                distance: dist,
+                lat: selectedLat,
+                lng: selectedLng,
+                description: document.getElementById('routeDesc').value
+            };
+            routes.push(newRoute);
+            saveRoutes();
+            overlay.remove();
+            renderProfile();
+        };
+    }
+    
+    function deleteRoute(id) {
+        if (confirm('Remover esta rota?')) {
+            routes = routes.filter(r => r.id !== id);
+            saveRoutes();
+            renderProfile();
+        }
+    }
+    
+    function viewRouteOnMap(id) {
+        const route = routes.find(r => r.id === id);
+        if (!route) return;
+        // Abrir modal simples com mapa
+        const modalMap = `
+            <div class="modal-overlay" id="viewMapOverlay">
+                <div class="modal-container" style="max-width:700px">
+                    <h3>${escapeHtml(route.name)} - ${route.distance} km</h3>
+                    <div class="map-container" id="singleMap" style="height:300px"></div>
+                    <button class="btn-neon" id="closeViewMap">Fechar</button>
+                </div>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', modalMap);
+        const overlay = document.getElementById('viewMapOverlay');
+        overlay.classList.add('active');
+        const mapDiv = document.getElementById('singleMap');
+        const map = L.map(mapDiv).setView([route.lat, route.lng], 14);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png').addTo(map);
+        L.marker([route.lat, route.lng]).addTo(map).bindPopup(route.name).openPopup();
+        document.getElementById('closeViewMap').onclick = () => overlay.remove();
+    }
+    
+    function uploadAvatar() {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/*';
+        input.onchange = (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    currentUser.avatar = ev.target.result;
+                    saveUser();
+                    renderProfile();
+                };
+                reader.readAsDataURL(file);
+            }
+        };
+        input.click();
+    }
+    
+    function renderChart() {
+        const ctx = document.getElementById('performanceChart')?.getContext('2d');
+        if (!ctx) return;
+        if (chartInstance) chartInstance.destroy();
+        // Dados mensais simulados (futuramente poderia ser baseado nas rotas)
+        const months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'];
+        const kmData = [42, 58, 73, 91, 112, currentUser.stats.totalKm % 130 || 87];
+        chartInstance = new Chart(ctx, {
+            type: 'bar',
+            data: { labels: months, datasets: [{ label: 'Km percorridos', data: kmData, backgroundColor: '#09e331', borderRadius: 8 }] },
+            options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { labels: { color: 'white' } } } }
+        });
+    }
+    
+    function escapeHtml(str) { return str.replace(/[&<>]/g, function(m){if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
+    
+    function init() {
+        loadData();
+        renderProfile();
+        // Re-render ao redimensionar (opcional)
+        window.addEventListener('resize', () => { if(chartInstance) chartInstance.resize(); });
+    }
+    
+    return { init };
+})();
