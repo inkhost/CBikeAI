@@ -63,7 +63,7 @@ body {
     width: 100%;
 }
 
-/* ===== HEADER E NAVEGAÇÃO ===== */
+/* ===== HEADER COM LOGO CENTRALIZADO E IDIOMA NO CANTO ===== */
 header {
     background-color: var(--background);
     padding: 15px 5%;
@@ -74,14 +74,15 @@ header {
     box-shadow: 0 4px 12px var(--shadow-color);
     backdrop-filter: blur(8px);
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
 }
 
 .logo {
-    flex-shrink: 0;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .logo img {
@@ -95,12 +96,81 @@ header {
     filter: drop-shadow(0 0 10px var(--shadow-neon));
 }
 
+/* Seletor de idioma no canto superior direito */
+.language-selector {
+    position: absolute;
+    top: 20px;
+    right: 5%;
+    z-index: 1001;
+}
+
+.lang-btn {
+    background: transparent;
+    border: 1px solid var(--neon-green);
+    border-radius: 30px;
+    padding: 6px 12px;
+    color: var(--neon-green);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.lang-btn i {
+    font-size: 1rem;
+}
+
+.lang-btn:hover {
+    background: var(--neon-green);
+    color: black;
+}
+
+.lang-dropdown {
+    position: absolute;
+    top: 45px;
+    right: 0;
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--neon-green);
+    border-radius: 12px;
+    padding: 8px 0;
+    min-width: 140px;
+    z-index: 1000;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+.language-selector.active .lang-dropdown {
+    display: flex;
+}
+
+.lang-option {
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+}
+
+.lang-option:hover {
+    background: rgba(9, 227, 49, 0.2);
+    color: var(--neon-green);
+}
+
+/* Navegação centralizada abaixo do logo */
 nav {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: clamp(15px, 3vw, 30px);
     flex-wrap: wrap;
+    margin-top: 20px;
+    width: 100%;
 }
 
 nav a {
@@ -424,67 +494,53 @@ footer {
 /* ===== RESPONSIVIDADE ===== */
 @media (max-width: 768px) {
     header {
-        flex-direction: column;
-        gap: 15px;
-        padding: 15px 5%;
+        padding: 15px 4%;
     }
-    
-    .logo {
-        margin-bottom: 10px;
+    .language-selector {
+        top: 15px;
+        right: 4%;
     }
-    
     nav {
+        margin-top: 15px;
         gap: 10px;
-        width: 100%;
-        justify-content: center;
     }
-    
     nav a {
         font-size: 14px;
         padding: 6px 10px;
     }
-    
     .hero-buttons {
         flex-direction: column;
         align-items: center;
         width: 100%;
     }
-    
     .btn-primary,
     .btn-secondary {
         width: 100%;
         max-width: 280px;
     }
-    
     .features-grid {
         grid-template-columns: 1fr;
         gap: 20px;
     }
-    
     .footer-content {
         grid-template-columns: 1fr;
         gap: 30px;
         text-align: center;
     }
-    
     .footer-bottom {
         flex-direction: column;
         gap: 20px;
         text-align: center;
     }
-    
     .footer-section ul li i {
         margin-right: 8px;
     }
-    
     .hero-image {
         max-width: 90%;
     }
-    
     .feature-image {
         max-width: 300px;
     }
-    
     .card-image {
         height: 180px;
     }
@@ -494,69 +550,63 @@ footer {
     body {
         font-size: 14px;
     }
-    
     header {
         padding: 12px 4%;
     }
-    
+    .language-selector {
+        top: 10px;
+        right: 4%;
+    }
+    .lang-btn {
+        padding: 4px 10px;
+        font-size: 12px;
+    }
     .logo img {
         width: 100px;
     }
-    
     nav {
+        margin-top: 10px;
         gap: 8px;
     }
-    
     nav a {
         font-size: 12px;
         padding: 5px 8px;
     }
-    
     .hero {
         padding: 30px 4%;
     }
-    
     .hero h1 {
         font-size: 1.8rem;
     }
-    
     .hero p {
         font-size: 0.9rem;
     }
-    
     .btn-primary,
     .btn-secondary {
         padding: 12px 20px;
         font-size: 0.9rem;
         min-width: unset;
     }
-    
     .footer-content {
         padding: 0 15px 30px;
     }
-    
     .footer-bottom {
         padding-left: 15px;
         padding-right: 15px;
     }
-    
     .hero-image {
         max-width: 95%;
         margin: 20px auto;
     }
-    
     .feature-image {
         max-width: 250px;
     }
-    
     .card-image {
         height: 150px;
     }
-    
     .small-image {
         max-width: 60px;
     }
-    
     .feature-card {
         padding: 20px 15px;
     }
@@ -567,19 +617,15 @@ footer {
         font-size: 11px;
         padding: 4px 6px;
     }
-    
     .hero h1 {
         font-size: 1.6rem;
     }
-    
     .hero p {
         font-size: 0.85rem;
     }
-    
     .feature-image {
         max-width: 220px;
     }
-    
     .card-image {
         height: 130px;
     }
@@ -599,12 +645,10 @@ footer {
     .feature-image:hover {
         transform: none;
     }
-    
     .btn-primary:active,
     .btn-secondary:active {
         transform: scale(0.98);
     }
-    
     .feature-image:active {
         transform: scale(0.98);
     }
@@ -761,7 +805,6 @@ footer {
     z-index: 2;
 }
 
-/* Avatar com foto real */
 .author-avatar {
     width: 70px;
     height: 70px;
@@ -779,7 +822,6 @@ footer {
     border-color: var(--neon-green-hover);
 }
 
-/* Placeholder para quando não há foto (fallback) */
 .avatar-placeholder {
     width: 70px;
     height: 70px;
@@ -827,7 +869,7 @@ footer {
     width: fit-content;
 }
 
-/* ===== ANIMAÇÕES PARA DEPOIMENTOS ===== */
+/* Animações e efeitos */
 .testimonial-card {
     animation: fadeInUp 0.6s ease forwards;
     opacity: 0;
@@ -855,7 +897,6 @@ footer {
     }
 }
 
-/* Efeito de brilho sutil no hover */
 .testimonial-card::after {
     content: '';
     position: absolute;
@@ -877,7 +918,6 @@ footer {
     left: 100%;
 }
 
-/* ===== INDICADOR VISUAL DE DESTAQUE ===== */
 .testimonial-card::before {
     content: '';
     position: absolute;
@@ -896,7 +936,6 @@ footer {
     transform: scaleX(1);
 }
 
-/* ===== BADGE DE VERIFICAÇÃO PARA FOTOS REAIS ===== */
 .verified-badge {
     position: absolute;
     bottom: 2px;
@@ -924,12 +963,11 @@ footer {
     display: inline-block;
 }
 
-/* ===== RESPONSIVIDADE PARA DEPOIMENTOS ===== */
+/* Responsividade dos depoimentos */
 @media (max-width: 1200px) {
     .testimonials-grid {
         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
         gap: 25px;
-        max-width: 1200px;
     }
 }
 
@@ -938,11 +976,9 @@ footer {
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 20px;
     }
-    
     .testimonial-card {
         padding: 25px 20px;
     }
-    
     .author-avatar,
     .avatar-placeholder {
         width: 65px;
@@ -954,42 +990,34 @@ footer {
     .testimonials-section {
         padding: 50px 4%;
     }
-    
     .testimonials-grid {
         grid-template-columns: 1fr;
         gap: 20px;
         max-width: 600px;
     }
-    
     .testimonial-card {
         padding: 25px 20px;
     }
-    
     .testimonial-card::before {
         font-size: 3rem;
         top: 5px;
         left: 15px;
     }
-    
     .author-avatar,
     .avatar-placeholder {
         width: 60px;
         height: 60px;
     }
-    
     .author-info strong {
         font-size: 1.1rem;
     }
-    
     .author-info span {
         font-size: 0.9rem;
     }
-    
     .verified-badge {
         width: 18px;
         height: 18px;
     }
-    
     .verified-badge::after {
         font-size: 10px;
     }
@@ -999,33 +1027,27 @@ footer {
     .testimonials-section {
         padding: 40px 4%;
     }
-    
     .testimonial-card {
         padding: 20px 15px;
     }
-    
     .testimonial-author {
         flex-direction: column;
         text-align: center;
         gap: 12px;
     }
-    
     .author-info {
         text-align: center;
         align-items: center;
     }
-    
     .author-avatar,
     .avatar-placeholder {
         width: 55px;
         height: 55px;
     }
-    
     .testimonial-content p {
         font-size: 0.95rem;
         line-height: 1.6;
     }
-    
     .author-info span {
         text-align: center;
     }
@@ -1035,55 +1057,46 @@ footer {
     .testimonials-grid {
         grid-template-columns: 1fr;
     }
-    
     .testimonial-card {
         padding: 18px 12px;
     }
-    
     .testimonial-content p {
         font-size: 0.9rem;
     }
-    
     .author-avatar,
     .avatar-placeholder {
         width: 50px;
         height: 50px;
     }
-    
     .author-info strong {
         font-size: 1rem;
     }
 }
 
-/* ===== MELHORIAS DE ACESSIBILIDADE ===== */
+/* Acessibilidade */
 @media (prefers-reduced-motion: reduce) {
     .testimonial-card {
         animation: none;
         opacity: 1;
         transform: none;
     }
-    
     .testimonial-card:hover {
         transform: none;
     }
-    
     .testimonial-card::after {
         display: none;
     }
-    
     .author-avatar,
     .avatar-placeholder {
         transition: none;
     }
 }
 
-/* Foco para acessibilidade */
 .testimonial-card:focus-within {
     outline: 2px solid var(--neon-green);
     outline-offset: 2px;
 }
 
-/* Loading state para imagens */
 .author-avatar {
     background: var(--input-bg);
 }
@@ -1092,7 +1105,6 @@ footer {
     background: linear-gradient(135deg, var(--neon-green), var(--neon-green-hover));
 }
 
-/* Efeito de skeleton loading */
 .author-avatar.loading {
     background: linear-gradient(90deg, #2a2a2a 25%, #333 50%, #2a2a2a 75%);
     background-size: 200% 100%;
@@ -1106,5 +1118,4 @@ footer {
     100% {
         background-position: -200% 0;
     }
-}
-
+    }
