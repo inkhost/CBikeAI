@@ -1,7 +1,7 @@
 // login.js - Sistema de autenticação e login para CBikeAI
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Elementos do DOM
+    // ===== ELEMENTOS DO DOM =====
     const loginForm = document.getElementById('login-form');
     const emailInput = document.getElementById('login-email');
     const passwordInput = document.getElementById('login-password');
@@ -12,25 +12,34 @@ document.addEventListener('DOMContentLoaded', function() {
     const emailError = document.getElementById('login-email-error');
     const passwordError = document.getElementById('login-password-error');
     
+    // Botões sociais
+    const googleLoginBtn = document.getElementById('google-login');
+    const stravaLoginBtn = document.getElementById('strava-login');
+    
     // Elementos de feedback
     const successToast = document.getElementById('success-toast');
     const errorToast = document.getElementById('error-toast');
 
-    // Estado da aplicação
+    // ===== ESTADO =====
     let isLoading = false;
 
-    /**
-     * Inicializa o sistema de login
-     */
+    // ===== INICIALIZAÇÃO =====
     function initLoginSystem() {
         loadSavedCredentials();
         setupEventListeners();
         setupAccessibility();
+        setupSocialButtons();
+        checkAutoLogin();
     }
 
-    /**
-     * Carrega credenciais salvas se "Lembrar-me" estava marcado
-     */
+    // ===== AUTO LOGIN =====
+    function checkAutoLogin() {
+        if (window.CBikeAuth?.isAuthenticated()) {
+            window.location.href = '../pages/perfil.html';
+        }
+    }
+
+    // ===== CARREGAR CREDENCIAIS SALVAS =====
     function loadSavedCredentials() {
         const savedEmail = localStorage.getItem('savedEmail');
         const rememberMe = localStorage.getItem('rememberMe') === 'true';
@@ -44,13 +53,24 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    /**
-     * Configura todos os event listeners
-     */
+    // ===== EVENT LISTENERS =====
     function setupEventListeners() {
         // Validação em tempo real
         emailInput.addEventListener('blur', () => validateEmail());
         passwordInput.addEventListener('blur', () => validatePassword());
+        
+        // Validação ao digitar (feedback imediato)
+        emailInput.addEventListener('input', () => {
+            if (emailInput.classList.contains('error') || emailInput.classList.contains('success')) {
+                validateEmail();
+            }
+        });
+        
+        passwordInput.addEventListener('input', () => {
+            if (passwordInput.classList.contains('error') || passwordInput.classList.contains('success')) {
+                validatePassword();
+            }
+        });
         
         // Submit do formulário
         loginForm.addEventListener('submit', handleFormSubmit);
@@ -65,15 +85,24 @@ document.addEventListener('DOMContentLoaded', function() {
         loginForm.addEventListener('submit', preventMultipleSubmit);
     }
 
-    /**
-     * Configura melhorias de acessibilidade
-     */
+    // ===== BOTÕES SOCIAIS =====
+    function setupSocialButtons() {
+        googleLoginBtn.addEventListener('click', function() {
+            showErrorToast('Login com Google em breve!');
+            logLoginEvent('google', false);
+        });
+        
+        stravaLoginBtn.addEventListener('click', function() {
+            showErrorToast('Login com Strava em breve!');
+            logLoginEvent('strava', false);
+        });
+    }
+
+    // ===== ACESSIBILIDADE =====
     function setupAccessibility() {
-        // Labels como aria-describedby para errors
         emailInput.setAttribute('aria-describedby', 'login-email-error');
         passwordInput.setAttribute('aria-describedby', 'login-password-error');
         
-        // Melhorar feedback para screen readers
         emailInput.addEventListener('invalid', () => {
             emailInput.setAttribute('aria-invalid', 'true');
         });
@@ -85,21 +114,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    /**
-     * Valida o campo de e-mail
-     */
+    // ===== VALIDAÇÕES =====
     function validateEmail() {
         const email = emailInput.value.trim();
         const formGroup = emailInput.closest('.form-group');
-        
-        // Limpar estados anteriores
         clearFieldState(formGroup);
         
         if (!email) {
             showFieldError(emailError, 'Por favor, informe seu e-mail.', formGroup);
             return false;
         }
-        
         if (!isValidEmail(email)) {
             showFieldError(emailError, 'Por favor, informe um e-mail válido.', formGroup);
             return false;
@@ -109,20 +133,15 @@ document.addEventListener('DOMContentLoaded', function() {
         return true;
     }
 
-    /**
-     * Valida o campo de senha
-     */
     function validatePassword() {
         const password = passwordInput.value;
         const formGroup = passwordInput.closest('.form-group');
-        
         clearFieldState(formGroup);
         
         if (!password) {
             showFieldError(passwordError, 'Por favor, informe sua senha.', formGroup);
             return false;
         }
-        
         if (password.length < 6) {
             showFieldError(passwordError, 'A senha deve ter pelo menos 6 caracteres.', formGroup);
             return false;
@@ -132,35 +151,23 @@ document.addEventListener('DOMContentLoaded', function() {
         return true;
     }
 
-    /**
-     * Verifica se o e-mail é válido
-     */
     function isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     }
 
-    /**
-     * Mostrar/ocultar senha
-     */
+    // ===== MOSTRAR/OCULTAR SENHA =====
     function togglePasswordVisibility() {
         const isPassword = passwordInput.type === 'password';
         passwordInput.type = isPassword ? 'text' : 'password';
         
         const icon = togglePasswordBtn.querySelector('i');
         icon.className = isPassword ? 'fas fa-eye-slash' : 'fas fa-eye';
-        
-        // Feedback para screen readers
-        togglePasswordBtn.setAttribute('aria-label', 
-            isPassword ? 'Ocultar senha' : 'Mostrar senha');
+        togglePasswordBtn.setAttribute('aria-label', isPassword ? 'Ocultar senha' : 'Mostrar senha');
     }
 
-    /**
-     * Manipula o envio do formulário
-     */
+    // ===== SUBMIT =====
     function handleFormSubmit(e) {
         e.preventDefault();
-        
         if (isLoading) return;
         
         const isEmailValid = validateEmail();
@@ -174,9 +181,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    /**
-     * Processa o login do usuário
-     */
+    // ===== PROCESSAR LOGIN =====
     function processLogin() {
         isLoading = true;
         setLoadingState(true);
@@ -187,8 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
             rememberMe: rememberMeCheckbox.checked
         };
         
-        // Simular chamada à API (substituir por implementação real)
-        simulateAPILogin(loginData)
+        window.CBikeAuth?.signIn(loginData.email, loginData.password)
             .then(handleLoginSuccess)
             .catch(handleLoginError)
             .finally(() => {
@@ -197,104 +201,68 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
 
-    /**
-     * Simula login via API (substituir por implementação real)
-     */
-    function simulateAPILogin(loginData) {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                // Simulação: credenciais válidas se senha tem pelo menos 6 caracteres
-                if (loginData.password.length >= 6) {
-                    resolve({
-                        success: true,
-                        user: {
-                            name: loginData.email.split('@')[0],
-                            email: loginData.email,
-                            avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(loginData.email.split('@')[0])}&background=09e331&color=000&size=200`
-                        },
-                        token: 'simulated_jwt_token_' + Date.now()
-                    });
-                } else {
-                    reject({
-                        success: false,
-                        message: 'Credenciais inválidas. Verifique seu e-mail e senha.'
-                    });
-                }
-            }, 1500);
-        });
-    }
-
-    /**
-     * Manipula login bem-sucedido
-     */
+    // ===== SUCESSO =====
     function handleLoginSuccess(response) {
-        // Salvar dados do usuário
-        saveUserData(response.user, response.token);
-        
-        // Salvar credenciais se "Lembrar-me" estiver marcado
+        const userData = response?.user;
+        const displayName = userData?.user_metadata?.full_name || userData?.user_metadata?.name || userData?.email || 'Usuário CBikeAI';
+
         if (rememberMeCheckbox.checked) {
-            localStorage.setItem('savedEmail', response.user.email);
+            localStorage.setItem('savedEmail', userData.email);
             localStorage.setItem('rememberMe', 'true');
         } else {
             localStorage.removeItem('savedEmail');
             localStorage.removeItem('rememberMe');
         }
         
-        // Registrar evento de analytics
         logLoginEvent('email', true);
-        
-        // Mostrar feedback e redirecionar
-        showSuccessToast('Login realizado com sucesso!');
+        showSuccessToast(`Bem-vindo de volta, ${displayName}! 🚴‍♂️`);
+        updateNavigationAfterLogin();
         
         setTimeout(() => {
             window.location.href = '../pages/perfil.html';
         }, 1500);
     }
 
-    /**
-     * Manipula erro no login
-     */
+    // ===== ERRO =====
     function handleLoginError(error) {
         logLoginEvent('email', false);
         showErrorToast(error.message || 'Erro ao fazer login. Tente novamente.');
         
-        // Destacar campos com erro
         const formGroups = document.querySelectorAll('.form-group');
         formGroups.forEach(group => group.classList.add('error'));
     }
 
-    /**
-     * Salva dados do usuário no localStorage
-     */
+    // ===== SALVAR DADOS =====
     function saveUserData(user, token) {
         localStorage.setItem('isLoggedIn', 'true');
-        localStorage.setItem('userName', user.name);
-        localStorage.setItem('userEmail', user.email);
-        localStorage.setItem('userAvatar', user.avatar);
-        localStorage.setItem('authToken', token);
+        localStorage.setItem('userName', user?.name || user?.email || 'Usuário CBikeAI');
+        localStorage.setItem('userEmail', user?.email || '');
+        localStorage.setItem('userAvatar', user?.avatar || '');
+        localStorage.setItem('authToken', token || '');
         localStorage.setItem('loginMethod', 'email');
         localStorage.setItem('memberSince', new Date().toLocaleDateString('pt-BR'));
+        localStorage.setItem('lastLogin', new Date().toISOString());
     }
 
-    /**
-     * Gerencia shortcuts de teclado
-     */
+    // ===== ATUALIZAR NAVEGAÇÃO =====
+    function updateNavigationAfterLogin() {
+        const loginLink = document.getElementById('login-link');
+        const profileLink = document.getElementById('profile-link');
+        const logoutBtn = document.getElementById('logout-btn');
+        
+        if (loginLink) loginLink.style.display = 'none';
+        if (profileLink) profileLink.style.display = 'inline';
+        if (logoutBtn) logoutBtn.style.display = 'inline';
+    }
+
+    // ===== SHORTCUTS =====
     function handleKeyboardShortcuts(e) {
-        // Ctrl + Enter para submit
         if (e.ctrlKey && e.key === 'Enter') {
             e.preventDefault();
             loginForm.dispatchEvent(new Event('submit'));
         }
-        
-        // Tab navigation personalizada
-        if (e.key === 'Tab' && e.shiftKey) {
-            // Comportamento padrão já é suficiente
-        }
     }
 
-    /**
-     * Previne múltiplos envios do formulário
-     */
     function preventMultipleSubmit(e) {
         if (isLoading) {
             e.preventDefault();
@@ -302,9 +270,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    /**
-     * Define estado de carregamento
-     */
+    // ===== ESTADO DE CARREGAMENTO =====
     function setLoadingState(loading) {
         const submitBtn = loginForm.querySelector('button[type="submit"]');
         const btnText = submitBtn.querySelector('.btn-text');
@@ -321,19 +287,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    /**
-     * Utilitários para mostrar/ocultar erros
-     */
+    // ===== UTILITÁRIOS DE UI =====
     function showFieldError(errorElement, message, formGroup) {
         errorElement.textContent = message;
         errorElement.style.display = 'block';
-        formGroup.classList.add('error');
+        if (formGroup) formGroup.classList.add('error');
     }
 
     function clearFieldState(formGroup) {
-        const errorElement = formGroup.querySelector('.error-message');
-        errorElement.style.display = 'none';
-        formGroup.classList.remove('error', 'success');
+        const errorElement = formGroup?.querySelector('.error-message');
+        if (errorElement) errorElement.style.display = 'none';
+        if (formGroup) formGroup.classList.remove('error', 'success');
     }
 
     function showFieldSuccess(formGroup) {
@@ -341,9 +305,6 @@ document.addEventListener('DOMContentLoaded', function() {
         formGroup.classList.add('success');
     }
 
-    /**
-     * Mostra mensagens toast
-     */
     function showSuccessToast(message) {
         showToast(successToast, message);
     }
@@ -355,10 +316,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function showToast(toastElement, message) {
         const toastText = toastElement.querySelector('.toast-text');
         toastText.textContent = message;
-        
         toastElement.classList.add('show');
         
-        // Anunciar para screen readers
         announceToScreenReader(message);
         
         setTimeout(() => {
@@ -366,9 +325,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     }
 
-    /**
-     * Anuncia mensagens para screen readers
-     */
     function announceToScreenReader(message) {
         const announcer = document.getElementById('aria-announcer') || createAriaAnnouncer();
         announcer.textContent = message;
@@ -384,22 +340,14 @@ document.addEventListener('DOMContentLoaded', function() {
         return announcer;
     }
 
-    /**
-     * Rola para o primeiro erro
-     */
     function scrollToFirstError() {
-        const firstError = document.querySelector('.error-message[style="display: block;"]');
+        const firstError = document.querySelector('.error-message[style*="display: block"]');
         if (firstError) {
-            firstError.scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'center' 
-            });
+            firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
     }
 
-    /**
-     * Registra eventos de login para analytics
-     */
+    // ===== ANALYTICS =====
     function logLoginEvent(method, success) {
         if (typeof gtag !== 'undefined') {
             gtag('event', 'login', {
@@ -407,16 +355,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 'success': success
             });
         }
-        
-        // Log para debug (remover em produção)
         console.log(`Login attempt: ${method}, Success: ${success}`);
     }
 
-    // Inicializar o sistema
+    // ===== INICIALIZAR =====
     initLoginSystem();
 });
 
-// CSS para screen readers
+// ===== CSS PARA SCREEN READERS =====
 const style = document.createElement('style');
 style.textContent = `
     .sr-only {
