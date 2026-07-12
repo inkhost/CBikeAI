@@ -356,21 +356,27 @@
         new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>
 
+    <script src="../js/auth.js"></script>
     <script>
-        // Verificar se o usuário está logado
-        const user = localStorage.getItem('cbikeai_user');
-        if (user) {
-            document.getElementById('login-link').style.display = 'none';
-            document.getElementById('profile-link').style.display = 'inline';
-            document.getElementById('logout-btn').style.display = 'inline';
-        }
+        document.addEventListener('DOMContentLoaded', () => {
+            const applyAuthState = () => {
+                const isLoggedIn = Boolean(localStorage.getItem('isLoggedIn') === 'true' || localStorage.getItem('cbikeai_user'));
+                document.getElementById('login-link').style.display = isLoggedIn ? 'none' : 'inline';
+                document.getElementById('profile-link').style.display = isLoggedIn ? 'inline' : 'none';
+                document.getElementById('logout-btn').style.display = isLoggedIn ? 'inline' : 'none';
+            };
 
-        // Adicionar evento de logout
-        document.getElementById('logout-btn').addEventListener('click', function(e) {
-            e.preventDefault();
-            localStorage.removeItem('cbikeai_user');
-            localStorage.removeItem('cbikeai_token');
-            window.location.href = 'index.html';
+            applyAuthState();
+            document.getElementById('logout-btn').addEventListener('click', async function(e) {
+                e.preventDefault();
+                if (window.CBikeAuth?.signOut) {
+                    await window.CBikeAuth.signOut();
+                }
+                window.location.href = '../index.html';
+            });
+
+            window.addEventListener('storage', applyAuthState);
+            document.addEventListener('auth:updated', applyAuthState);
         });
     </script>
 </body>

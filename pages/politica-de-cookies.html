@@ -235,19 +235,27 @@
     <!-- JavaScript externo para gerenciamento de cookies -->
     <script src="../js/politica-de-cookies.js"></script>
 
+    <script src="../js/auth.js"></script>
     <script>
-        // Verificar login (igual ao politica-privacidade)
-        const user = localStorage.getItem('cbikeai_user');
-        if (user) {
-            document.getElementById('login-link').style.display = 'none';
-            document.getElementById('profile-link').style.display = 'inline';
-            document.getElementById('logout-btn').style.display = 'inline';
-        }
-        document.getElementById('logout-btn')?.addEventListener('click', function(e) {
-            e.preventDefault();
-            localStorage.removeItem('cbikeai_user');
-            localStorage.removeItem('cbikeai_token');
-            window.location.href = '../index.html';
+        document.addEventListener('DOMContentLoaded', () => {
+            const applyAuthState = () => {
+                const isLoggedIn = Boolean(localStorage.getItem('isLoggedIn') === 'true' || localStorage.getItem('cbikeai_user'));
+                document.getElementById('login-link').style.display = isLoggedIn ? 'none' : 'inline';
+                document.getElementById('profile-link').style.display = isLoggedIn ? 'inline' : 'none';
+                document.getElementById('logout-btn').style.display = isLoggedIn ? 'inline' : 'none';
+            };
+
+            applyAuthState();
+            document.getElementById('logout-btn')?.addEventListener('click', async function(e) {
+                e.preventDefault();
+                if (window.CBikeAuth?.signOut) {
+                    await window.CBikeAuth.signOut();
+                }
+                window.location.href = '../index.html';
+            });
+
+            window.addEventListener('storage', applyAuthState);
+            document.addEventListener('auth:updated', applyAuthState);
         });
 
         // Botão voltar ao topo

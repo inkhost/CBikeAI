@@ -21,7 +21,6 @@
     <link rel="preload" href="../css/perfil.css" as="style">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/perfil.css">
-    <!-- Google Analytics (será ativado pelo consentimento, mas mantido) -->
 </head>
 <body>
     <header role="banner">
@@ -33,6 +32,7 @@
             <a href="../pages/quemsomos.html">Quem Somos</a>
             <a href="../pages/contato.html">Contato</a>
             <a href="../pages/perfil.html" aria-current="page">Meu Perfil</a>
+            <a href="#" id="logout-header" style="color: #ff4d4d;">Sair</a>
         </nav>
     </header>
 
@@ -88,10 +88,10 @@
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="../js/auth.js"></script>
     <!-- Módulo de perfil -->
     <script src="../js/perfil.js"></script>
     <script>
-        // Inicializar a página de perfil
         document.addEventListener('DOMContentLoaded', () => {
             if (window.ProfileManager) {
                 window.ProfileManager.init();

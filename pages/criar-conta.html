@@ -44,57 +44,143 @@
     <main class="main-content">
         <section class="auth-section">
             <div class="auth-container">
+                <!-- ===== PROVA SOCIAL ===== -->
+                <div class="social-proof">
+                    <div class="social-proof-item">
+                        <i class="fas fa-users"></i>
+                        <span><strong>+500</strong> ciclistas cadastrados</span>
+                    </div>
+                    <div class="social-proof-divider"></div>
+                    <div class="social-proof-item">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <span><strong>27</strong> estados brasileiros</span>
+                    </div>
+                    <div class="social-proof-divider"></div>
+                    <div class="social-proof-item">
+                        <i class="fas fa-star"></i>
+                        <span><strong>4.9</strong> de avaliação</span>
+                    </div>
+                </div>
+
                 <div class="auth-header">
                     <h1 class="auth-title">Criar sua conta</h1>
-                    <p class="auth-subtitle">Junte-se à comunidade CBikeAI e aproveite todos os benefícios.</p>
+                    <p class="auth-subtitle">Junte-se à comunidade CBikeAI e revolucione suas pedaladas.</p>
+                </div>
+
+                <!-- ===== CADASTRO SOCIAL ===== -->
+                <div class="social-login">
+                    <button type="button" class="btn-social btn-google" id="google-signup">
+                        <i class="fab fa-google"></i>
+                        <span>Continuar com Google</span>
+                    </button>
+                    <button type="button" class="btn-social btn-strava" id="strava-signup">
+                        <i class="fab fa-strava"></i>
+                        <span>Continuar com Strava</span>
+                    </button>
+                </div>
+
+                <div class="divider">
+                    <span>ou crie com e-mail</span>
                 </div>
 
                 <form id="signup-form" class="auth-form" novalidate>
+                    <!-- ===== NOME COMPLETO ===== -->
                     <div class="form-group">
                         <label for="signup-name" class="form-label">
                             <i class="fas fa-user"></i>
-                            Nome completo
+                            Nome completo <span class="required">*</span>
                         </label>
-                        <input type="text" id="signup-name" name="name" class="form-input" placeholder="Digite seu nome completo" required autocomplete="name">
+                        <input type="text" id="signup-name" name="name" class="form-input" 
+                               placeholder="Digite seu nome completo" required autocomplete="name">
                         <span class="error-message" id="signup-name-error"></span>
                     </div>
 
+                    <!-- ===== E-MAIL ===== -->
                     <div class="form-group">
                         <label for="signup-email" class="form-label">
                             <i class="fas fa-envelope"></i>
-                            E-mail
+                            E-mail <span class="required">*</span>
                         </label>
-                        <input type="email" id="signup-email" name="email" class="form-input" placeholder="seu@email.com" required autocomplete="email">
+                        <input type="email" id="signup-email" name="email" class="form-input" 
+                               placeholder="seu@email.com" required autocomplete="email">
                         <span class="error-message" id="signup-email-error"></span>
+                        <!-- Mensagem LGPD -->
+                        <small class="form-help">
+                            <i class="fas fa-shield-alt"></i>
+                            Seus dados estão seguros. Em conformidade com a LGPD.
+                        </small>
                     </div>
 
+                    <!-- ===== TELEFONE/WHATSAPP ===== -->
+                    <div class="form-group">
+                        <label for="signup-phone" class="form-label">
+                            <i class="fab fa-whatsapp"></i>
+                            WhatsApp <span class="required">*</span>
+                        </label>
+                        <div class="phone-wrapper">
+                            <span class="phone-prefix">+55</span>
+                            <input type="tel" id="signup-phone" name="phone" class="form-input phone-input" 
+                                   placeholder="(11) 99999-9999" required autocomplete="tel">
+                        </div>
+                        <span class="error-message" id="signup-phone-error"></span>
+                        <small class="form-help">
+                            <i class="fas fa-info-circle"></i>
+                            Usaremos seu WhatsApp para enviar novidades e suporte rápido.
+                        </small>
+                    </div>
+
+                    <!-- ===== SENHA ===== -->
                     <div class="form-group">
                         <label for="signup-password" class="form-label">
                             <i class="fas fa-lock"></i>
-                            Senha
+                            Senha <span class="required">*</span>
                         </label>
                         <div class="password-wrapper">
-                            <input type="password" id="signup-password" name="password" class="form-input" placeholder="Crie uma senha segura" required autocomplete="new-password">
+                            <input type="password" id="signup-password" name="password" class="form-input" 
+                                   placeholder="Crie uma senha segura" required autocomplete="new-password">
                             <button type="button" class="toggle-password" id="toggle-signup-password" aria-label="Mostrar senha">
                                 <i class="fas fa-eye"></i>
                             </button>
                         </div>
                         <span class="error-message" id="signup-password-error"></span>
+                        
+                        <!-- ===== MEDIDOR DE FORÇA DA SENHA ===== -->
                         <div class="password-strength">
                             <div class="strength-bar">
                                 <div class="strength-fill" id="password-strength-fill"></div>
                             </div>
                             <span class="strength-text" id="password-strength-text">Força da senha</span>
                         </div>
+                        
+                        <!-- ===== CRITÉRIOS DA SENHA ===== -->
+                        <ul class="password-criteria" id="password-criteria">
+                            <li class="criteria-item" data-rule="length">
+                                <i class="fas fa-circle"></i> Mínimo 8 caracteres
+                            </li>
+                            <li class="criteria-item" data-rule="lowercase">
+                                <i class="fas fa-circle"></i> Letra minúscula
+                            </li>
+                            <li class="criteria-item" data-rule="uppercase">
+                                <i class="fas fa-circle"></i> Letra maiúscula
+                            </li>
+                            <li class="criteria-item" data-rule="number">
+                                <i class="fas fa-circle"></i> Número
+                            </li>
+                            <li class="criteria-item" data-rule="special">
+                                <i class="fas fa-circle"></i> Caractere especial (!@#$%...)
+                            </li>
+                        </ul>
                     </div>
 
+                    <!-- ===== CONFIRMAR SENHA ===== -->
                     <div class="form-group">
                         <label for="signup-confirm-password" class="form-label">
                             <i class="fas fa-lock"></i>
-                            Confirmar senha
+                            Confirmar senha <span class="required">*</span>
                         </label>
                         <div class="password-wrapper">
-                            <input type="password" id="signup-confirm-password" name="confirm-password" class="form-input" placeholder="Digite a senha novamente" required autocomplete="new-password">
+                            <input type="password" id="signup-confirm-password" name="confirm-password" class="form-input" 
+                                   placeholder="Digite a senha novamente" required autocomplete="new-password">
                             <button type="button" class="toggle-password" id="toggle-confirm-password" aria-label="Mostrar senha">
                                 <i class="fas fa-eye"></i>
                             </button>
@@ -102,15 +188,17 @@
                         <span class="error-message" id="signup-confirm-password-error"></span>
                     </div>
 
+                    <!-- ===== TERMOS ===== -->
                     <div class="form-options">
                         <label class="checkbox-container">
-                            <input type="checkbox" id="accept-terms" name="accept-terms" required>
+                            <input type="checkbox" id="accept-terms" name="accept-terms">
                             <span class="checkmark"></span>
                             <span class="terms-text">
                                 Concordo com os <a href="../pages/termos-servico.html" target="_blank" class="link">Termos de Serviço</a> 
                                 e <a href="../pages/politica-privacidade.html" target="_blank" class="link">Política de Privacidade</a>
                             </span>
                         </label>
+                        <span class="error-message" id="terms-error"></span>
                     </div>
 
                     <button type="submit" class="btn btn-primary btn-full">
@@ -167,13 +255,13 @@
         <div class="footer-bottom">
             <p class="copyright">© 2026 CBikeAI. Todos os direitos reservados.</p>
             <div class="social-media">
-                <a href="https://www.instagram.com/cbikeai" onclick="gtag('event', 'click_social', {'social_network': 'Instagram'});" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no Instagram">
+                <a href="https://www.instagram.com/cbikeai" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no Instagram">
                     <i class="fa-brands fa-instagram"></i>
                 </a>
-                <a href="https://www.x.com/cbikeai" onclick="gtag('event', 'click_social', {'social_network': 'X'});" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no X">
+                <a href="https://www.x.com/cbikeai" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no X">
                     <i class="fa-brands fa-x-twitter"></i>
                 </a>
-                <a href="https://www.facebook.com/cbikeai" onclick="gtag('event', 'click_social', {'social_network': 'Facebook'});" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no Facebook">
+                <a href="https://www.facebook.com/cbikeai" target="_blank" rel="noopener noreferrer" aria-label="Siga-nos no Facebook">
                     <i class="fa-brands fa-facebook-f"></i>
                 </a>
             </div>
@@ -192,6 +280,7 @@
         new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>
 
+    <script src="../js/auth.js"></script>
     <script src="../js/criar-conta.js"></script>
 </body>
 </html>
