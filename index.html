@@ -9,7 +9,7 @@
     <meta property="og:image" content="https://www.cbikeai.com/img/CBikeAILOGO.png">
     <meta property="og:url" content="https://www.cbikeai.com">
     <meta name="twitter:card" content="summary_large_image">
-    <title data-i18n="page_title">CBikeAI - Home</title>
+    <title>CBikeAI - Home</title>
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
@@ -51,59 +51,6 @@
             height: auto;
             transition: transform 0.4s ease, filter 0.4s ease;
         }
-        .language-selector {
-            position: absolute;
-            top: 20px;
-            right: 5%;
-            z-index: 1001;
-        }
-        .lang-btn {
-            background: transparent;
-            border: 1px solid var(--neon-green);
-            border-radius: 30px;
-            padding: 6px 12px;
-            color: var(--neon-green);
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .lang-btn i { font-size: 1rem; }
-        .lang-btn:hover {
-            background: var(--neon-green);
-            color: black;
-        }
-        .lang-dropdown {
-            position: absolute;
-            top: 45px;
-            right: 0;
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--neon-green);
-            border-radius: 12px;
-            padding: 8px 0;
-            min-width: 140px;
-            z-index: 1000;
-            display: none;
-            flex-direction: column;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-        }
-        .language-selector.active .lang-dropdown { display: flex; }
-        .lang-option {
-            padding: 8px 16px;
-            cursor: pointer;
-            transition: background 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: white;
-        }
-        .lang-option:hover {
-            background: rgba(9, 227, 49, 0.2);
-            color: var(--neon-green);
-        }
         nav {
             display: flex;
             justify-content: center;
@@ -144,13 +91,10 @@
         }
         @media (max-width: 768px) {
             header { padding: 15px 4%; }
-            .language-selector { top: 15px; right: 4%; }
             nav { margin-top: 15px; gap: 10px; }
             nav a { font-size: 14px; padding: 6px 10px; }
         }
         @media (max-width: 480px) {
-            .language-selector { top: 10px; right: 4%; }
-            .lang-btn { padding: 4px 10px; font-size: 12px; }
             nav { margin-top: 10px; gap: 8px; }
             nav a { font-size: 12px; padding: 5px 8px; }
         }
@@ -161,41 +105,24 @@
         <div class="logo">
             <img src="img/logotipo-cbikeai.png" alt="Logo CBikeAI">
         </div>
-        <div class="language-selector" id="languageSelector">
-            <button class="lang-btn" id="langToggleBtn">
-                <i class="fas fa-globe"></i> 
-                <span id="currentLangLabel">PT</span>
-            </button>
-            <div class="lang-dropdown">
-                <div class="lang-option" data-lang="pt">
-                    <img src="https://flagcdn.com/br.svg" width="20" alt="Português"> Português
-                </div>
-                <div class="lang-option" data-lang="en">
-                    <img src="https://flagcdn.com/us.svg" width="20" alt="English"> English
-                </div>
-                <div class="lang-option" data-lang="es">
-                    <img src="https://flagcdn.com/es.svg" width="20" alt="Español"> Español
-                </div>
-            </div>
-        </div>
         <nav aria-label="Navegação principal">
-            <a href="index.html" data-i18n="nav_home">Início</a>
-            <a href="pages/quemsomos.html" data-i18n="nav_about">Quem Somos</a>
-            <a href="pages/contato.html" data-i18n="nav_contact">Contato</a>
-            <a href="pages/login.html" id="login-link" data-i18n="nav_login">Login</a>
-            <a href="../pages/perfil.html" id="profile-link" style="display: none;" data-i18n="nav_profile">Meu Perfil</a>
-            <a href="#" id="logout-btn" style="display: none;" data-i18n="nav_logout">Sair</a>
+            <a href="index.html">Início</a>
+            <a href="pages/quemsomos.html">Quem Somos</a>
+            <a href="pages/contato.html">Contato</a>
+            <a href="pages/login.html" id="login-link">Login</a>
+            <a href="../pages/perfil.html" id="profile-link" style="display: none;">Meu Perfil</a>
+            <a href="#" id="logout-btn" style="display: none;">Sair</a>
         </nav>
     </header>
 
     <main class="main-content">
         <section id="home">
             <div class="hero-section">
-                <h1 data-i18n="hero_title">Inovação e tecnologia para suas pedaladas!</h1>
-                <p class="hero-subtitle" data-i18n="hero_subtitle">O farol inteligente para bicicletas que combina IA, GPS e sensores para maior segurança e praticidade.</p>
+                <h1>Inovação e tecnologia para suas pedaladas!</h1>
+                <p class="hero-subtitle">O farol inteligente para bicicletas que combina IA, GPS e sensores para maior segurança e praticidade.</p>
                 <div class="hero-buttons">
-                    <a href="pages/criar-conta.html" class="btn-primary" data-i18n="hero_btn_start">Começar Agora</a>
-                    <a href="#features" class="btn-secondary" data-i18n="hero_btn_more">Saiba Mais</a>
+                    <a href="pages/criar-conta.html" class="btn-primary">Começar Agora</a>
+                    <a href="#features" class="btn-secondary">Saiba Mais</a>
                 </div>
             </div>
 
@@ -205,50 +132,93 @@
                 <img src="img/cbikeai-03.png" alt="Farol CBikeAI T3" loading="lazy">
             </div>
 
+            <!-- ===== SEÇÃO FEATURES COM 9 CARDS ===== -->
             <section id="features" class="features-section">
-                <h2 data-i18n="features_title">Por que escolher o CBikeAI?</h2>
+                <h2>Por que escolher o CBikeAI?</h2>
                 <div class="features-grid">
+                    <!-- Card 1: Inteligência Artificial -->
                     <div class="feature-card">
                         <div class="feature-icon"><i class="fas fa-brain"></i></div>
-                        <h3 data-i18n="feature1_title">Inteligência Artificial</h3>
-                        <p data-i18n="feature1_desc">Nosso sistema de IA adapta automaticamente a iluminação conforme as condições do ambiente e sua velocidade.</p>
+                        <h3>Inteligência Artificial</h3>
+                        <p>Nosso sistema de IA adapta automaticamente a iluminação conforme as condições do ambiente e sua velocidade.</p>
                     </div>
+
+                    <!-- Card 2: GPS Integrado -->
                     <div class="feature-card">
                         <div class="feature-icon"><i class="fas fa-satellite"></i></div>
-                        <h3 data-i18n="feature2_title">GPS Integrado</h3>
-                        <p data-i18n="feature2_desc">Rastreamento em tempo real e rotas inteligentes para suas aventuras sobre duas rodas.</p>
+                        <h3>GPS Integrado</h3>
+                        <p>Rastreamento em tempo real e rotas inteligentes para suas aventuras sobre duas rodas.</p>
                     </div>
+
+                    <!-- Card 3: Segurança Total -->
                     <div class="feature-card">
                         <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
-                        <h3 data-i18n="feature3_title">Segurança Total</h3>
-                        <p data-i18n="feature3_desc">Sensores de proximidade e detecção de veículos para garantir sua segurança nas ruas.</p>
+                        <h3>Segurança Total</h3>
+                        <p>Sensores de proximidade e detecção de veículos para garantir sua segurança nas ruas.</p>
                     </div>
+
+                    <!-- Card 4: Bateria de Longa Duração -->
                     <div class="feature-card">
                         <div class="feature-icon"><i class="fas fa-battery-full"></i></div>
-                        <h3 data-i18n="feature4_title">Bateria de Longa Duração</h3>
-                        <p data-i18n="feature4_desc">Até 15 horas de autonomia no modo econômico e carregamento rápido por USB-C.</p>
+                        <h3>Bateria de Longa Duração</h3>
+                        <p>Até 15 horas de autonomia no modo econômico e carregamento rápido por USB-C.</p>
+                    </div>
+
+                    <!-- Card 5: Monitoramento de Saúde e Fadiga -->
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-heartbeat"></i></div>
+                        <h3>Monitoramento de Saúde</h3>
+                        <p>Alertas de cansaço e batimentos cardíacos em parceria com smartwatches. Pedale com mais consciência sobre seu corpo e evite a fadiga excessiva.</p>
+                    </div>
+
+                    <!-- Card 6: Rotas Inteligentes e Otimização -->
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-route"></i></div>
+                        <h3>Rotas Inteligentes</h3>
+                        <p>Planejamento de rotas seguras com cálculo da autonomia da bateria. A IA sugere os melhores caminhos, poupando energia e evitando áreas de risco.</p>
+                    </div>
+
+                    <!-- Card 7: Integração com Apps e Smartwatches (NOVO) -->
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-sync-alt"></i></div>
+                        <h3>Integração com Apps</h3>
+                        <p>Sincronize com Strava, Garmin e Apple Watch. Todos os dados do seu treino em um só lugar, com total compatibilidade.</p>
+                    </div>
+
+                    <!-- Card 8: Atualizações Contínuas OTA (NOVO) -->
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-cloud-download-alt"></i></div>
+                        <h3>Atualizações Contínuas</h3>
+                        <p>Seu farol evolui com você. Receba melhorias de IA e novas funcionalidades diretamente pelo app, sem fios (OTA).</p>
+                    </div>
+
+                    <!-- Card 9: Comunidade e Gamificação (NOVO) -->
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-users"></i></div>
+                        <h3>Comunidade e Gamificação</h3>
+                        <p>Faça parte de uma comunidade de ciclistas, compare desempenho, participe de rankings e desafios exclusivos.</p>
                     </div>
                 </div>
             </section>
 
             <section class="cta-section">
                 <div class="cta-content">
-                    <h2 data-i18n="cta_title">Pronto para revolucionar suas pedaladas?</h2>
-                    <p data-i18n="cta_subtitle">Junte-se a milhares de ciclistas que já experimentaram a segurança e tecnologia CBikeAI.</p>
+                    <h2>Pronto para revolucionar suas pedaladas?</h2>
+                    <p>Junte-se a milhares de ciclistas que já experimentaram a segurança e tecnologia CBikeAI.</p>
                     <div class="cta-buttons">
-                        <a href="pages/criar-conta.html" class="btn-primary" data-i18n="cta_btn_account">Criar Minha Conta</a>
-                        <a href="pages/contato.html" class="btn-secondary" data-i18n="cta_btn_sales">Falar com Vendas</a>
+                        <a href="pages/criar-conta.html" class="btn-primary">Criar Minha Conta</a>
+                        <a href="pages/contato.html" class="btn-secondary">Falar com Vendas</a>
                     </div>
                 </div>
             </section>
 
             <section class="testimonials-section">
-                <h2 data-i18n="testimonials_title">O que nossos ciclistas dizem</h2>
+                <h2>O que nossos ciclistas dizem</h2>
                 <div class="testimonials-grid">
                     <!-- Depoimento 1 -->
                     <div class="testimonial-card">
                         <div class="testimonial-content">
-                            <p data-i18n="testimonial1_text">"A CBikeAI mudou completamente minhas pedaladas noturnas. A sensação de segurança é incomparável!"</p>
+                            <p>"A CBikeAI mudou completamente minhas pedaladas noturnas. A sensação de segurança é incomparável!"</p>
                         </div>
                         <div class="testimonial-author">
                             <div class="author-avatar-container">
@@ -256,15 +226,15 @@
                                 <div class="verified-badge"></div>
                             </div>
                             <div class="author-info">
-                                <strong data-i18n="testimonial1_name">Carlos Silva</strong>
-                                <span data-i18n="testimonial1_role">Ciclista Urbano</span>
+                                <strong>Carlos Silva</strong>
+                                <span>Ciclista Urbano</span>
                             </div>
                         </div>
                     </div>
                     <!-- Depoimento 2 -->
                     <div class="testimonial-card">
                         <div class="testimonial-content">
-                            <p data-i18n="testimonial2_text">“Comprei achando que era mais um farol chinês genérico. Me enganei feio. Qualidade de marca premium por preço de entrada.”</p>
+                            <p>"Comprei achando que era mais um farol chinês genérico. Me enganei feio. Qualidade de marca premium por preço de entrada."</p>
                         </div>
                         <div class="testimonial-author">
                             <div class="author-avatar-container">
@@ -272,15 +242,15 @@
                                 <div class="verified-badge"></div>
                             </div>
                             <div class="author-info">
-                                <strong data-i18n="testimonial2_name">Ana Rodrigues</strong>
-                                <span data-i18n="testimonial2_role">Ciclista Urbana</span>
+                                <strong>Ana Rodrigues</strong>
+                                <span>Ciclista Urbana</span>
                             </div>
                         </div>
                     </div>
                     <!-- Depoimento 3 -->
                     <div class="testimonial-card">
                         <div class="testimonial-content">
-                            <p data-i18n="testimonial3_text">"Resumo da ópera: pedalo mais, pedalo mais longe, pedalo mais feliz e chego vivo. A CBikeAi é item de sobrevivência."</p>
+                            <p>"Resumo da ópera: pedalo mais, pedalo mais longe, pedalo mais feliz e chego vivo. A CBikeAi é item de sobrevivência."</p>
                         </div>
                         <div class="testimonial-author">
                             <div class="author-avatar-container">
@@ -288,15 +258,15 @@
                                 <div class="verified-badge"></div>
                             </div>
                             <div class="author-info">
-                                <strong data-i18n="testimonial3_name">Pedro Santos</strong>
-                                <span data-i18n="testimonial3_role">Ciclista Urbano</span>
+                                <strong>Pedro Santos</strong>
+                                <span>Ciclista Urbano</span>
                             </div>
                         </div>
                     </div>
                     <!-- Depoimento 4 -->
                     <div class="testimonial-card">
                         <div class="testimonial-content">
-                            <p data-i18n="testimonial4_text">"Melhor presente que já dei para mim mesma. Todo pedal agora é mais seguro e tranquilo."</p>
+                            <p>"Melhor presente que já dei para mim mesma. Todo pedal agora é mais seguro e tranquilo."</p>
                         </div>
                         <div class="testimonial-author">
                             <div class="author-avatar-container">
@@ -304,15 +274,15 @@
                                 <div class="verified-badge"></div>
                             </div>
                             <div class="author-info">
-                                <strong data-i18n="testimonial4_name">Luiza Barbosa</strong>
-                                <span data-i18n="testimonial4_role">Ciclista Urbana</span>
+                                <strong>Luiza Barbosa</strong>
+                                <span>Ciclista Urbana</span>
                             </div>
                         </div>
                     </div>
                     <!-- Depoimento 5 -->
                     <div class="testimonial-card">
                         <div class="testimonial-content">
-                            <p data-i18n="testimonial5_text">"Como ciclista profissional, exijo o melhor em equipamentos. A CBikeAI superou todas as expectativas!"</p>
+                            <p>"Como ciclista profissional, exijo o melhor em equipamentos. A CBikeAI superou todas as expectativas!"</p>
                         </div>
                         <div class="testimonial-author">
                             <div class="author-avatar-container">
@@ -320,15 +290,15 @@
                                 <div class="verified-badge"></div>
                             </div>
                             <div class="author-info">
-                                <strong data-i18n="testimonial5_name">Ricardo Mendes</strong>
-                                <span data-i18n="testimonial5_role">Ciclista Profissional</span>
+                                <strong>Ricardo Mendes</strong>
+                                <span>Ciclista Profissional</span>
                             </div>
                         </div>
                     </div>
                     <!-- Depoimento 6 -->
                     <div class="testimonial-card">
                         <div class="testimonial-content">
-                            <p data-i18n="testimonial6_text">"Sério, parece besteira até você precisar. Depois que você tem, nunca mais quer sair sem."</p>
+                            <p>"Sério, parece besteira até você precisar. Depois que você tem, nunca mais quer sair sem."</p>
                         </div>
                         <div class="testimonial-author">
                             <div class="author-avatar-container">
@@ -336,15 +306,15 @@
                                 <div class="verified-badge"></div>
                             </div>
                             <div class="author-info">
-                                <strong data-i18n="testimonial6_name">Fernanda Costa</strong>
-                                <span data-i18n="testimonial6_role">Ciclista Amadora</span>
+                                <strong>Fernanda Costa</strong>
+                                <span>Ciclista Amadora</span>
                             </div>
                         </div>
                     </div>
                     <!-- Depoimento 7 -->
                     <div class="testimonial-card">
                         <div class="testimonial-content">
-                            <p data-i18n="testimonial7_text">"A conectividade com o smartphone é fantástica. Consigo ver todas as estatísticas dos meus trajetos."</p>
+                            <p>"A conectividade com o smartphone é fantástica. Consigo ver todas as estatísticas dos meus trajetos."</p>
                         </div>
                         <div class="testimonial-author">
                             <div class="author-avatar-container">
@@ -352,15 +322,15 @@
                                 <div class="verified-badge"></div>
                             </div>
                             <div class="author-info">
-                                <strong data-i18n="testimonial7_name">Lucas Torres</strong>
-                                <span data-i18n="testimonial7_role">Ciclista Amador</span>
+                                <strong>Lucas Torres</strong>
+                                <span>Ciclista Amador</span>
                             </div>
                         </div>
                     </div>
                     <!-- Depoimento 8 -->
                     <div class="testimonial-card">
                         <div class="testimonial-content">
-                            <p data-i18n="testimonial8_text">"Simplesmente o melhor custo-benefício do mercado. Recomendo a todos!"</p>
+                            <p>"Simplesmente o melhor custo-benefício do mercado. Recomendo a todos!"</p>
                         </div>
                         <div class="testimonial-author">
                             <div class="author-avatar-container">
@@ -368,15 +338,15 @@
                                 <div class="verified-badge"></div>
                             </div>
                             <div class="author-info">
-                                <strong data-i18n="testimonial8_name">Mariana Alves</strong>
-                                <span data-i18n="testimonial8_role">Ciclista Amadora</span>
+                                <strong>Mariana Alves</strong>
+                                <span>Ciclista Amadora</span>
                             </div>
                         </div>
                     </div>
                     <!-- Depoimento 9 -->
                     <div class="testimonial-card">
                         <div class="testimonial-content">
-                            <p data-i18n="testimonial9_text">"A resistência à água é impressionante! Já passei por várias chuvas fortes e o farol continua perfeito."</p>
+                            <p>"A resistência à água é impressionante! Já passei por várias chuvas fortes e o farol continua perfeito."</p>
                         </div>
                         <div class="testimonial-author">
                             <div class="author-avatar-container">
@@ -384,8 +354,8 @@
                                 <div class="verified-badge"></div>
                             </div>
                             <div class="author-info">
-                                <strong data-i18n="testimonial9_name">Rafael Souza</strong>
-                                <span data-i18n="testimonial9_role">Ciclista Amador</span>
+                                <strong>Rafael Souza</strong>
+                                <span>Ciclista Amador</span>
                             </div>
                         </div>
                     </div>
@@ -397,22 +367,22 @@
     <footer role="contentinfo">
         <div class="footer-content">
             <div class="footer-section">
-                <h3 data-i18n="footer_company">CBikeAI</h3>
-                <p data-i18n="footer_description">Revolucionando a segurança no ciclismo através da tecnologia e inovação.</p>
+                <h3>CBikeAI</h3>
+                <p>Revolucionando a segurança no ciclismo através da tecnologia e inovação.</p>
             </div>
             <div class="footer-section">
-                <h3 data-i18n="footer_quick_links">Links Rápidos</h3>
+                <h3>Links Rápidos</h3>
                 <ul>
-                    <li><a href="index.html" data-i18n="footer_home">Início</a></li>
-                    <li><a href="pages/quemsomos.html" data-i18n="footer_about">Quem Somos</a></li>
-                    <li><a href="pages/contato.html" data-i18n="footer_contact">Contato</a></li>
-                    <li><a href="pages/termos-servico.html" data-i18n="footer_terms">Termos de Serviço</a></li>
-                    <li><a href="pages/politica-privacidade.html" data-i18n="footer_privacy">Política de Privacidade</a></li>
-                    <li><a href="pages/politica-de-cookies.html" data-i18n="footer_cookies">Política de Cookies</a></li>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="pages/quemsomos.html">Quem Somos</a></li>
+                    <li><a href="pages/contato.html">Contato</a></li>
+                    <li><a href="pages/termos-servico.html">Termos de Serviço</a></li>
+                    <li><a href="pages/politica-privacidade.html">Política de Privacidade</a></li>
+                    <li><a href="pages/politica-de-cookies.html">Política de Cookies</a></li>
                 </ul>
             </div>
             <div class="footer-section">
-                <h3 data-i18n="footer_contact_title">Contato</h3>
+                <h3>Contato</h3>
                 <ul>
                     <li><i class="fas fa-envelope"></i> contato@cbikeai.com</li>
                     <li><i class="fas fa-phone"></i> (16) 99232-0372</li>
@@ -421,7 +391,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p class="copyright" data-i18n="footer_copyright">© 2026 CBikeAI. Todos os direitos reservados.</p>
+            <p class="copyright">© 2026 CBikeAI. Todos os direitos reservados.</p>
             <div class="social-media">
                 <a href="https://www.instagram.com/cbikeai" target="_blank"><i class="fa-brands fa-instagram"></i></a>
                 <a href="https://www.x.com/cbikeai" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
@@ -437,21 +407,33 @@
     </div>
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+    <script src="js/auth.js"></script>
 
-    <script src="js/i18n.js"></script>
     <script>
-        // Verificar login
-        const user = localStorage.getItem('cbikeai_user');
-        if (user) {
-            document.getElementById('login-link').style.display = 'none';
-            document.getElementById('profile-link').style.display = 'inline';
-            document.getElementById('logout-btn').style.display = 'inline';
-        }
-        document.getElementById('logout-btn')?.addEventListener('click', function(e) {
-            e.preventDefault();
-            localStorage.removeItem('cbikeai_user');
-            localStorage.removeItem('cbikeai_token');
-            window.location.href = 'index.html';
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginLink = document.getElementById('login-link');
+            const profileLink = document.getElementById('profile-link');
+            const logoutBtn = document.getElementById('logout-btn');
+
+            const applyAuthState = () => {
+                const isLoggedIn = Boolean(localStorage.getItem('isLoggedIn') === 'true' || localStorage.getItem('cbikeai_user'));
+                if (loginLink) loginLink.style.display = isLoggedIn ? 'none' : 'inline';
+                if (profileLink) profileLink.style.display = isLoggedIn ? 'inline' : 'none';
+                if (logoutBtn) logoutBtn.style.display = isLoggedIn ? 'inline' : 'none';
+            };
+
+            applyAuthState();
+
+            document.getElementById('logout-btn')?.addEventListener('click', async function(e) {
+                e.preventDefault();
+                if (window.CBikeAuth?.signOut) {
+                    await window.CBikeAuth.signOut();
+                }
+                window.location.href = 'index.html';
+            });
+
+            window.addEventListener('storage', applyAuthState);
+            document.addEventListener('auth:updated', applyAuthState);
         });
 
         // Smooth scroll para âncoras
