@@ -1,0 +1,969 @@
+/* ======================================================
+   ===== CSS DA PÁGINA DE PERFIL =====
+   ====================================================== */
+
+/* ===== VARIÁVEIS ===== */
+:root {
+    --neon-green: #09e331;
+    --neon-green-hover: #0aff3d;
+    --background: #000000;
+    --text-color: #ffffff;
+    --card-bg: rgba(26, 26, 26, 0.9);
+    --border-neon: #09e331;
+    --shadow-neon: rgba(9, 227, 49, 0.4);
+    --error-color: #ff4d4d;
+    --input-bg: #1a1a1a;
+    --input-border: #333333;
+}
+
+/* ===== ESTRUTURA PRINCIPAL ===== */
+.profile-section {
+    padding: clamp(40px, 8vw, 80px) 5%;
+    background: radial-gradient(circle at 10% 20%, rgba(9, 227, 49, 0.05), #000000 80%);
+    min-height: 100vh;
+    width: 100%;
+}
+
+.profile-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* ======================================================
+   ===== CABEÇALHO DO PERFIL - CENTRALIZADO =====
+   ====================================================== */
+.profile-header {
+    background: var(--card-bg);
+    border-radius: 1.5rem;
+    padding: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 2rem;
+    text-align: center;
+    border: 1px solid rgba(9, 227, 49, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Linha decorativa verde no topo do card */
+.profile-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--neon-green), var(--neon-green-hover));
+}
+
+/* ===== AVATAR ===== */
+.avatar-container {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.avatar-large {
+    width: clamp(120px, 20vw, 150px);
+    height: clamp(120px, 20vw, 150px);
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--neon-green);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: var(--input-bg);
+    display: block;
+    margin: 0 auto;
+}
+
+.avatar-large:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px var(--shadow-neon);
+}
+
+/* Botão de editar avatar (sobreposto) */
+.avatar-edit-btn {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background: var(--neon-green);
+    color: #000;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.avatar-edit-btn:hover {
+    transform: scale(1.1);
+    background: var(--neon-green-hover);
+}
+
+/* ===== INFORMAÇÕES DO USUÁRIO ===== */
+.profile-name {
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    font-weight: 800;
+    color: var(--neon-green);
+    margin-bottom: 0.25rem;
+}
+
+.profile-email {
+    color: #999;
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
+    margin-bottom: 0.25rem;
+}
+
+.profile-member-since {
+    color: #666;
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+}
+
+.profile-member-since i {
+    color: var(--neon-green);
+    margin-right: 6px;
+}
+
+/* ===== BADGES ===== */
+.profile-badges {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.user-badge,
+.premium-badge {
+    padding: 0.4rem 1.2rem;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.user-badge {
+    background: rgba(9, 227, 49, 0.15);
+    color: var(--neon-green);
+}
+
+.premium-badge {
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    color: #000;
+}
+
+/* ===== AÇÕES DO CABEÇALHO ===== */
+.profile-actions-top {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ======================================================
+   ===== CARDS DE ESTATÍSTICAS (ZERADOS) =====
+   ====================================================== */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(8px);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    text-align: center;
+    border: 1px solid rgba(9, 227, 49, 0.15);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--neon-green);
+}
+
+.stat-number {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 800;
+    color: var(--neon-green);
+    line-height: 1;
+}
+
+/* Estilo para números zerados (cinza escuro) */
+.stat-number.zero {
+    color: #444;
+    font-weight: 400;
+}
+
+.stat-label {
+    color: #aaa;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+}
+
+/* ======================================================
+   ===== CARDS DE INFORMAÇÃO =====
+   ====================================================== */
+.info-card {
+    background: var(--card-bg);
+    border-radius: 1.5rem;
+    padding: clamp(1.2rem, 4vw, 2rem);
+    margin-bottom: 2rem;
+    border: 1px solid rgba(9, 227, 49, 0.15);
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: var(--neon-green);
+    font-size: clamp(1.1rem, 4vw, 1.4rem);
+    margin-bottom: 1.5rem;
+    border-left: 4px solid var(--neon-green);
+    padding-left: 1rem;
+    font-weight: 700;
+}
+
+/* ======================================================
+   ===== PREFERÊNCIAS =====
+   ====================================================== */
+.preferences-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.8rem;
+}
+
+.preference-item {
+    background: rgba(255, 255, 255, 0.04);
+    padding: 0.8rem 1rem;
+    border-radius: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.preference-item span:first-child {
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+.preference-value {
+    color: var(--neon-green);
+    font-weight: 600;
+}
+
+/* ======================================================
+   ===== LISTA DE ROTAS (VAZIA) =====
+   ====================================================== */
+.routes-list {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-top: 0.5rem;
+}
+
+/* Scrollbar personalizada */
+.routes-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.routes-list::-webkit-scrollbar-track {
+    background: var(--input-bg);
+    border-radius: 10px;
+}
+
+.routes-list::-webkit-scrollbar-thumb {
+    background: var(--neon-green);
+    border-radius: 10px;
+}
+
+/* Item de rota (quando houver) */
+.route-item {
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 0.75rem;
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: border-color 0.3s ease;
+}
+
+.route-item:hover {
+    border-color: rgba(9, 227, 49, 0.3);
+}
+
+.route-name {
+    font-weight: 600;
+    color: #fff;
+}
+
+.route-distance {
+    color: var(--neon-green);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.route-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.route-actions button {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.route-actions button:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.route-actions .view-route-btn:hover {
+    color: var(--neon-green);
+}
+
+.route-actions .delete-route-btn:hover {
+    color: var(--error-color);
+    background: rgba(255, 77, 77, 0.1);
+}
+
+/* ===== ESTILO PARA LISTA VAZIA ===== */
+.empty-routes {
+    color: #666;
+    text-align: center;
+    padding: 2rem 0;
+    font-style: italic;
+}
+
+.empty-routes i {
+    color: #333;
+}
+
+/* ===== BOTÃO ADICIONAR ROTA ===== */
+.add-route-btn {
+    background: var(--neon-green);
+    color: #000;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 2rem;
+    font-weight: 700;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.add-route-btn:hover {
+    background: var(--neon-green-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px var(--shadow-neon);
+}
+
+/* ======================================================
+   ===== GRÁFICO =====
+   ====================================================== */
+.chart-container {
+    max-width: 100%;
+    margin: 0.5rem 0;
+    position: relative;
+}
+
+#performanceChart {
+    max-height: 250px;
+    width: 100% !important;
+}
+
+/* ======================================================
+   ===== BOTÕES =====
+   ====================================================== */
+.btn-neon {
+    background: linear-gradient(135deg, var(--neon-green), #0bcb30);
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 2rem;
+    font-weight: 700;
+    color: #000;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.btn-neon:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px var(--shadow-neon);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--neon-green);
+    color: var(--neon-green);
+    padding: 0.5rem 1.2rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 600;
+}
+
+.btn-outline:hover {
+    background: var(--neon-green);
+    color: #000;
+}
+
+/* ===== AÇÕES DO PERFIL ===== */
+.action-btn {
+    background: rgba(9, 227, 49, 0.1);
+    color: var(--neon-green);
+    border: 1px solid var(--neon-green);
+    padding: 0.7rem 1.5rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.action-btn:hover {
+    background: var(--neon-green);
+    color: #000;
+}
+
+.logout-btn {
+    background: rgba(255, 77, 77, 0.1);
+    color: #ff4d4d;
+    border: 1px solid #ff4d4d;
+    padding: 0.7rem 1.5rem;
+    border-radius: 2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logout-btn:hover {
+    background: #ff4d4d;
+    color: #000;
+}
+
+.profile-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ======================================================
+   ===== MODAIS =====
+   ====================================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.2s, opacity 0.2s;
+}
+
+.modal-overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-container {
+    background: var(--card-bg);
+    border-radius: 1.5rem;
+    max-width: 90%;
+    width: 550px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    border: 1px solid var(--neon-green);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.modal-container h3 {
+    color: var(--neon-green);
+    margin-bottom: 1.5rem;
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.modal-container label {
+    display: block;
+    margin: 0.8rem 0 0.3rem;
+    color: #ccc;
+    font-weight: 500;
+}
+
+.modal-container input,
+.modal-container select,
+.modal-container textarea {
+    width: 100%;
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    padding: 0.8rem 1rem;
+    border-radius: 0.75rem;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    transition: border-color 0.3s ease;
+}
+
+.modal-container input:focus,
+.modal-container select:focus,
+.modal-container textarea:focus {
+    outline: none;
+    border-color: var(--neon-green);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.modal-actions .btn {
+    min-width: 120px;
+}
+
+/* ===== MAPA ===== */
+.map-container {
+    height: 250px;
+    border-radius: 1rem;
+    margin: 1rem 0;
+    overflow: hidden;
+    border: 1px solid var(--neon-green);
+}
+
+/* ======================================================
+   ===== TOAST =====
+   ====================================================== */
+.toast-message {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    padding: 16px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    background: var(--neon-green);
+    color: #000;
+    max-width: 400px;
+    animation: slideUp 0.4s ease;
+}
+
+.toast-message.error {
+    background: var(--error-color);
+    color: #fff;
+}
+
+/* ===== ANIMAÇÕES ===== */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.profile-header {
+    animation: fadeIn 0.5s ease;
+}
+
+.stat-card {
+    animation: fadeIn 0.5s ease;
+    animation-fill-mode: both;
+}
+
+.stat-card:nth-child(1) { animation-delay: 0.05s; }
+.stat-card:nth-child(2) { animation-delay: 0.10s; }
+.stat-card:nth-child(3) { animation-delay: 0.15s; }
+.stat-card:nth-child(4) { animation-delay: 0.20s; }
+
+/* ======================================================
+   ===== RESPONSIVIDADE =====
+   ====================================================== */
+
+/* TELAS MÉDIAS (tablets) */
+@media (max-width: 1024px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.2rem;
+    }
+
+    .preferences-row {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* TELAS PEQUENAS (tablets/mobile grande) */
+@media (max-width: 768px) {
+    .profile-section {
+        padding: 2rem 4%;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .preferences-row {
+        grid-template-columns: 1fr;
+    }
+
+    .route-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .route-actions {
+        align-self: flex-end;
+    }
+
+    .modal-container {
+        width: 95%;
+        padding: 1.5rem;
+    }
+
+    .map-container {
+        height: 200px;
+    }
+
+    .profile-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profile-actions .btn,
+    .profile-actions .action-btn,
+    .profile-actions .logout-btn {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+    }
+
+    .modal-actions {
+        flex-direction: column;
+    }
+
+    .modal-actions .btn {
+        width: 100%;
+        min-width: unset;
+        justify-content: center;
+    }
+
+    .toast-message {
+        left: 16px;
+        right: 16px;
+        max-width: unset;
+        text-align: center;
+    }
+}
+
+/* TELAS MUITO PEQUENAS (smartphones) */
+@media (max-width: 480px) {
+    .profile-section {
+        padding: 1.5rem 3%;
+    }
+
+    .profile-header {
+        padding: 1.5rem 1rem;
+        border-radius: 1rem;
+    }
+
+    .avatar-large {
+        width: 100px;
+        height: 100px;
+    }
+
+    .avatar-edit-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 0.75rem;
+        bottom: 4px;
+        right: 4px;
+    }
+
+    .profile-name {
+        font-size: 1.3rem;
+    }
+
+    .profile-email {
+        font-size: 0.85rem;
+    }
+
+    .profile-member-since {
+        font-size: 0.75rem;
+    }
+
+    .profile-badges {
+        gap: 0.5rem;
+    }
+
+    .user-badge,
+    .premium-badge {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.8rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.8rem;
+    }
+
+    .stat-card {
+        padding: 1rem;
+        border-radius: 0.75rem;
+    }
+
+    .stat-number {
+        font-size: 1.8rem;
+    }
+
+    .stat-label {
+        font-size: 0.75rem;
+    }
+
+    .section-title {
+        font-size: 1.1rem;
+        padding-left: 0.75rem;
+    }
+
+    .preference-item {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.85rem;
+    }
+
+    .btn-neon,
+    .btn-outline,
+    .action-btn,
+    .logout-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .add-route-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .profile-actions .btn,
+    .profile-actions .action-btn,
+    .profile-actions .logout-btn {
+        max-width: 100%;
+    }
+
+    .modal-container {
+        padding: 1.2rem;
+        border-radius: 1rem;
+    }
+
+    .modal-container h3 {
+        font-size: 1.1rem;
+    }
+
+    .modal-container input,
+    .modal-container select,
+    .modal-container textarea {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .map-container {
+        height: 180px;
+    }
+
+    .toast-message {
+        bottom: 16px;
+        padding: 12px 16px;
+        font-size: 0.9rem;
+    }
+
+    .empty-routes {
+        font-size: 0.9rem;
+        padding: 1.5rem 0;
+    }
+
+    .empty-routes i {
+        font-size: 1.5rem !important;
+    }
+}
+
+/* TELAS EXTREMAMENTE PEQUENAS */
+@media (max-width: 360px) {
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.6rem;
+    }
+
+    .stat-card {
+        padding: 0.8rem;
+    }
+
+    .stat-number {
+        font-size: 1.5rem;
+    }
+
+    .profile-actions-top {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profile-actions-top .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* TELAS GRANDES */
+@media (min-width: 1200px) {
+    .profile-container {
+        max-width: 1100px;
+    }
+
+    .stats-grid {
+        gap: 2rem;
+    }
+
+    .stat-card {
+        padding: 2rem;
+    }
+
+    .stat-number {
+        font-size: 3rem;
+    }
+}
+
+/* ======================================================
+   ===== ACESSIBILIDADE =====
+   ====================================================== */
+
+/* Redução de movimento */
+@media (prefers-reduced-motion: reduce) {
+    .profile-header,
+    .stat-card {
+        animation: none;
+    }
+
+    .avatar-large,
+    .avatar-edit-btn,
+    .stat-card,
+    .btn-neon,
+    .btn-outline,
+    .action-btn,
+    .logout-btn,
+    .add-route-btn {
+        transition: none;
+    }
+
+    .avatar-large:hover {
+        transform: none;
+    }
+
+    .stat-card:hover {
+        transform: none;
+    }
+
+    .btn-neon:hover,
+    .btn-outline:hover,
+    .add-route-btn:hover {
+        transform: none;
+    }
+}
+
+/* Foco visível para navegação por teclado */
+.btn:focus,
+.btn-outline:focus,
+.action-btn:focus,
+.logout-btn:focus,
+.add-route-btn:focus,
+.avatar-edit-btn:focus,
+.modal-container input:focus,
+.modal-container select:focus,
+.modal-container textarea:focus {
+    outline: 3px solid var(--neon-green);
+    outline-offset: 2px;
+}
+
+/* ======================================================
+   ===== SCROLLBAR GLOBAL =====
+   ====================================================== */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--neon-green);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--neon-green-hover);
+}

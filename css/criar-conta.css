@@ -1,0 +1,678 @@
+/* ======================================================
+   ===== CSS DA PÁGINA DE CRIAR CONTA =====
+   ====================================================== */
+
+/* ===== SEÇÃO DE AUTENTICAÇÃO ===== */
+.auth-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 40px 20px;
+    width: 100%;
+}
+
+.auth-container {
+    max-width: 540px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 40px 35px;
+    background: var(--card-bg);
+    border-radius: 20px;
+    border: 1px solid rgba(9, 227, 49, 0.15);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* ===== PROVA SOCIAL ===== */
+.social-proof {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 16px;
+    background: rgba(9, 227, 49, 0.08);
+    border-radius: 12px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(9, 227, 49, 0.1);
+    flex-wrap: wrap;
+}
+
+.social-proof-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: #ccc;
+}
+
+.social-proof-item i {
+    color: var(--neon-green);
+    font-size: 1rem;
+}
+
+.social-proof-item strong {
+    color: var(--neon-green);
+    font-weight: 700;
+}
+
+.social-proof-divider {
+    width: 1px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== CABEÇALHO ===== */
+.auth-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.auth-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--neon-green);
+    margin-bottom: 8px;
+}
+
+.auth-subtitle {
+    color: #aaa;
+    font-size: 0.95rem;
+}
+
+/* ===== CADASTRO SOCIAL ===== */
+.social-login {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.btn-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+    width: 100%;
+}
+
+.btn-social i {
+    font-size: 1.2rem;
+}
+
+.btn-google {
+    background: #ffffff;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+.btn-google:hover {
+    background: #f5f5f5;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-strava {
+    background: #fc4c02;
+    color: #ffffff;
+}
+
+.btn-strava:hover {
+    background: #e04402;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(252, 76, 2, 0.4);
+}
+
+/* ===== DIVIDER ===== */
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 20px 0 24px;
+    color: #666;
+    font-size: 0.85rem;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--input-border);
+}
+
+.divider span {
+    padding: 0 16px;
+}
+
+/* ===== FORMULÁRIO ===== */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+    text-align: left;
+}
+
+.form-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+    color: var(--text-color);
+}
+
+.form-label i {
+    color: var(--neon-green);
+    width: 18px;
+}
+
+.form-label .required {
+    color: var(--error-color);
+    font-size: 1rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--input-bg);
+    border: 2px solid var(--input-border);
+    border-radius: 10px;
+    color: var(--text-color);
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--neon-green);
+    box-shadow: 0 0 0 3px rgba(9, 227, 49, 0.15);
+}
+
+.form-input.error {
+    border-color: var(--error-color);
+}
+
+.form-input.success {
+    border-color: var(--success-color);
+}
+
+/* ===== CAMPO TELEFONE ===== */
+.phone-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.phone-prefix {
+    background: var(--input-bg);
+    border: 2px solid var(--input-border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+
+.phone-input {
+    flex: 1;
+}
+
+/* ===== SENHA ===== */
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-wrapper .form-input {
+    padding-right: 48px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 4px;
+    transition: color 0.3s ease;
+}
+
+.toggle-password:hover {
+    color: var(--neon-green);
+}
+
+/* ===== MEDIDOR DE FORÇA DA SENHA ===== */
+.password-strength {
+    margin-top: 10px;
+}
+
+.strength-bar {
+    width: 100%;
+    height: 4px;
+    background: var(--input-border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 6px;
+}
+
+.strength-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 4px;
+    transition: width 0.4s ease, background 0.4s ease;
+}
+
+.strength-fill.strength-weak {
+    background: var(--error-color);
+    width: 20%;
+}
+
+.strength-fill.strength-medium {
+    background: #ffa500;
+    width: 60%;
+}
+
+.strength-fill.strength-strong {
+    background: var(--success-color);
+    width: 100%;
+}
+
+.strength-text {
+    font-size: 0.8rem;
+    color: #888;
+    transition: color 0.3s ease;
+}
+
+.strength-text.strength-weak {
+    color: var(--error-color);
+}
+
+.strength-text.strength-medium {
+    color: #ffa500;
+}
+
+.strength-text.strength-strong {
+    color: var(--success-color);
+}
+
+/* ===== CRITÉRIOS DA SENHA ===== */
+.password-criteria {
+    list-style: none;
+    padding: 0;
+    margin-top: 8px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 16px;
+}
+
+.criteria-item {
+    font-size: 0.8rem;
+    color: #888;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.3s ease;
+}
+
+.criteria-item i {
+    font-size: 0.5rem;
+    color: #555;
+    transition: color 0.3s ease;
+}
+
+.criteria-item.valid {
+    color: var(--success-color);
+}
+
+.criteria-item.valid i {
+    color: var(--success-color);
+}
+
+.criteria-item.invalid {
+    color: var(--error-color);
+}
+
+.criteria-item.invalid i {
+    color: var(--error-color);
+}
+
+/* ===== CHECKBOX ===== */
+.checkbox-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #ccc;
+    padding: 4px 0;
+    position: relative;
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    background: var(--input-bg);
+    border: 2px solid var(--input-border);
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkbox-container:hover input:not(:checked) + .checkmark {
+    border-color: var(--neon-green);
+}
+
+.checkbox-container input:checked + .checkmark {
+    background: var(--neon-green);
+    border-color: var(--neon-green);
+}
+
+.checkbox-container input:checked + .checkmark::after {
+    content: '✓';
+    color: var(--background);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.terms-text a {
+    color: var(--neon-green);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.terms-text a:hover {
+    text-decoration: underline;
+}
+
+.terms-error .checkmark {
+    border-color: var(--error-color) !important;
+}
+
+/* ===== MENSAGENS DE ERRO ===== */
+.error-message {
+    display: none;
+    color: var(--error-color);
+    font-size: 0.8rem;
+    margin-top: 4px;
+    padding: 4px 0;
+}
+
+.error-message.show {
+    display: block;
+}
+
+.form-group.error .error-message {
+    display: block;
+}
+
+/* ===== HELP TEXT ===== */
+.form-help {
+    display: block;
+    font-size: 0.75rem;
+    color: #666;
+    margin-top: 4px;
+}
+
+.form-help i {
+    margin-right: 4px;
+    color: var(--neon-green);
+}
+
+/* ===== BOTÃO FULL ===== */
+.btn-full {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 14px 24px;
+    margin-top: 8px;
+}
+
+.btn-full:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn-icon {
+    transition: transform 0.3s ease;
+}
+
+.btn-full:hover .btn-icon {
+    transform: translateX(4px);
+}
+
+/* ===== RODAPÉ DO FORM ===== */
+.auth-footer {
+    text-align: center;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--input-border);
+}
+
+.auth-footer-text {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.link-accent {
+    color: var(--neon-green);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.link-accent:hover {
+    text-decoration: underline;
+}
+
+/* ===== TOAST MESSAGES ===== */
+.toast-message {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 24px;
+    border-radius: 12px;
+    color: #fff;
+    font-weight: 500;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    transform: translateY(120%);
+    opacity: 0;
+    transition: all 0.4s ease;
+    z-index: 9999;
+    max-width: 420px;
+}
+
+.toast-message.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.toast-message.success-message {
+    background: linear-gradient(135deg, #00b894, #00a381);
+}
+
+.toast-message.error-message {
+    background: linear-gradient(135deg, #e17055, #d63031);
+}
+
+.toast-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+}
+
+/* ===== TELA DE SUCESSO ===== */
+.success-screen {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.success-screen .success-icon {
+    font-size: 4rem;
+    color: var(--success-color);
+    margin-bottom: 16px;
+}
+
+.success-screen h3 {
+    font-size: 1.5rem;
+    color: var(--neon-green);
+    margin-bottom: 8px;
+}
+
+.success-screen p {
+    color: #ccc;
+    margin-bottom: 8px;
+}
+
+.success-screen strong {
+    color: var(--neon-green);
+}
+
+.success-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 24px;
+}
+
+.success-actions .btn {
+    min-width: 160px;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 768px) {
+    .auth-container {
+        padding: 30px 20px;
+    }
+    
+    .social-proof {
+        gap: 10px;
+        padding: 10px 12px;
+    }
+    
+    .social-proof-item {
+        font-size: 0.75rem;
+    }
+    
+    .social-proof-divider {
+        height: 16px;
+    }
+    
+    .auth-title {
+        font-size: 1.5rem;
+    }
+    
+    .password-criteria {
+        grid-template-columns: 1fr 1fr;
+        gap: 2px 12px;
+    }
+    
+    .criteria-item {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .auth-container {
+        padding: 24px 16px;
+        border-radius: 16px;
+    }
+    
+    .social-proof {
+        flex-direction: column;
+        gap: 6px;
+        padding: 8px 12px;
+    }
+    
+    .social-proof-divider {
+        display: none;
+    }
+    
+    .social-proof-item {
+        font-size: 0.7rem;
+    }
+    
+    .auth-title {
+        font-size: 1.3rem;
+    }
+    
+    .auth-subtitle {
+        font-size: 0.85rem;
+    }
+    
+    .btn-social {
+        font-size: 0.85rem;
+        padding: 10px 16px;
+    }
+    
+    .form-input {
+        padding: 10px 14px;
+        font-size: 0.9rem;
+    }
+    
+    .password-criteria {
+        grid-template-columns: 1fr;
+        gap: 2px;
+    }
+    
+    .phone-wrapper {
+        flex-direction: column;
+        gap: 6px;
+    }
+    
+    .phone-prefix {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .success-actions {
+        flex-direction: column;
+    }
+    
+    .success-actions .btn {
+        width: 100%;
+        min-width: unset;
+    }
+    
+    .toast-message {
+        bottom: 16px;
+        right: 16px;
+        left: 16px;
+        max-width: unset;
+        padding: 14px 18px;
+        font-size: 0.9rem;
+    }
+}
