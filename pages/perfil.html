@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Perfil CBikeAI - Gerencie suas rotas, estatísticas e preferências">
+    <meta property="og:title" content="CBikeAI - Meu Perfil">
+    <meta property="og:image" content="https://www.cbikeai.com/img/logotipo-cbikeai.png">
+    <meta property="og:url" content="https://www.cbikeai.com/perfil.html">
+    <title>CBikeAI - Meu Perfil</title>
+    <link rel="icon" href="../img/favicon.ico" type="image/x-icon">
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Leaflet CSS (mapa) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <!-- CSS do site -->
+    <link rel="preload" href="../css/style.css" as="style">
+    <link rel="preload" href="../css/perfil.css" as="style">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/perfil.css">
+</head>
+<body>
+    <header role="banner">
+        <div class="logo">
+            <img src="../img/logotipo-cbikeai.png" alt="Logo CBikeAI">
+        </div>
+        <nav aria-label="Navegação principal">
+            <a href="../index.html">Início</a>
+            <a href="../pages/quemsomos.html">Quem Somos</a>
+            <a href="../pages/contato.html">Contato</a>
+            <a href="../pages/perfil.html" aria-current="page">Meu Perfil</a>
+            <a href="#" id="logout-header" style="color: #ff4d4d;">Sair</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <section class="profile-section">
+            <div class="profile-container" id="profile-container">
+                <!-- Conteúdo será injetado via JS -->
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>CBikeAI</h3>
+                <p>Revolucionando a segurança no ciclismo através da tecnologia e inovação.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Links Rápidos</h3>
+                <ul>
+                    <li><a href="../index.html">Início</a></li>
+                    <li><a href="../pages/quemsomos.html">Quem Somos</a></li>
+                    <li><a href="../pages/contato.html">Contato</a></li>
+                    <li><a href="../pages/perfil.html">Meu Perfil</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> contato@cbikeai.com</li>
+                    <li><i class="fas fa-phone"></i> (16) 99232-0372</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Taquaritinga - SP</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="copyright">© 2026 CBikeAI. Todos os direitos reservados.</p>
+            <div class="social-media">
+                <a href="https://www.instagram.com/cbikeai" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.x.com/cbikeai" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://www.facebook.com/cbikeai" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook-f"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="../js/auth.js"></script>
+    <!-- Módulo de perfil -->
+    <script src="../js/perfil.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.ProfileManager) {
+                window.ProfileManager.init();
+            }
+        });
+    </script>
+</body>
+</html>
