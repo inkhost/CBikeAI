@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Elementos de feedback
     const successToast = document.getElementById('success-toast');
     const errorToast = document.getElementById('error-toast');
+    const GOOGLE_CLIENT_ID = '383981809594-fhdkg696bnu3dns13hj1mup4gd510tvq.apps.googleusercontent.com';
 
     // ===== ESTADO =====
     let isLoading = false;
@@ -28,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
         loadSavedCredentials();
         setupEventListeners();
         setupAccessibility();
+        initializeGoogleSignIn();
         setupSocialButtons();
         checkAutoLogin();
     }
@@ -86,10 +88,120 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ===== BOTÕES SOCIAIS =====
+    function initializeGoogleSignIn() {
+        if (!window.google?.accounts?.id || !GOOGLE_CLIENT_ID) {
+            return;
+        }
+
+        window.google.accounts.id.initialize({
+            client_id: GOOGLE_CLIENT_ID,
+            callback: handleGoogleCredentialResponse,
+            auto_select: false,
+            context: 'signin'
+        });
+    }
+
+    function setGoogleButtonLoading(loading) {
+        if (!googleLoginBtn) return;
+
+        googleLoginBtn.disabled = loading;
+        const icon = googleLoginBtn.querySelector('i');
+        const label = googleLoginBtn.querySelector('span');
+
+        if (!icon || !label) return;
+
+        if (loading) {
+            icon.className = 'fas fa-spinner fa-spin';
+            label.textContent = 'Conectando...';
+        } else {
+            icon.className = 'fab fa-google';
+            label.textContent = 'Entrar com Google';
+        }
+    }
+
+    async function handleGoogleCredentialResponse(response) {
+        if (!response?.credential) {
+            setGoogleButtonLoading(false);
+            showErrorToast('Não foi possível concluir o login com o Google.');
+            return;
+        }
+
+        setGoogleButtonLoading(true);
+
+        try {
+            const result = await fetch('/auth/google/callback', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    credential: response.credential,
+                    provider: 'google',
+                    action: 'signin'
+                })
+            });
+
+            const data = await result.json();
+
+            if (!result.ok || !data?.ok) {
+                throw new Error(data?.error || 'Erro ao validar o login com o Google.');
+            }
+
+            const userProfile = {
+                id: data.user?.id || data.user?.sub || `google-${Date.now()}`,
+                name: data.user?.name || data.user?.given_name || data.user?.email?.split('@')[0] || 'Usuário Google',
+                email: data.user?.email || '',
+                phone: '',
+                avatar: data.user?.picture || '',
+                provider: 'google'
+            };
+
+            if (window.CBikeAuth?.signInWithGoogle) {
+                await window.CBikeAuth.signInWithGoogle(userProfile);
+            } else {
+                saveUserData({
+                    id: userProfile.id,
+                    name: userProfile.name,
+                    email: userProfile.email,
+                    phone: '',
+                    avatar: userProfile.avatar
+                }, data.token || 'google-session');
+                localStorage.setItem('cbikeai_user', JSON.stringify({
+                    id: userProfile.id,
+                    name: userProfile.name,
+                    email: userProfile.email,
+                    avatar: userProfile.avatar,
+                    phone: ''
+                }));
+                localStorage.setItem('cbikeai_token', data.token || 'google-session');
+                localStorage.setItem('loginMethod', 'google');
+            }
+
+            logLoginEvent('google', true);
+            showSuccessToast(`Bem-vindo, ${userProfile.name}! 🚴‍♂️`);
+            setTimeout(() => {
+                window.location.href = '../pages/perfil.html';
+            }, 1200);
+        } catch (error) {
+            console.error('Erro no login com Google:', error);
+            logLoginEvent('google', false);
+            showErrorToast(error.message || 'Não foi possível entrar com o Google.');
+        } finally {
+            setGoogleButtonLoading(false);
+        }
+    }
+
+    function promptGoogleSignIn() {
+        const baseUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'http:'
+            ? window.location.origin
+            : 'http://localhost:3000';
+
+        window.location.href = `${baseUrl}/auth/google/redirect`;
+    }
+
     function setupSocialButtons() {
         googleLoginBtn.addEventListener('click', function() {
-            showErrorToast('Login com Google em breve!');
-            logLoginEvent('google', false);
+            promptGoogleSignIn();
         });
         
         stravaLoginBtn.addEventListener('click', function() {

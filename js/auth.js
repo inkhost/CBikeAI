@@ -38,7 +38,7 @@
         localStorage.setItem('userPhone', displayPhone);
         localStorage.setItem('userAvatar', displayAvatar);
         localStorage.setItem('authToken', currentUser.token || 'local-session');
-        localStorage.setItem('loginMethod', 'local');
+        localStorage.setItem('loginMethod', currentUser.provider || 'local');
         localStorage.setItem('memberSince', currentUser.memberSince || new Date().toLocaleDateString('pt-BR'));
 
         localStorage.setItem('cbikeai_user', JSON.stringify({
@@ -149,6 +149,37 @@
         return { user: sessionUser, session: sessionUser };
     }
 
+    async function signInWithGoogle(profile) {
+        const normalizedProfile = {
+            id: profile?.id || `google-${Date.now()}`,
+            name: profile?.name || profile?.full_name || profile?.email?.split('@')[0] || 'Usuário Google',
+            email: profile?.email || '',
+            phone: profile?.phone || '',
+            avatar: profile?.avatar || profile?.picture || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile?.name || profile?.email || 'Usuário Google')}&background=09e331&color=000&size=200`,
+            token: `google-${Date.now()}`,
+            provider: 'google',
+            memberSince: new Date().toLocaleDateString('pt-BR')
+        };
+
+        const storedUsers = JSON.parse(localStorage.getItem('cbikeai_users') || '[]');
+        const existingUser = storedUsers.find((item) => item.email.toLowerCase() === normalizedProfile.email.toLowerCase());
+
+        if (!existingUser) {
+            storedUsers.push({
+                ...normalizedProfile,
+                password: null
+            });
+            localStorage.setItem('cbikeai_users', JSON.stringify(storedUsers));
+        }
+
+        setSession(normalizedProfile);
+        return { user: normalizedProfile, session: normalizedProfile };
+    }
+
+    async function signUpWithGoogle(profile) {
+        return signInWithGoogle(profile);
+    }
+
     async function signOut() {
         setSession(null);
     }
@@ -173,6 +204,8 @@
         init: hydrateAuth,
         signIn,
         signUp,
+        signInWithGoogle,
+        signUpWithGoogle,
         signOut,
         getCurrentUser,
         isAuthenticated,

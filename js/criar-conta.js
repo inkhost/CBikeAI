@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Elementos de feedback
     const successToast = document.getElementById('success-toast');
     const errorToast = document.getElementById('error-toast');
+    const GOOGLE_CLIENT_ID = '383981809594-fhdkg696bnu3dns13hj1mup4gd510tvq.apps.googleusercontent.com';
 
     // ===== ESTADO =====
     let isLoading = false;
@@ -115,7 +116,28 @@ document.addEventListener('DOMContentLoaded', function() {
         setupEventListeners();
         setupAccessibility();
         setupPasswordStrengthMeter();
+        initializeGoogleSignIn();
         setupSocialButtons();
+    }
+
+    function setupPasswordStrengthMeter() {
+        if (!passwordStrengthFill || !passwordStrengthText || !passwordCriteria) {
+            return;
+        }
+
+        passwordStrengthFill.className = 'strength-fill';
+        passwordStrengthFill.style.width = '0%';
+        passwordStrengthText.textContent = 'Força da senha';
+        passwordStrengthText.className = 'strength-text';
+
+        const items = passwordCriteria.querySelectorAll('.criteria-item');
+        items.forEach((item) => {
+            item.classList.remove('valid', 'invalid');
+            const icon = item.querySelector('i');
+            if (icon) {
+                icon.className = 'fas fa-circle';
+            }
+        });
     }
 
     // ===== EVENT LISTENERS =====
@@ -165,12 +187,119 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ===== BOTÕES SOCIAIS =====
-    function setupSocialButtons() {
-        googleSignupBtn.addEventListener('click', function() {
-            showErrorToast('Cadastro com Google em breve!');
+    function initializeGoogleSignIn() {
+        if (!window.google?.accounts?.id || !GOOGLE_CLIENT_ID) {
+            return;
+        }
+
+        window.google.accounts.id.initialize({
+            client_id: GOOGLE_CLIENT_ID,
+            callback: handleGoogleCredentialResponse,
+            auto_select: false,
+            context: 'signup'
+        });
+    }
+
+    function setGoogleButtonLoading(loading) {
+        if (!googleSignupBtn) return;
+
+        googleSignupBtn.disabled = loading;
+        const icon = googleSignupBtn.querySelector('i');
+        const label = googleSignupBtn.querySelector('span');
+
+        if (!icon || !label) return;
+
+        if (loading) {
+            icon.className = 'fas fa-spinner fa-spin';
+            label.textContent = 'Conectando...';
+        } else {
+            icon.className = 'fab fa-google';
+            label.textContent = 'Entrar com Google';
+        }
+    }
+
+    async function handleGoogleCredentialResponse(response) {
+        if (!response?.credential) {
+            setGoogleButtonLoading(false);
+            showErrorToast('Não foi possível concluir o login com o Google.');
+            return;
+        }
+
+        setGoogleButtonLoading(true);
+
+        try {
+            const result = await fetch('/auth/google/callback', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    credential: response.credential,
+                    provider: 'google',
+                    action: 'signup'
+                })
+            });
+
+            const data = await result.json();
+
+            if (!result.ok || !data?.ok) {
+                throw new Error(data?.error || 'Erro ao validar o login com o Google.');
+            }
+
+            const userProfile = {
+                id: data.user?.id || data.user?.sub || `google-${Date.now()}`,
+                name: data.user?.name || data.user?.given_name || data.user?.email?.split('@')[0] || 'Usuário Google',
+                email: data.user?.email || '',
+                phone: '',
+                avatar: data.user?.picture || '',
+                provider: 'google'
+            };
+
+            if (window.CBikeAuth?.signUpWithGoogle) {
+                await window.CBikeAuth.signUpWithGoogle(userProfile);
+            } else {
+                saveUserData({
+                    id: userProfile.id,
+                    name: userProfile.name,
+                    email: userProfile.email,
+                    phone: '',
+                    avatar: userProfile.avatar
+                }, data.token || 'google-session');
+                localStorage.setItem('cbikeai_user', JSON.stringify({
+                    id: userProfile.id,
+                    name: userProfile.name,
+                    email: userProfile.email,
+                    avatar: userProfile.avatar,
+                    phone: ''
+                }));
+                localStorage.setItem('cbikeai_token', data.token || 'google-session');
+                localStorage.setItem('loginMethod', 'google');
+            }
+
             if (typeof gtag !== 'undefined') {
                 gtag('event', 'social_signup', { method: 'google' });
             }
+
+            window.location.href = '../pages/perfil.html';
+        } catch (error) {
+            console.error('Erro no login com Google:', error);
+            showErrorToast(error.message || 'Não foi possível finalizar o cadastro com o Google.');
+        } finally {
+            setGoogleButtonLoading(false);
+        }
+    }
+
+    function promptGoogleSignIn() {
+        const baseUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'http:'
+            ? window.location.origin
+            : 'http://localhost:3000';
+
+        window.location.href = `${baseUrl}/auth/google/redirect`;
+    }
+
+    function setupSocialButtons() {
+        googleSignupBtn.addEventListener('click', function() {
+            promptGoogleSignIn();
         });
         
         stravaSignupBtn.addEventListener('click', function() {
@@ -499,12 +628,45 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===== SUCESSO =====
     function handleSignupSuccess(response) {
         const user = response?.user;
-        saveUserData({
+        const finalUser = {
+            id: user?.id || ('local-' + Date.now()),
             name: user?.user_metadata?.full_name || nameInput.value.trim(),
-            email: user?.email || emailInput.value.trim(),
+            email: (user?.email || emailInput.value.trim()).toLowerCase(),
             phone: user?.user_metadata?.phone || phoneInput.value.trim(),
-            avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(nameInput.value.trim())}&background=09e331&color=000&size=200`
-        }, response?.session?.access_token || '');
+            avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(nameInput.value.trim())}&background=09e331&color=000&size=200`,
+            memberSince: new Date().toLocaleDateString('pt-BR')
+        };
+
+        // Salva dados para navegação/UX
+        saveUserData(finalUser, response?.session?.access_token || '');
+
+        // Persiste na lista de usuários locais compatível com auth.js (cbikeai_users)
+        try {
+            const storedUsers = JSON.parse(localStorage.getItem('cbikeai_users') || '[]');
+            const newUserRecord = {
+                id: finalUser.id,
+                name: finalUser.name,
+                email: finalUser.email,
+                phone: finalUser.phone,
+                password: passwordInput.value,
+                avatar: finalUser.avatar,
+                memberSince: finalUser.memberSince
+            };
+            storedUsers.push(newUserRecord);
+            localStorage.setItem('cbikeai_users', JSON.stringify(storedUsers));
+
+            // Também salva sessão/usuário legado para compatibilidade imediata
+            localStorage.setItem('cbikeai_user', JSON.stringify({
+                id: finalUser.id,
+                name: finalUser.name,
+                email: finalUser.email,
+                avatar: finalUser.avatar,
+                phone: finalUser.phone
+            }));
+            localStorage.setItem('cbikeai_token', response?.session?.access_token || ('local-' + Date.now()));
+        } catch (err) {
+            console.warn('Não foi possível persistir usuário localmente:', err);
+        }
         
         if (typeof gtag !== 'undefined') {
             gtag('event', 'sign_up', { method: 'email', success: true });
