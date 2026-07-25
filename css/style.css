@@ -109,7 +109,7 @@ header {
 }
 
 .logo img {
-    width: clamp(120px, 25vw, 160px);
+    width: 140px;
     height: auto;
     transition: transform 0.4s ease, filter 0.4s ease;
     display: block;
@@ -1050,9 +1050,6 @@ footer {
     .lang-btn {
         padding: 4px 10px;
         font-size: 12px;
-    }
-    .logo img {
-        width: 100px;
     }
     nav {
         margin-top: 10px;
