@@ -35,9 +35,6 @@
             <a href="index.html">Início</a>
             <a href="pages/quemsomos.html">Quem Somos</a>
             <a href="pages/contato.html">Contato</a>
-            <a href="pages/login.html" id="login-link">Login</a>
-            <a href="../pages/perfil.html" id="profile-link" style="display: none;">Meu Perfil</a>
-            <a href="#" id="logout-btn" style="display: none;">Sair</a>
         </nav>
     </header>
 
@@ -47,7 +44,7 @@
                 <h1>Inovação e tecnologia para suas pedaladas!</h1>
                 <p class="hero-subtitle">O farol inteligente para bicicletas que combina IA, GPS e sensores para maior segurança e praticidade.</p>
                 <div class="hero-buttons">
-                    <a href="pages/criar-conta.html" class="btn-primary">Começar Agora</a>
+                    <a href="#apoie" class="btn-primary">Apoiar o Projeto</a>
                     <a href="#features" class="btn-secondary">Saiba Mais</a>
                 </div>
             </div>
@@ -132,8 +129,8 @@
                     <h2>Pronto para revolucionar suas pedaladas?</h2>
                     <p>Junte-se a milhares de ciclistas que já experimentaram a segurança e tecnologia CBikeAI.</p>
                     <div class="cta-buttons">
-                        <a href="pages/criar-conta.html" class="btn-primary">Criar Minha Conta</a>
-                        <a href="pages/contato.html" class="btn-secondary">Falar com Vendas</a>
+                        <a href="#apoie" class="btn-primary">Apoiar o Projeto</a>
+                        <a href="pages/contato.html" class="btn-secondary">Falar Conosco</a>
                     </div>
                 </div>
             </section>
@@ -210,35 +207,8 @@
     </div>
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
-    <script src="js/auth.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const loginLink = document.getElementById('login-link');
-            const profileLink = document.getElementById('profile-link');
-            const logoutBtn = document.getElementById('logout-btn');
-
-            const applyAuthState = () => {
-                const isLoggedIn = Boolean(localStorage.getItem('isLoggedIn') === 'true' || localStorage.getItem('cbikeai_user'));
-                if (loginLink) loginLink.style.display = isLoggedIn ? 'none' : 'inline';
-                if (profileLink) profileLink.style.display = isLoggedIn ? 'inline' : 'none';
-                if (logoutBtn) logoutBtn.style.display = isLoggedIn ? 'inline' : 'none';
-            };
-
-            applyAuthState();
-
-            document.getElementById('logout-btn')?.addEventListener('click', async function(e) {
-                e.preventDefault();
-                if (window.CBikeAuth?.signOut) {
-                    await window.CBikeAuth.signOut();
-                }
-                window.location.href = 'index.html';
-            });
-
-            window.addEventListener('storage', applyAuthState);
-            document.addEventListener('auth:updated', applyAuthState);
-        });
-
         // Smooth scroll para âncoras
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
