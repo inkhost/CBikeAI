@@ -271,7 +271,7 @@ function setupFormValidation() {
                 throw new Error('Falha no envio');
             }
         } catch (error) {
-            formMessageDiv.textContent = '❌ Erro ao enviar. Tente novamente mais tarde ou envie diretamente para claudiofelipe6@gmail.com';
+            formMessageDiv.textContent = '❌ Erro ao enviar. Tente novamente mais tarde ou envie diretamente para contato@cbikeai.com.br';
             formMessageDiv.classList.add('form-message-error');
             console.error('Erro no envio:', error);
             setTimeout(() => {
