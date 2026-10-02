@@ -491,85 +491,6 @@ p {
 }
 
 /* ======================================================
-   ===== SEÇÃO CTA =====
-   ====================================================== */
-
-.cta-section {
-    padding: clamp(60px, 12vw, 100px) 5%;
-    background: linear-gradient(135deg, rgba(9, 227, 49, 0.1) 0%, rgba(0, 0, 0, 0.9) 100%);
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.cta-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 30% 70%, rgba(9, 227, 49, 0.15) 0%, transparent 50%);
-    pointer-events: none;
-}
-
-.cta-content {
-    max-width: 800px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 2;
-}
-
-.cta-title {
-    font-size: clamp(2rem, 6vw, 3rem);
-    margin-bottom: 20px;
-    line-height: 1.2;
-}
-
-.cta-subtitle {
-    font-size: clamp(1.1rem, 3vw, 1.3rem);
-    margin-bottom: 40px;
-    color: #ccc;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.cta-buttons {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 60px;
-}
-
-.cta-stats {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    flex-wrap: wrap;
-    margin-top: 40px;
-}
-
-.stat-item {
-    text-align: center;
-}
-
-.stat-number {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--neon-green);
-    display: block;
-    line-height: 1;
-}
-
-.stat-label {
-    font-size: 0.9rem;
-    color: #ccc;
-    margin-top: 5px;
-}
-
-/* ======================================================
    ===== SEÇÃO APOIE (VAKINHA) =====
    ====================================================== */
 
@@ -1034,7 +955,6 @@ footer {
     }
     
     .hero-buttons,
-    .cta-buttons,
     .support-buttons {
         flex-direction: column;
         align-items: center;
